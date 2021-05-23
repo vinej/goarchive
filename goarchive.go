@@ -8,7 +8,7 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"gopkg.in/ini.v1"
-	"jyv.com/archive/util"
+	"jyv.com/goarchive/util"
 )
 
 type IniFile struct {

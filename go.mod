@@ -1,4 +1,4 @@
-module jyv.com/archive
+module jyv.com/goarchive
 
 go 1.16
 
