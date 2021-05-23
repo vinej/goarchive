@@ -92,14 +92,14 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 	}
 }
 
-func QuerySaveExcel(test_conn_string string, name_query string, output string) {
-	db, err := sql.Open("sqlserver", test_conn_string)
+func QuerySaveExcel(driver string, con string, query string, output string) {
+	db, err := sql.Open(driver, con)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	rows, err := db.Query(name_query)
+	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -145,14 +145,14 @@ func QuerySaveExcel(test_conn_string string, name_query string, output string) {
 	}
 }
 
-func Query(conn_string string, name_query string, callback func(rows *sql.Rows) interface{}) ([]string, []interface{}) {
-	db, err := sql.Open("sqlserver", conn_string)
+func Query(driver string, con string, query string, callback func(rows *sql.Rows) interface{}) ([]string, []interface{}) {
+	db, err := sql.Open(driver, con)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	rows, err := db.Query(name_query)
+	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
 	}
