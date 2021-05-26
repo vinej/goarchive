@@ -57,6 +57,45 @@ func (s *MapStringScan) Get() map[string]string {
 	return s.row
 }
 
+func mssql_isvalid_guid(val string) (string, bool) {
+	if len(val) == 16 {
+		// reorder bytes
+		// 3D451C51-823B-4F35-83CF-BD9F642012D9
+		nbytes := make([]byte, 16)
+		nbytes[0] = val[3]
+		nbytes[1] = val[2]
+		nbytes[2] = val[1]
+		nbytes[3] = val[0]
+
+		nbytes[4] = val[5]
+		nbytes[5] = val[4]
+
+		nbytes[6] = val[7]
+		nbytes[7] = val[6]
+
+		nbytes[8] = val[8]
+		nbytes[9] = val[9]
+
+		nbytes[10] = val[10]
+		nbytes[11] = val[11]
+		nbytes[12] = val[12]
+		nbytes[13] = val[13]
+		nbytes[14] = val[14]
+		nbytes[15] = val[15]
+
+		guid := hex.EncodeToString(nbytes)
+		guid = guid[0:8] + "-" + guid[8:12] + "-" + guid[12:16] + "-" + guid[16:20] + "-" + guid[20:32]
+		if valid.IsUUID(guid) {
+			guid = strings.ToUpper(guid)
+			return guid, true
+		} else {
+			return "", false
+		}
+	} else {
+		return "", false
+	}
+}
+
 func saveExcel(excel *excelize.File, sheet string, coor string, val string) {
 	if valid.IsFloat(val) {
 		fl, _ := valid.ToFloat(val)
@@ -68,40 +107,9 @@ func saveExcel(excel *excelize.File, sheet string, coor string, val string) {
 		t, _ := time.Parse(time.RFC3339, val)
 		excel.SetCellValue(sheet, coor, t)
 	} else {
-		// maybe gui
-		if len(val) == 16 {
-			// reorder bytes
-			// 3D451C51-823B-4F35-83CF-BD9F642012D9
-			nbytes := make([]byte, 16)
-			nbytes[0] = val[3]
-			nbytes[1] = val[2]
-			nbytes[2] = val[1]
-			nbytes[3] = val[0]
-
-			nbytes[4] = val[5]
-			nbytes[5] = val[4]
-
-			nbytes[6] = val[7]
-			nbytes[7] = val[6]
-
-			nbytes[8] = val[8]
-			nbytes[9] = val[9]
-
-			nbytes[10] = val[10]
-			nbytes[11] = val[11]
-			nbytes[12] = val[12]
-			nbytes[13] = val[13]
-			nbytes[14] = val[14]
-			nbytes[15] = val[15]
-
-			guid := hex.EncodeToString(nbytes)
-			guid = guid[0:8] + "-" + guid[8:12] + "-" + guid[12:16] + "-" + guid[16:20] + "-" + guid[20:32]
-			if valid.IsUUID(guid) {
-				guid = strings.ToUpper(guid)
-				excel.SetCellValue(sheet, coor, guid)
-			} else {
-				excel.SetCellValue(sheet, coor, val)
-			}
+		guid, isvalid := mssql_isvalid_guid(val)
+		if isvalid {
+			excel.SetCellValue(sheet, coor, guid)
 		} else {
 			excel.SetCellValue(sheet, coor, val)
 		}
