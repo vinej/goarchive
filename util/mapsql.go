@@ -139,6 +139,7 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 }
 
 func QuerySaveExcel(driver string, con string, query string, output string) {
+	log.Println("QuerySaveExcel started")
 	db, err := sql.Open(driver, con)
 	if err != nil {
 		log.Fatal(err)
@@ -189,6 +190,7 @@ func QuerySaveExcel(driver string, con string, query string, output string) {
 	if err := f.SaveAs(output); err != nil {
 		log.Println(err)
 	}
+	log.Println("QuerySaveExcel success")
 }
 
 func Query(driver string, con string, query string, callback func(rows *sql.Rows) interface{}) ([]string, []interface{}) {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"io"
 	"log"
 	"os"
 	"strings"
@@ -19,25 +19,10 @@ type IniFile struct {
 	output string
 }
 
-func logInfo(msg string) {
-	log.Println(msg)
-	fmt.Println(msg)
-}
-
-func logFatal(err interface{}, msg string) {
-	fmt.Println(msg)
-	log.Fatalln(err, msg)
-}
-
-func logPanic(msg string) {
-	fmt.Println(msg)
-	log.Fatalln(msg)
-}
-
 func load_ini_file(filename string) *IniFile {
 	cfg, err := ini.Load(filename)
 	if err != nil {
-		logFatal(err, "Fail to read ini file: "+filename)
+		log.Fatal(err, "Fail to read ini file: "+filename)
 	}
 	inifile := new(IniFile)
 	inifile.driver = cfg.Section("goarchive").Key("driver").String()
@@ -50,13 +35,13 @@ func load_ini_file(filename string) *IniFile {
 
 func validate_inifile(inifile *IniFile) {
 	if len(inifile.driver) == 0 {
-		logPanic("parameter <driver> is mandatory>")
+		log.Panic("parameter <driver> is mandatory>")
 	}
 	if len(inifile.con) == 0 {
-		logPanic("parameter <con> is mandatory>")
+		log.Panic("parameter <con> is mandatory>")
 	}
 	if len(inifile.query) == 0 {
-		logPanic("parameter <query> is mandatory>")
+		log.Panic("parameter <query> is mandatory>")
 	}
 	if len(inifile.log) == 0 {
 		inifile.log = "goarchive.log"
@@ -72,7 +57,7 @@ func load_parameter() *IniFile {
 	if len(os.Args) > 1 {
 		v := strings.SplitN(os.Args[1], "=", 2)
 		if len(v) < 2 {
-			logPanic("Syntaxe error")
+			log.Panic("Syntaxe error")
 		}
 		argname := v[0]
 		arginfo := v[1]
@@ -83,7 +68,7 @@ func load_parameter() *IniFile {
 			for i := 1; i < len(os.Args); i++ {
 				v := strings.SplitN(os.Args[i], "=", 2)
 				if len(v) < 2 {
-					logPanic("Syntaxe error")
+					log.Panic("Syntaxe error")
 				}
 				argname := v[0]
 				arginfo := v[1]
@@ -110,12 +95,12 @@ func load_parameter() *IniFile {
 				case "--con":
 					inifile.con = arginfo
 				default:
-					logPanic("unknown parameter")
+					log.Panic("unknown parameter")
 				}
 			}
 		}
 	} else {
-		logPanic("Syntaxe error")
+		log.Panic("Syntaxe error")
 	}
 	validate_inifile(inifile)
 	return inifile
@@ -142,12 +127,13 @@ func main() {
 	inifile := load_parameter()
 	file, err := os.OpenFile(inifile.log, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logFatal(err, "Error opening log file")
+		log.Fatal(err, "Error opening log file")
 	}
 	defer file.Close()
-	log.SetOutput(file)
+	mw := io.MultiWriter(os.Stdout, file)
+	log.SetOutput(mw)
 
-	logInfo("START processing")
+	log.Println("START processing")
 	doit(inifile)
-	logInfo("END processing")
+	log.Println("END processing")
 }

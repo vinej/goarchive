@@ -1,0 +1,41 @@
+{
+    "archiveName" : "xxx",
+    "connection" : [
+        { "name" : "corpo"
+        
+        
+        },
+        { "name" : "project"}
+
+
+    ],
+    "memoryDatas" : [
+        {
+            "dataName" : "",
+            "dataSource" : "query/csv/list",
+            "dataDef" : ""
+        }
+    ],
+    "etl" : [
+        {
+            "stepName" : "project",
+            "iterator" : "multiple",
+            "stepType" : "query",
+            "stepconnextion" : "corpo",
+            "stepDef" : "select project, project_name from project"
+        },
+        {
+            "stepName" : "period",
+            "stepType" : "query",
+            "stepconnextion" : "project",
+            "iterator" : "prev_curr",
+            "stepDef" : "select cost_period from cost_period where project = {project}"
+        },
+        {
+            "stepName" : "report1",
+            "stepType" : "query",
+            "stepconnextion" : "project",
+            "stepDef" : "exec xxx ....."
+        }
+    ]
+}
