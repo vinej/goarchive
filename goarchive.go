@@ -12,6 +12,7 @@ import (
 )
 
 type IniFile struct {
+	name   string
 	driver string
 	con    string
 	query  string
@@ -25,6 +26,7 @@ func load_ini_file(filename string) *IniFile {
 		log.Fatal(err, "Fail to read ini file: "+filename)
 	}
 	inifile := new(IniFile)
+	inifile.name = cfg.Section("goarchive").Key("name").String()
 	inifile.driver = cfg.Section("goarchive").Key("driver").String()
 	inifile.con = cfg.Section("goarchive").Key("con").String()
 	inifile.query = cfg.Section("goarchive").Key("query").String()
@@ -34,6 +36,9 @@ func load_ini_file(filename string) *IniFile {
 }
 
 func validate_inifile(inifile *IniFile) {
+	if len(inifile.name) == 0 {
+		log.Panic("parameter <name> is mandatory>")
+	}
 	if len(inifile.driver) == 0 {
 		log.Panic("parameter <driver> is mandatory>")
 	}
@@ -74,6 +79,10 @@ func load_parameter() *IniFile {
 				arginfo := v[1]
 
 				switch argname {
+				case "n":
+					inifile.name = arginfo
+				case "--name":
+					inifile.name = arginfo
 				case "d":
 					inifile.driver = arginfo
 				case "--driver":
@@ -107,7 +116,7 @@ func load_parameter() *IniFile {
 }
 
 func doit(inifile *IniFile) {
-	util.QuerySaveExcel(inifile.driver, inifile.con, inifile.query, inifile.output)
+	util.QuerySaveExcel(inifile.name, inifile.driver, inifile.con, inifile.query, inifile.output)
 }
 
 func main() {

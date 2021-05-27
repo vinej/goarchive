@@ -1,7 +1,8 @@
 {
-    "archiveName" : "xxx",
+    "archive" : "xxx",
     "connection" : [
-        { "name" : "corpo"
+        { "name" : "corpo",
+            "driver"
         
         
         },

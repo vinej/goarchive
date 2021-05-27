@@ -12,6 +12,7 @@ import (
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	valid "github.com/asaskevich/govalidator"
+	"jyv.com/goarchive/connection"
 )
 
 type MapStringScan struct {
@@ -138,9 +139,10 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 	}
 }
 
-func QuerySaveExcel(driver string, con string, query string, output string) {
+func QuerySaveExcel(name string, driver string, con string, query string, output string) {
 	log.Println("QuerySaveExcel started")
-	db, err := sql.Open(driver, con)
+
+	db, err := connection.CreateOrGetDB(name, driver, con)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -194,7 +196,7 @@ func QuerySaveExcel(driver string, con string, query string, output string) {
 }
 
 func Query(driver string, con string, query string, callback func(rows *sql.Rows) interface{}) ([]string, []interface{}) {
-	db, err := sql.Open(driver, con)
+	db, err := connection.CreateOrGetDB("corpo", driver, con)
 	if err != nil {
 		log.Fatal(err)
 	}
