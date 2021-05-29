@@ -1,42 +1,24 @@
 {
     "archive" : "xxx",
-    "connection" : [
-        { "name" : "corpo",
-            "driver"
-        
-        
+    "connections" : [
+        {   "name" : "corpo",
+            "driver" : "sqlserver",
+            "dataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
         },
-        { "name" : "project"}
-
-
-    ],
-    "memoryDatas" : [
-        {
-            "dataName" : "",
-            "dataSource" : "query/csv/list",
-            "dataDef" : ""
+        {   "name" : "project",
+            "driver" : "sqlserver",
+            "dataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
         }
     ],
-    "etl" : [
-        {
-            "stepName" : "project",
-            "iterator" : "multiple",
-            "stepType" : "query",
-            "stepconnextion" : "corpo",
-            "stepDef" : "select project, project_name from project"
-        },
-        {
-            "stepName" : "period",
-            "stepType" : "query",
-            "stepconnextion" : "project",
-            "iterator" : "prev_curr",
-            "stepDef" : "select cost_period from cost_period where project = {project}"
-        },
-        {
-            "stepName" : "report1",
-            "stepType" : "query",
-            "stepconnextion" : "project",
-            "stepDef" : "exec xxx ....."
+    "tasks" : [
+        {   "id" : "1",
+            "type" : "query",  
+            "name" : "archive",
+            "description" : "archive",
+            "connection" : "corpo",
+            "query":"select * from archvie",
+            "output" : "excel",
+            "file" : "goarchive.xlsx"
         }
     ]
 }

@@ -8,6 +8,7 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"gopkg.in/ini.v1"
+	"jyv.com/goarchive/connection"
 	"jyv.com/goarchive/util"
 )
 
@@ -37,7 +38,7 @@ func load_ini_file(filename string) *IniFile {
 
 func validate_inifile(inifile *IniFile) {
 	if len(inifile.name) == 0 {
-		log.Panic("parameter <name> is mandatory>")
+		inifile.name = "master"
 	}
 	if len(inifile.driver) == 0 {
 		log.Panic("parameter <driver> is mandatory>")
@@ -116,7 +117,8 @@ func load_parameter() *IniFile {
 }
 
 func doit(inifile *IniFile) {
-	util.QuerySaveExcel(inifile.name, inifile.driver, inifile.con, inifile.query, inifile.output)
+	db, _ := connection.CreateOrGetDB(inifile.name, inifile.driver, inifile.con)
+	util.QuerySaveExcel(inifile.name, db, inifile.query, inifile.output)
 }
 
 func main() {
