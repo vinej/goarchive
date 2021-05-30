@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -9,11 +11,14 @@ import (
 	_ "github.com/denisenkom/go-mssqldb"
 	"gopkg.in/ini.v1"
 	"jyv.com/goarchive/connection"
-	"jyv.com/goarchive/util"
+	con "jyv.com/goarchive/connection"
+	task "jyv.com/goarchive/task"
+	util "jyv.com/goarchive/util"
 )
 
 type IniFile struct {
 	name   string
+	json   string
 	driver string
 	con    string
 	query  string
@@ -40,21 +45,38 @@ func validate_inifile(inifile *IniFile) {
 	if len(inifile.name) == 0 {
 		inifile.name = "master"
 	}
-	if len(inifile.driver) == 0 {
-		log.Panic("parameter <driver> is mandatory>")
-	}
-	if len(inifile.con) == 0 {
-		log.Panic("parameter <con> is mandatory>")
-	}
-	if len(inifile.query) == 0 {
-		log.Panic("parameter <query> is mandatory>")
-	}
 	if len(inifile.log) == 0 {
 		inifile.log = "goarchive.log"
 	}
 	if len(inifile.output) == 0 {
 		inifile.output = "goarchive.xlsx"
 	}
+
+	if inifile.json == "" {
+		if len(inifile.driver) == 0 {
+			log.Panic("parameter <driver> is mandatory>")
+		}
+		if len(inifile.con) == 0 {
+			log.Panic("parameter <con> is mandatory>")
+		}
+		if len(inifile.query) == 0 {
+			log.Panic("parameter <query> is mandatory>")
+		}
+	}
+}
+
+func load_json(file string) {
+	data, err := ioutil.ReadFile(file)
+	if err != nil {
+		log.Panic(err)
+	}
+	obj := new(task.ETL)
+	err = json.Unmarshal(data, obj)
+	if err != nil {
+		log.Panic(err)
+	}
+	con.CreateAll(obj.Connections)
+	task.RunAll(obj.Tasks)
 }
 
 func load_parameter() *IniFile {
@@ -69,6 +91,9 @@ func load_parameter() *IniFile {
 		arginfo := v[1]
 		if argname == "i" || argname == "--ini" {
 			inifile = load_ini_file(arginfo)
+		} else if argname == "j" || argname == "--json" {
+			inifile = new(IniFile)
+			inifile.json = v[1]
 		} else {
 			inifile = new(IniFile)
 			for i := 1; i < len(os.Args); i++ {
@@ -117,8 +142,12 @@ func load_parameter() *IniFile {
 }
 
 func doit(inifile *IniFile) {
-	db, _ := connection.CreateOrGetDB(inifile.name, inifile.driver, inifile.con)
-	util.QuerySaveExcel(inifile.name, db, inifile.query, inifile.output)
+	if inifile.json != "" {
+		load_json(inifile.json)
+	} else {
+		db, _ := connection.CreateOrGetDB(inifile.name, inifile.driver, inifile.con)
+		util.QuerySaveExcel(inifile.name, db, inifile.query, inifile.output)
+	}
 }
 
 func main() {
@@ -136,15 +165,17 @@ func main() {
 	// 		log = {log file}
 	// 		output = {output file name
 	inifile := load_parameter()
-	file, err := os.OpenFile(inifile.log, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Fatal(err, "Error opening log file")
-	}
-	defer file.Close()
-	mw := io.MultiWriter(os.Stdout, file)
-	log.SetOutput(mw)
+	if inifile != nil {
+		file, err := os.OpenFile(inifile.log, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Fatal(err, "Error opening log file")
+		}
+		defer file.Close()
+		mw := io.MultiWriter(os.Stdout, file)
+		log.SetOutput(mw)
 
-	log.Println("START processing")
-	doit(inifile)
-	log.Println("END processing")
+		log.Println("START processing")
+		doit(inifile)
+		log.Println("END processing")
+	}
 }

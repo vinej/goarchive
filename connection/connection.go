@@ -11,6 +11,12 @@ import (
 	"sync"
 )
 
+type Connection struct {
+	Name           string
+	Driver         string
+	DataSourceName string
+}
+
 var lock = &sync.Mutex{}
 
 // declare a empty map of connection
@@ -53,4 +59,10 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 		log.Println("Single Instance already created-2")
 	}
 	return mapcon[name], nil
+}
+
+func CreateAll(con []Connection) {
+	for _, c := range con {
+		_, _ = CreateOrGetDB(c.Name, c.Driver, c.DataSourceName)
+	}
 }

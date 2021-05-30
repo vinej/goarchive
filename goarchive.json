@@ -1,24 +1,23 @@
 {
-    "archive" : "xxx",
-    "connections" : [
-        {   "name" : "corpo",
-            "driver" : "sqlserver",
-            "dataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
-        },
-        {   "name" : "project",
-            "driver" : "sqlserver",
-            "dataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
-        }
-    ],
-    "tasks" : [
-        {   "id" : "1",
-            "type" : "query",  
-            "name" : "archive",
-            "description" : "archive",
-            "connection" : "corpo",
-            "query":"select * from archvie",
-            "output" : "excel",
-            "file" : "goarchive.xlsx"
-        }
-    ]
+"Connections" : [
+    {   "Name" : "corpo",
+        "Driver" : "sqlserver",
+        "DataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
+    },
+    {   "Name" : "project",
+        "Driver" : "sqlserver",
+        "DataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
+    }
+],
+"Tasks" : [
+    {   "Id" : "1",
+        "Kind" : "query",  
+        "Name" : "archive",
+        "Description" : "archive",
+        "Connection" : "corpo",
+        "Sql":"select * from archive.dbo.names",
+        "Output" : "excel",
+        "File" : "goarchive.xlsx"
+    }
+]
 }
