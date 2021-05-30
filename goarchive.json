@@ -11,13 +11,29 @@
 ],
 "Tasks" : [
     {   "Id" : "1",
+        "Kind" : "array",  
+        "Name" : "projects",
+        "Description" : "list of projects",
+        "Command":"'123','124'",
+        "Connection" : "",
+        "OutputType" : "",
+        "OutputName" : ""
+    },
+    {   "Id" : "2",
         "Kind" : "query",  
-        "Name" : "archive",
-        "Description" : "archive",
-        "Connection" : "corpo",
-        "Sql":"select * from archive.dbo.names",
-        "Output" : "excel",
-        "File" : "goarchive.xlsx"
+        "Name" : "names",
+        "Description" : "list of names by project",
+        "Connection" : "project",
+        "Command":"select * from archive.dbo.names where project = {project}",
+        "Parameters" : [
+            {
+                "Name" : "{project}",
+                "Source" : "array",
+                "SourceName": "projects"
+            }
+        ],
+        "OutputType" : "excel",
+        "OutputName" : "goarchive.xlsx"
     }
 ]
 }

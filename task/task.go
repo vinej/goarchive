@@ -25,15 +25,22 @@ type ITask interface {
 	//Cancel(ctx context.Context) (Status, error)
 }
 
+type Parameter struct {
+	Name       string
+	Source     string
+	SourceName string
+}
+
 type Task struct {
 	Id          string
 	Kind        string
 	Name        string
 	Description string
 	Connection  string
-	Sql         string
-	Output      string
-	File        string
+	Command     string
+	OutputType  string
+	OutputName  string
+	Parameters  []Parameter
 }
 
 type ETL struct {
@@ -46,6 +53,8 @@ func RunAll(tasks []Task) {
 		switch t.Kind {
 		case "query":
 			RunQuery(t)
+		case "array":
+			RunArray(t)
 		}
 	}
 }

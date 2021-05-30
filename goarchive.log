@@ -19,3 +19,83 @@
 2021/05/30 07:55:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml]
 2021/05/30 07:55:20 QuerySaveExcel success
 2021/05/30 07:55:20 END processing
+2021/05/30 07:56:09 START processing
+2021/05/30 07:56:09 Creting Single Instance Now
+2021/05/30 07:56:09 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml]
+2021/05/30 07:56:09 QuerySaveExcel success
+2021/05/30 07:56:09 END processing
+2021/05/30 07:56:28 START processing
+2021/05/30 07:56:28 Creting Single Instance Now
+2021/05/30 07:56:28 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml]
+2021/05/30 07:56:28 QuerySaveExcel success
+2021/05/30 07:56:28 END processing
+2021/05/30 08:26:48 START processing
+2021/05/30 08:35:53 START processing
+2021/05/30 08:35:57 Creting Single Instance Now
+2021/05/30 08:35:57 Creting Single Instance Now
+2021/05/30 08:48:53 START processing
+2021/05/30 08:49:01 Creting Single Instance Now
+2021/05/30 08:49:01 Creting Single Instance Now
+2021/05/30 08:50:01 mssql: Invalid column name 'project'.
+2021/05/30 08:51:35 START processing
+2021/05/30 08:51:35 Creting Single Instance Now
+2021/05/30 08:51:35 Creting Single Instance Now
+2021/05/30 08:51:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:51:35 QuerySaveExcel success
+2021/05/30 08:51:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:51:35 QuerySaveExcel success
+2021/05/30 08:51:35 END processing
+2021/05/30 08:52:51 START processing
+2021/05/30 08:52:51 Creting Single Instance Now
+2021/05/30 08:52:51 Creting Single Instance Now
+2021/05/30 08:52:51 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:52:51 QuerySaveExcel success
+2021/05/30 08:52:51 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:52:51 QuerySaveExcel success
+2021/05/30 08:52:51 END processing
+2021/05/30 08:53:09 START processing
+2021/05/30 08:53:09 Creting Single Instance Now
+2021/05/30 08:53:09 Creting Single Instance Now
+2021/05/30 08:53:09 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:53:09 QuerySaveExcel success
+2021/05/30 08:53:09 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:53:09 QuerySaveExcel success
+2021/05/30 08:53:09 END processing
+2021/05/30 08:54:00 START processing
+2021/05/30 08:54:00 Creting Single Instance Now
+2021/05/30 08:54:00 Creting Single Instance Now
+2021/05/30 08:54:00 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:54:00 QuerySaveExcel success
+2021/05/30 08:54:00 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 08:54:00 QuerySaveExcel success
+2021/05/30 08:54:00 END processing
+2021/05/30 09:02:04 START processing
+2021/05/30 09:02:06 Creting Single Instance Now
+2021/05/30 09:02:06 Creting Single Instance Now
+2021/05/30 09:02:40 START processing
+2021/05/30 09:02:42 Creting Single Instance Now
+2021/05/30 09:02:42 Creting Single Instance Now
+2021/05/30 09:02:57 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:02:57 QuerySaveExcel success
+2021/05/30 09:02:59 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:02:59 QuerySaveExcel success
+2021/05/30 09:02:59 END processing
+2021/05/30 09:03:12 START processing
+2021/05/30 09:03:12 Creting Single Instance Now
+2021/05/30 09:03:12 Creting Single Instance Now
+2021/05/30 09:03:12 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:03:12 QuerySaveExcel success
+2021/05/30 09:03:12 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:03:12 QuerySaveExcel success
+2021/05/30 09:03:12 END processing
+2021/05/30 09:03:43 START processing
+2021/05/30 09:03:44 Creting Single Instance Now
+2021/05/30 09:03:44 Creting Single Instance Now
+2021/05/30 09:05:08 START processing
+2021/05/30 09:05:08 Creting Single Instance Now
+2021/05/30 09:05:08 Creting Single Instance Now
+2021/05/30 09:05:09 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:05:09 QuerySaveExcel success
+2021/05/30 09:05:09 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project]
+2021/05/30 09:05:09 QuerySaveExcel success
+2021/05/30 09:05:09 END processing
