@@ -12,7 +12,6 @@ import (
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	valid "github.com/asaskevich/govalidator"
-	"jyv.com/goarchive/connection"
 )
 
 type MapStringScan struct {
@@ -21,6 +20,14 @@ type MapStringScan struct {
 	// row contains the final result
 	row      map[string]string
 	colCount int
+	colNames []string
+}
+
+type MapQueryRow struct {
+	row map[string]string
+}
+
+type MapQueryColumn struct {
 	colNames []string
 }
 
@@ -98,21 +105,26 @@ func mssql_isvalid_guid(val string) (string, bool) {
 }
 
 func saveExcel(excel *excelize.File, sheet string, coor string, val string) {
+	field := getField(val)
+	excel.SetCellValue(sheet, coor, field)
+}
+
+func getField(val string) interface{} {
 	if valid.IsFloat(val) {
 		fl, _ := valid.ToFloat(val)
-		excel.SetCellFloat(sheet, coor, fl, -1, 64)
+		return fl
 	} else if valid.IsInt(val) {
 		iv, _ := valid.ToInt(val)
-		excel.SetCellInt(sheet, coor, int(iv))
+		return iv
 	} else if valid.IsTime(val, time.RFC3339) {
 		t, _ := time.Parse(time.RFC3339, val)
-		excel.SetCellValue(sheet, coor, t)
+		return t
 	} else {
 		guid, isvalid := mssql_isvalid_guid(val)
 		if isvalid {
-			excel.SetCellValue(sheet, coor, guid)
+			return guid
 		} else {
-			excel.SetCellValue(sheet, coor, val)
+			return val
 		}
 	}
 }
@@ -188,13 +200,15 @@ func QuerySaveExcel(name string, db *sql.DB, query string, output string) {
 
 }
 
-func Query(driver string, con string, query string, callback func(rows *sql.Rows) interface{}) ([]string, []interface{}) {
-	db, err := connection.CreateOrGetDB("corpo", driver, con)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
+func callback(rc *MapStringScan, rows *sql.Rows) interface{} {
+	return rc.Get()
+}
 
+func Query(db *sql.DB, query string) ([]string, []interface{}) {
+	return QueryCallback(db, query, callback)
+}
+
+func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) interface{}) ([]string, []interface{}) {
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
@@ -207,9 +221,14 @@ func Query(driver string, con string, query string, callback func(rows *sql.Rows
 		log.Fatal(err)
 	}
 
+	rc := NewMapStringScan(columnNames)
 	out := make([]interface{}, 0)
 	for rows.Next() {
-		rec := callback(rows)
+		err := rc.Update(rows)
+		if err != nil {
+			log.Fatal(err)
+		}
+		rec := pcallback(rc, rows)
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -4,7 +4,7 @@ import "strings"
 
 var mapele map[string][]string = make(map[string][]string)
 
-func RunArray(task Task) {
+func RunArray(task *Task) {
 	a := strings.Split(task.Command, ",")
 	mapele[task.Name] = a
 }

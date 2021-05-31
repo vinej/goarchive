@@ -29,6 +29,7 @@ type Parameter struct {
 	Name       string
 	Source     string
 	SourceName string
+	Field      string
 }
 
 type Task struct {
@@ -52,9 +53,9 @@ func RunAll(tasks []Task) {
 	for _, t := range tasks {
 		switch t.Kind {
 		case "query":
-			RunQuery(t)
+			RunQuery(&t)
 		case "array":
-			RunArray(t)
+			RunArray(&t)
 		}
 	}
 }
