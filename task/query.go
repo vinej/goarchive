@@ -25,10 +25,6 @@ func adjust_quote(name string) string {
 	return name
 }
 
-func query_excel_array(task *Task) {
-
-}
-
 func query_excel_memory(task *Task) {
 	db, _ := con.GetDB(task.Connection)
 	p1 := task.Parameters[0]
@@ -44,39 +40,42 @@ func query_excel_memory(task *Task) {
 		}
 		if len(task.Parameters) == 2 {
 			p2 := task.Parameters[1]
-			switch p2.Source {
-			case "memory":
-				mem2 := GetMemory(p2.SourceName)
-				isFirst := true
-				for r2 := 0; r2 < len(mem2.rows); r2++ {
-					mr := *mem2.rows[r2].(*map[string]string)
-					cmd2 := cmd
-					out2 := out
-					for i := 0; i < len(p2.Field); i++ {
-						if p2.Field[i][0] == '-' {
-							// period type, goto second record
-							if isFirst {
-								r2 = r2 + 1
-								isFirst = false
-							}
-							mr2 := *mem2.rows[r2-1].(*map[string]string)
-							ma2 := adjust_quote(mr2[p2.Field[i][1:]])
-							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
-							out2 = "p" + ma2 + "_" + out2
-
-							i = i + 1
-							mr2 = *mem2.rows[r2].(*map[string]string)
-							ma2 = adjust_quote(mr2[p2.Field[i]])
-							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
-							out2 = "p" + ma2 + "_" + out2
-						} else {
-							ma2 := adjust_quote(mr[p2.Field[i]])
-							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
-							out2 = "p" + ma2 + "_" + out2
+			mem2 := GetMemory(p2.SourceName)
+			isFirst := true
+			for r2 := 0; r2 < len(mem2.rows); r2++ {
+				mr := *mem2.rows[r2].(*map[string]string)
+				cmd2 := cmd
+				out2 := out
+				for i := 0; i < len(p2.Field); i++ {
+					// if same field fir i and i + 1, means that the first one is for previous record
+					// and the second one for the current record
+					// we must skip to record i+1 because there is no record[-1]
+					if i+1 < len(p2.Field) && p2.Field[i] == p2.Field[i+1] {
+						// period type, goto second record
+						if isFirst {
+							r2 = r2 + 1
+							isFirst = false
 						}
+						// use previous record
+						mr2 := *mem2.rows[r2-1].(*map[string]string)
+						ma2 := adjust_quote(mr2[p2.Field[i]])
+						cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+						out2 = "p" + ma2 + "_" + out2
+
+						i = i + 1
+						// take next field
+						// use current record
+						mr2 = *mem2.rows[r2].(*map[string]string)
+						ma2 = adjust_quote(mr2[p2.Field[i]])
+						cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+						out2 = "p" + ma2 + "_" + out2
+					} else {
+						ma2 := adjust_quote(mr[p2.Field[i]])
+						cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+						out2 = "p" + ma2 + "_" + out2
 					}
-					util.QuerySaveExcel(task.Name, db, cmd2, out2)
 				}
+				util.QuerySaveExcel(task.Name, db, cmd2, out2)
 			}
 		} else {
 			util.QuerySaveExcel(task.Name, db, cmd, out)
@@ -86,13 +85,7 @@ func query_excel_memory(task *Task) {
 
 func query_excel(task *Task) {
 	if len(task.Parameters) > 0 {
-		p1 := task.Parameters[0]
-		switch p1.Source {
-		case "memory":
-			query_excel_memory(task)
-		case "array":
-			query_excel_array(task)
-		}
+		query_excel_memory(task)
 	} else {
 		db, _ := con.GetDB(task.Connection)
 		util.QuerySaveExcel(task.Name, db, task.Command, task.OutputName)
@@ -103,36 +96,16 @@ func GetMemory(name string) *Memory {
 	return mapqry[name]
 }
 
+/*
+	query the database and put the result into memory
+	no parameter managed by the option
+*/
 func query_memory(task *Task) {
 	db, err := con.GetDB(task.Connection)
 	if err == nil {
-		if len(task.Parameters) > 0 {
-			cmd := task.Command
-			m := new(Memory)
-			for _, p := range task.Parameters {
-				switch p.Source {
-				case "array":
-					array := GetArray(p.SourceName)
-					for _, a := range array {
-						cmd = strings.ReplaceAll(cmd, p.Name[0], a)
-					}
-				case "memory":
-					mem := GetMemory(p.SourceName)
-					for _, r := range mem.rows {
-						mr := *r.(*map[string]string)
-						for i := 0; i < len(p.Field); i++ {
-							cmd = strings.ReplaceAll(cmd, p.Name[i], mr[p.Field[i]])
-						}
-					}
-				}
-			}
-			m.columnNames, m.rows = util.Query(db, cmd)
-			mapqry[task.Name] = m
-		} else {
-			m := new(Memory)
-			m.columnNames, m.rows = util.Query(db, task.Command)
-			mapqry[task.Name] = m
-		}
+		m := new(Memory)
+		m.columnNames, m.rows = util.Query(db, task.Command)
+		mapqry[task.Name] = m
 	}
 }
 

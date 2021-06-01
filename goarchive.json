@@ -10,15 +10,6 @@
     }
 ],
 "Tasks" : [
-    {   "Id" : "1",
-        "Kind" : "array",  
-        "Name" : "projects",
-        "Description" : "array of projects",
-        "Command":"'123','124'",
-        "Connection" : "",
-        "OutputType" : "",
-        "OutputName" : ""
-    },
     {   "Id" : "2",
         "Kind" : "query",  
         "Name" : "projects",
@@ -44,15 +35,13 @@
         "Parameters" : [
             {
                 "Name" : ["{project}"],
-                "Source" : "memory",
                 "SourceName": "projects",
                 "Field" : ["id"]
             },
             {
                 "Name" : ["{per_prec}", "{per_curr}"],
-                "Source" : "memory",
                 "SourceName": "periodes",
-                "Field" : ["-id", "id"]
+                "Field" : ["id", "id"]
             }
         ],
         "OutputType" : "excel",
