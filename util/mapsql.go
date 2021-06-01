@@ -12,6 +12,7 @@ import (
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	valid "github.com/asaskevich/govalidator"
+	"github.com/jinzhu/copier"
 )
 
 type MapStringScan struct {
@@ -232,7 +233,9 @@ func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, r
 		if err != nil {
 			log.Fatal(err)
 		}
-		out = append(out, rec)
+		tmp := new(map[string]string)
+		copier.Copy(tmp, rec)
+		out = append(out, tmp)
 	}
 	return columnNames, out
 }

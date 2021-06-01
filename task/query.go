@@ -42,7 +42,7 @@ func query_excel(task *Task) {
 				case "memory":
 					mem := GetMemory(p.SourceName)
 					for _, r := range mem.rows {
-						mr := r.(map[string]string)
+						mr := *r.(*map[string]string)
 						ma := adjust_quote(mr[p.Field])
 						cmd := strings.ReplaceAll(task.Command, p.Name, ma)
 						out := "p" + ma + "_" + task.OutputName

@@ -24,7 +24,7 @@
         "Name" : "projects",
         "Description" : "list of projects",
         "Connection" : "corpo",
-        "Command":"select project, projectName from archive.dbo.projects",
+        "Command":"select id, name, description from archive.dbo.projects",
         "OutputType" : "memory"
     },
     {   "Id" : "3",
@@ -36,25 +36,9 @@
         "Parameters" : [
             {
                 "Name" : "{project}",
-                "Source" : "array",
-                "SourceName": "projects"
-            }
-        ],
-        "OutputType" : "excel",
-        "OutputName" : "goarchive.xlsx"
-    },
-    {   "Id" : "4",
-        "Kind" : "query",  
-        "Name" : "names",
-        "Description" : "list of names by project",
-        "Connection" : "project",
-        "Command":"select * from archive.dbo.names where project = {project}",
-        "Parameters" : [
-            {
-                "Name" : "{project}",
                 "Source" : "memory",
                 "SourceName": "projects",
-                "Field" : "projectName"
+                "Field" : "id"
             }
         ],
         "OutputType" : "excel",
