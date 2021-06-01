@@ -46,27 +46,33 @@ func query_excel_memory(task *Task) {
 			p2 := task.Parameters[1]
 			switch p2.Source {
 			case "memory":
-				mem := GetMemory(p2.SourceName)
+				mem2 := GetMemory(p2.SourceName)
 				isFirst := true
-				for r := 0; r < len(mem.rows); r++ {
-					mr := *mem.rows[r].(*map[string]string)
+				for r2 := 0; r2 < len(mem2.rows); r2++ {
+					mr := *mem2.rows[r2].(*map[string]string)
 					cmd2 := cmd
 					out2 := out
 					for i := 0; i < len(p2.Field); i++ {
 						if p2.Field[i][0] == '-' {
+							// period type, goto second record
 							if isFirst {
+								r2 = r2 + 1
 								isFirst = false
-								continue
-							} else {
-								mr := *mem.rows[r-1].(*map[string]string)
-								ma := adjust_quote(mr[p2.Field[i][1:]])
-								cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma)
-								out2 = "p" + ma + "_" + out2
 							}
+							mr2 := *mem2.rows[r2-1].(*map[string]string)
+							ma2 := adjust_quote(mr2[p2.Field[i][1:]])
+							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+							out2 = "p" + ma2 + "_" + out2
+
+							i = i + 1
+							mr2 = *mem2.rows[r2].(*map[string]string)
+							ma2 = adjust_quote(mr2[p2.Field[i]])
+							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+							out2 = "p" + ma2 + "_" + out2
 						} else {
-							ma := adjust_quote(mr[p2.Field[i]])
-							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma)
-							out2 = "p" + ma + "_" + out2
+							ma2 := adjust_quote(mr[p2.Field[i]])
+							cmd2 = strings.ReplaceAll(cmd2, p2.Name[i], ma2)
+							out2 = "p" + ma2 + "_" + out2
 						}
 					}
 					util.QuerySaveExcel(task.Name, db, cmd2, out2)
