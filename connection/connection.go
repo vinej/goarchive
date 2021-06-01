@@ -47,7 +47,6 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 				//	con.db.SetConnMaxIdleTime(time.Duration(maxIdleTime))
 				//	con.db.SetMaxIdleConns(maxIdleConns)
 				//	con.db.SetMaxOpenConns(maxOpenConns)
-				log.Println(err)
 				return nil, err
 			} else {
 				mapcon[name] = db
@@ -61,8 +60,28 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 	return mapcon[name], nil
 }
 
+func validate_connection(con Connection) {
+	if con.Name == "" {
+		log.Fatalln("Json file for 'Connections' does not contains the field :  'Name'   ,check for a typo")
+	}
+	if con.Driver == "" {
+		log.Fatalln("Json file for 'Connections' does not contains the field :  'Driver'  ,check for a typo")
+	}
+	if con.Driver != "sqlserver" {
+		log.Fatalf("Json file for 'Connections' : The driver '%s' is not supported", con.Driver)
+	}
+	if con.DataSourceName == "" {
+		log.Fatalln("Json file for 'Connections' does not contains the field :  'DataSourceName'   ,check for a typo")
+	}
+
+}
+
 func CreateAll(con []Connection) {
 	for _, c := range con {
-		_, _ = CreateOrGetDB(c.Name, c.Driver, c.DataSourceName)
+		validate_connection(c)
+		_, err := CreateOrGetDB(c.Name, c.Driver, c.DataSourceName)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }

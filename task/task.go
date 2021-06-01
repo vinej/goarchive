@@ -1,36 +1,15 @@
 package task
 
 import (
-	"context"
+	"log"
 
 	con "jyv.com/goarchive/connection"
 )
 
-type Status string
-
-const (
-	Running   Status = "runnning"
-	Paused    Status = "paused"
-	Cancelled Status = "cancelled"
-	Completed Status = "completed"
-	Failed    Status = "failed"
-	Success   Status = "success"
-)
-
-type ITask interface {
-	//GetStatus() Status
-	Run(ctx context.Context) (Status, error)
-	//Stop(ctx context.Context) (Status, error)
-	//Start(ctx context.Context) (Status, error)
-	//Cancel(ctx context.Context) (Status, error)
-}
-
 type Parameter struct {
-	Name       []string
-	Source     string
-	SourceName string
-	Field      []string
-	Level      int
+	Names  []string
+	Fields []string
+	Source string
 }
 
 type Task struct {
@@ -50,13 +29,38 @@ type ETL struct {
 	Tasks       []Task
 }
 
+func validate_task(t Task) {
+	if t.Kind == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'Kind'   , check for a typo")
+	}
+	if t.Id == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'Id'   ,check for a typo")
+	}
+	if t.Command == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'Command'   ,check for a typo")
+	}
+	if t.Connection == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'Connection'   ,check for a typo")
+	}
+	if t.Name == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'Name'   ,check for a typo")
+	}
+	if t.OutputType == "" {
+		log.Fatalln("The json file for 'Tasks' does not contains the field 'OutputType'   ,check for a typo")
+	}
+	if t.OutputType == "excel" && t.OutputName == "" {
+		log.Fatalln("The json file for 'Tasks' : A task of output type 'Excel' must have a field 'OutputName'  ,check for a typo")
+	}
+}
+
 func RunAll(tasks []Task) {
 	for _, t := range tasks {
+		validate_task(t)
 		switch t.Kind {
 		case "query":
 			RunQuery(&t)
-		case "array":
-			RunArray(&t)
+		default:
+			log.Fatal("Invalid task kind" + t.Kind)
 		}
 	}
 }

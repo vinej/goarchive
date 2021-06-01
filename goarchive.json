@@ -34,14 +34,14 @@
         "Command":"select * from archive.dbo.names where project = {project} and (periode = {per_prec} or periode = {per_curr})",
         "Parameters" : [
             {
-                "Name" : ["{project}"],
-                "SourceName": "projects",
-                "Field" : ["id"]
+                "Names" : ["{project}"],
+                "Fields" : ["id"],
+                "Source": "projects"
             },
             {
-                "Name" : ["{per_prec}", "{per_curr}"],
-                "SourceName": "periodes",
-                "Field" : ["id", "id"]
+                "Names" : ["{per_prec}", "{per_curr}"],
+                "Fields" : ["id", "id"],
+                "Source": "periodes"
             }
         ],
         "OutputType" : "excel",
