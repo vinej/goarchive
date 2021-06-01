@@ -13,7 +13,7 @@
     {   "Id" : "1",
         "Kind" : "array",  
         "Name" : "projects",
-        "Description" : "list of projects",
+        "Description" : "array of projects",
         "Command":"'123','124'",
         "Connection" : "",
         "OutputType" : "",
@@ -29,16 +29,30 @@
     },
     {   "Id" : "3",
         "Kind" : "query",  
+        "Name" : "periodes",
+        "Description" : "list of periodes",
+        "Connection" : "project",
+        "Command":"select id from archive.dbo.periode",
+        "OutputType" : "memory"
+    },
+    {   "Id" : "4",
+        "Kind" : "query",  
         "Name" : "names",
         "Description" : "list of names by project",
         "Connection" : "project",
         "Command":"select * from archive.dbo.names where project = {project}",
         "Parameters" : [
             {
-                "Name" : "{project}",
+                "Name" : ["{project}"],
                 "Source" : "memory",
                 "SourceName": "projects",
-                "Field" : "id"
+                "Field" : ["id"]
+            },
+            {
+                "Name" : ["{per_prec}", "{per_curr}"],
+                "Source" : "memory",
+                "SourceName": "periode",
+                "Field" : ["-id", "id"]
             }
         ],
         "OutputType" : "excel",

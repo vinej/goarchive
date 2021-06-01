@@ -1,0 +1,49 @@
+case "array":
+				array := GetArray(p1.SourceName)
+				for _, a := range array {
+					ma := adjust_quote(a)
+					cmd := strings.ReplaceAll(task.Command, p.Name[0], a)
+					out := "p" + ma + "_" + task.OutputName
+					if (len(task.Parameters) == 2) {
+						p2:= task.Parameters[1]
+						switch p2.Source {
+						case "array":
+							array2 := GetArray(p2.SourceName)
+							for _, a := range array2 {
+								ma := adjust_quote(a)
+								cmd2 := strings.ReplaceAll(cmd, p.Name[0], a)
+								out2 := "p" + ma + "_" + out
+								util.QuerySaveExcel(task.Name, db, cmd2, out2)
+							}
+						case "memory" :
+							mem := GetMemory(p2.SourceName)
+							isFirst = true
+							rowprec := mem.rows[0]
+							for r=0; r < len(mem.rows); r++ {
+								mr := *mem.rows[r].(*map[string]string)
+								cmd2 := cmd
+								out2 := out
+								for i:= 0; i < len(p.Field); i++ {
+									if (p.Field[i][0] == '-') {
+										if isFirst {
+											isFirst = false
+											continue
+										} else {
+											mr := *mem.rows[r-1].(*map[string]string)
+											ma := adjust_quote(mr[p.Field[i][1:]])
+											cmd2 = strings.ReplaceAll(cmd2, p.Name[i], ma)
+											out2 := "p" + ma + "_" + out2	
+										}
+									} else {
+										ma := adjust_quote(mr[p.Field[i]])
+										cmd2 = strings.ReplaceAll(cmd2, p.Name[i], ma)
+										out2 := "p" + ma + "_" + out2
+									}
+								}
+								util.QuerySaveExcel(task.Name, db, cmd2, out2)
+							}
+						}
+					} else {
+						util.QuerySaveExcel(task.Name, db, cmd, out)
+					}
+				}

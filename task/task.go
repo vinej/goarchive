@@ -26,10 +26,11 @@ type ITask interface {
 }
 
 type Parameter struct {
-	Name       string
+	Name       []string
 	Source     string
 	SourceName string
-	Field      string
+	Field      []string
+	Level      int
 }
 
 type Task struct {
