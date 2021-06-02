@@ -65,6 +65,18 @@ func validate_inifile(inifile *IniFile) {
 	}
 }
 
+func validate_json(etl *task.ETL) {
+	for i, c := range etl.Connections {
+		con.ValidateConnection(c, i+1)
+	}
+	for i, t := range etl.Tasks {
+		task.ValidateTask(t, i+1)
+		for j, p := range t.Parameters {
+			task.ValidateParameter(p, j+1, i+1)
+		}
+	}
+}
+
 func load_json(file string) {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -75,6 +87,7 @@ func load_json(file string) {
 	if err != nil {
 		log.Panic(err)
 	}
+	validate_json(obj)
 	con.CreateAll(obj.Connections)
 	task.RunAll(obj.Tasks)
 }

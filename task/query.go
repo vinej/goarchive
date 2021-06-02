@@ -28,25 +28,9 @@ func adjust_quote(name string) string {
 	return name
 }
 
-func validate_parameter(p Parameter) {
-	if p.Names == nil {
-		log.Fatal("The json file for 'Parameters' does not contains the field :  'Names'   ,check for a typo")
-	}
-	if p.Fields == nil {
-		log.Fatal("The json file for 'Parameters' does not contains the field :  'Fields'  ,check for a typo")
-	}
-	if p.Source == "" {
-		log.Fatal("the json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo")
-	}
-	if p.Kind == "" {
-		log.Fatal("the json file for 'Parameters' does not contains the field :  'Kind'    ,check for a typo")
-	}
-}
-
 func query_excel_memory(task Task) {
 	db, _ := con.GetDB(task.Connection)
 	p1 := task.Parameters[0]
-	validate_parameter(p1)
 	mem := GetMemory(p1.Source)
 	for _, r := range mem.rows {
 		mr := *r.(*map[string]string)
@@ -59,7 +43,6 @@ func query_excel_memory(task Task) {
 		}
 		if len(task.Parameters) == 2 {
 			p2 := task.Parameters[1]
-			validate_parameter(p2)
 			if p2.Kind == "reference" {
 				task2 := mapref[p2.Source]
 				cmd := task2.Command

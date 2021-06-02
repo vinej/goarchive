@@ -12,9 +12,9 @@ import (
 )
 
 type Connection struct {
-	Name           string
-	Driver         string
-	DataSourceName string
+	Name             string
+	Driver           string
+	ConnectionString string
 }
 
 var lock = &sync.Mutex{}
@@ -41,45 +41,41 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 		// check again to be sure that no goroutine gets here before us
 		db, found = mapcon[name]
 		if !found {
-			log.Println("Creting Single Instance Now")
+			log.Println("Connection: Creating Single Instance Now")
 			db, err = sql.Open(driverName, dataSourceName)
 			if err != nil {
-				//	con.db.SetConnMaxIdleTime(time.Duration(maxIdleTime))
-				//	con.db.SetMaxIdleConns(maxIdleConns)
-				//	con.db.SetMaxOpenConns(maxOpenConns)
 				return nil, err
 			} else {
 				mapcon[name] = db
 			}
 		} else {
-			log.Println("Single Instance already created-1")
+			log.Println("Connection: Single Instance already created-1")
 		}
 	} else {
-		log.Println("Single Instance already created-2")
+		log.Println("Connection: Single Instance already created-2")
 	}
 	return mapcon[name], nil
 }
 
-func validate_connection(con Connection) {
+func ValidateConnection(con Connection, position int) {
 	if con.Name == "" {
-		log.Fatalln("Json file for 'Connections' does not contains the field :  'Name'   ,check for a typo")
+		log.Fatalln("Connection Error: Json file for 'Connections' does not contains the field : <Name> ,check for a typo at position", position, "of <Connections> list")
 	}
 	if con.Driver == "" {
-		log.Fatalln("Json file for 'Connections' does not contains the field :  'Driver'  ,check for a typo")
+		log.Fatalln("Connection Error: Json file for 'Connections' does not contains the field : <Driver> ,check for a typo at position", position, "of <Connections> list")
 	}
 	if con.Driver != "sqlserver" {
-		log.Fatalf("Json file for 'Connections' : The driver '%s' is not supported", con.Driver)
+		log.Printf("Connection Error: Json file for 'Connections' : The driver <%s> is not supported, check for a typo at position %d of <Connections> list", con.Driver, position)
+		log.Fatalf("Connection Error: Json file for 'Connections' : Supported drivers are <sqlserver>")
 	}
-	if con.DataSourceName == "" {
-		log.Fatalln("Json file for 'Connections' does not contains the field :  'DataSourceName'   ,check for a typo")
+	if con.ConnectionString == "" {
+		log.Fatalln("Connection Error: Json file for 'Connections' does not contains the field :  <ConnectionString>   ,check for a typo at position", position, "of <Connections> list")
 	}
-
 }
 
 func CreateAll(con []Connection) {
 	for _, c := range con {
-		validate_connection(c)
-		_, err := CreateOrGetDB(c.Name, c.Driver, c.DataSourceName)
+		_, err := CreateOrGetDB(c.Name, c.Driver, c.ConnectionString)
 		if err != nil {
 			log.Fatal(err)
 		}

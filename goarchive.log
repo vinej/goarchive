@@ -608,3 +608,82 @@
 2021/06/01 22:47:03 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
 2021/06/01 22:47:03 QuerySaveExcel success
 2021/06/01 22:47:03 END processing
+2021/06/02 07:08:39 START processing
+2021/06/02 07:08:39 Connection: Json file for 'Connections' does not contains the field :  'Driver' ,check for a typo at position 2
+2021/06/02 07:10:16 START processing
+2021/06/02 07:10:16 Connection: Json file for 'Connections' does not contains the field :  'Driver' ,check for a typo at position 2 of connections' list
+2021/06/02 07:12:13 START processing
+2021/06/02 07:12:13 Connection: Json file for 'Connections' does not contains the field : <Driver> ,check for a typo at position 2 of <Connections> list
+2021/06/02 07:12:37 START processing
+2021/06/02 07:12:37 Connection: Json file for 'Connections' does not contains the field : <Driver> ,check for a typo at position 2 of <Connections> list
+2021/06/02 07:12:54 START processing
+2021/06/02 07:12:54 Connection: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:14:31 START processing
+2021/06/02 07:14:31 Connection: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:14:45 START processing
+2021/06/02 07:14:45 Connection: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:15:16 START processing
+2021/06/02 07:15:16 Connection: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:15:16 Connection: Json file for 'Connections' : Supported drivers are <sqlserver>
+2021/06/02 07:15:47 START processing
+2021/06/02 07:15:47 Connection Error: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:15:47 Connection Error: Json file for 'Connections' : Supported drivers are <sqlserver>
+2021/06/02 07:15:58 START processing
+2021/06/02 07:15:58 Connection Error: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:15:58 Connection Error: Json file for 'Connections' : Supported drivers are <sqlserver>
+2021/06/02 07:16:32 START processing
+2021/06/02 07:16:32 Connection Error: Json file for 'Connections' does not contains the field : <Name> ,check for a typo at position 1 of <Connections> list
+2021/06/02 07:16:56 START processing
+2021/06/02 07:16:56 Connection Error: Json file for 'Connections' does not contains the field :  <ConnectionString>   ,check for a typo at position 1 of <Connections> list
+2021/06/02 07:19:23 START processing
+2021/06/02 07:19:23 Connection Error: Json file for 'Connections' : The driver <sqlsrver> is not supported, check for a typo at position 2 of <Connections> list
+2021/06/02 07:19:23 Connection Error: Json file for 'Connections' : Supported drivers are <sqlserver>
+2021/06/02 07:19:41 START processing
+2021/06/02 07:19:41 Task Error: the json file for 'Tasks' does not contains the field 'Kind'   , check for a typo at position 1
+2021/06/02 07:22:18 START processing
+2021/06/02 07:22:18 Task Error: the json file for 'Tasks' does not contains the field 'Kind'   , check for a typo at position 1 of <Tasks> list
+2021/06/02 07:22:42 START processing
+2021/06/02 07:22:42 Parameter Error: thee json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo at position0of <Parameters> list of <Tasks> list at position2
+2021/06/02 07:23:26 START processing
+2021/06/02 07:23:26 Parameter Error: thee json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo at position 0of <Parameters> list of <Tasks> list at position 2
+2021/06/02 07:23:45 START processing
+2021/06/02 07:23:45 Parameter Error: the json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo at position 0of <Parameters> list of <Tasks> list at position 2
+2021/06/02 07:24:30 START processing
+2021/06/02 07:24:30 Parameter Error: the json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo at position 0 of <Parameters> list of <Tasks> list at position 2
+2021/06/02 07:24:49 START processing
+2021/06/02 07:24:49 Parameter Error: the json file for 'Parameters' does not contains the field :  'Source'   ,check for a typo at position 1 of <Parameters> list of <Tasks> list at position 3
+2021/06/02 07:25:26 START processing
+2021/06/02 07:25:26 Parameter Error: the json file for 'Parameters' does not contains the field :  'Fields'  ,check for a typo at position 2 of <Parameters> list of <Tasks> list at position 3
+2021/06/02 07:36:33 START processing
+2021/06/02 07:36:33 Parameter Error: the json file for 'Parameters' does not contains the field :  'Fields'  ,check for a typo at position 2 of <Parameters> list of <Tasks> list at position 3
+2021/06/02 07:36:43 START processing
+2021/06/02 07:36:43 Parameter Error: the json file for 'Parameters' does not contains the field :  'Fields'  ,check for a typo at position 2 of <Parameters> list of <Tasks> list at position 3
+2021/06/02 07:46:49 START processing
+2021/06/02 07:46:49 Parameter Error in the json file: <Parameters#1> of <Task#3> the <Names> field must be an array of string, brakets are missing
+2021/06/02 07:47:28 START processing
+2021/06/02 07:47:28 Parameter Error in the json file: <Parameters #1> of <Task #3> the <Names> field must be an array of string, brakets are missing
+2021/06/02 07:49:02 START processing
+2021/06/02 07:52:44 START processing
+2021/06/02 07:52:44 Parameter Error in the json file: <Parameters #1> of <Task #3> the <Names> field must be an array of string, brakets are missing
+2021/06/02 07:53:03 START processing
+2021/06/02 07:53:58 START processing
+2021/06/02 07:53:58 Parameter Error in the json file: <Parameters #2> of <Task #3> does not contains the field : <Fields>
+2021/06/02 07:55:07 START processing
+2021/06/02 07:55:07 Connection: Creating Single Instance Now
+2021/06/02 07:55:07 Connection: Creating Single Instance Now
+2021/06/02 07:55:07 [id name description]
+2021/06/02 07:55:07 [id code]
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 [id code]
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 07:55:07 QuerySaveExcel success
+2021/06/02 07:55:07 END processing

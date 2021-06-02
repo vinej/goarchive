@@ -1,34 +1,36 @@
 {
 "Connections" : [
-    {   "Name" : "corpo",
+    { 
+        "Name" : "corpo",
         "Driver" : "sqlserver",
-        "DataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
+        "ConnectionString" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
     },
-    {   "Name" : "project",
+    {
+        "Name" : "project",
         "Driver" : "sqlserver",
-        "DataSourceName" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
+        "ConnectionString" : "saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive"
     }
 ],
 "Tasks" : [
-    {   "Id" : "2",
-        "Kind" : "query",  
+    { 
         "Name" : "projects",
+        "Kind" : "query",  
         "Description" : "list of projects",
         "Connection" : "corpo",
         "Command":"select id, name, description from archive.dbo.projects",
         "OutputType" : "memory"
     },
-    {   "Id" : "3",
-        "Kind" : "query",  
+    { 
         "Name" : "periodes",
+        "Kind" : "query",  
         "Description" : "list of periodes",
         "Connection" : "project",
         "Command":"select id,code from archive.dbo.Periodes where project = {project}",
         "OutputType" : "reference"
     },
-    {   "Id" : "4",
-        "Kind" : "query",  
+    { 
         "Name" : "names",
+        "Kind" : "query",  
         "Description" : "list of names by project",
         "Connection" : "project",
         "Command":"select * from archive.dbo.names where project = {project} and (periode = {per_prec} or periode = {per_curr})",

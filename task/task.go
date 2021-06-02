@@ -14,9 +14,8 @@ type Parameter struct {
 }
 
 type Task struct {
-	Id          string
-	Kind        string
 	Name        string
+	Kind        string
 	Description string
 	Connection  string
 	Command     string
@@ -30,38 +29,59 @@ type ETL struct {
 	Tasks       []Task
 }
 
-func validate_task(t Task) {
-	if t.Kind == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'Kind'   , check for a typo")
+func ValidateParameter(p Parameter, position int, taskposition int) {
+	if p.Names == nil {
+		log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Names>")
 	}
-	if t.Id == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'Id'   ,check for a typo")
+	/*
+		if reflect.TypeOf(p.Names).Kind() != reflect.Array {
+			log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> the <Names> field must be an array of string, brakets are missing")
+		}
+	*/
+	if p.Fields == nil {
+		log.Fatal("Parameter Error in the json file: <Parameters #", position, " of <Task #", taskposition, "> does not contains the field : <Fields>")
+	}
+	/*
+		if reflect.TypeOf(p.Fields).Kind() != reflect.Array {
+			log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> the <Fields> field must be an array of string, brakets are missing")
+		}
+	*/
+	if p.Source == "" {
+		log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Source>")
+	}
+	if p.Kind == "" {
+		log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Kind>")
+	}
+}
+
+func ValidateTask(t Task, position int) {
+	if t.Name == "" {
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> does not contains the field <Name>")
+	}
+	if t.Kind == "" {
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Kind>")
 	}
 	if t.Command == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'Command'   ,check for a typo")
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Command>")
 	}
 	if t.Connection == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'Connection'   ,check for a typo")
-	}
-	if t.Name == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'Name'   ,check for a typo")
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Connection>")
 	}
 	if t.OutputType == "" {
-		log.Fatalln("The json file for 'Tasks' does not contains the field 'OutputType'   ,check for a typo")
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <OutputType>")
 	}
 	if t.OutputType == "excel" && t.OutputName == "" {
-		log.Fatalln("The json file for 'Tasks' : A task of output type 'Excel' must have a field 'OutputName'  ,check for a typo")
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> output type <Excel> must have a field <OutputName>")
 	}
 }
 
 func RunAll(tasks []Task) {
 	for _, t := range tasks {
-		validate_task(t)
 		switch t.Kind {
 		case "query":
 			RunQuery(t)
 		default:
-			log.Fatal("Invalid task kind" + t.Kind)
+			log.Fatal("Task: Invalid task kind" + t.Kind)
 		}
 	}
 }
