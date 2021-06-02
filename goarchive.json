@@ -23,8 +23,8 @@
         "Name" : "periodes",
         "Description" : "list of periodes",
         "Connection" : "project",
-        "Command":"select id,code from archive.dbo.Periodes",
-        "OutputType" : "memory"
+        "Command":"select id,code from archive.dbo.Periodes where project = {project}",
+        "OutputType" : "reference"
     },
     {   "Id" : "4",
         "Kind" : "query",  
@@ -36,12 +36,14 @@
             {
                 "Names" : ["{project}"],
                 "Fields" : ["id"],
-                "Source": "projects"
+                "Source": "projects",
+                "Kind" : "direct"
             },
             {
                 "Names" : ["{per_prec}", "{per_curr}"],
                 "Fields" : ["id", "id"],
-                "Source": "periodes"
+                "Source": "periodes",
+                "Kind" : "reference"
             }
         ],
         "OutputType" : "excel",

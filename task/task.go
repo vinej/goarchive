@@ -10,6 +10,7 @@ type Parameter struct {
 	Names  []string
 	Fields []string
 	Source string
+	Kind   string
 }
 
 type Task struct {
@@ -58,7 +59,7 @@ func RunAll(tasks []Task) {
 		validate_task(t)
 		switch t.Kind {
 		case "query":
-			RunQuery(&t)
+			RunQuery(t)
 		default:
 			log.Fatal("Invalid task kind" + t.Kind)
 		}
