@@ -687,3 +687,22 @@
 2021/06/02 07:55:07 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
 2021/06/02 07:55:07 QuerySaveExcel success
 2021/06/02 07:55:07 END processing
+2021/06/02 08:05:33 START processing
+2021/06/02 08:05:33 Connection: Creating Single Instance Now
+2021/06/02 08:05:33 Connection: Creating Single Instance Now
+2021/06/02 08:05:33 [id name description]
+2021/06/02 08:05:33 [id code]
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 [id code]
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/02 08:05:33 QuerySaveExcel success
+2021/06/02 08:05:33 END processing
