@@ -71,10 +71,14 @@ func validate_json(etl *task.ETL) {
 	}
 	for i, t := range etl.Tasks {
 		task.ValidateTask(t, i+1)
+		task.ValidateTaskConnection(t, etl.Connections, i+1)
+		task.ValidateParameters(t.Parameters, t, i+1)
 		for j, p := range t.Parameters {
 			task.ValidateParameter(p, j+1, i+1)
+			task.ValidateParameterSource(p, j+1, i+1, etl.Tasks)
 		}
 	}
+	task.ValidateTaskUniqueNames(etl.Tasks)
 }
 
 func load_json(file string) {

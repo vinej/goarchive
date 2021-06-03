@@ -39,13 +39,13 @@
                 "Names" : ["{project}"],
                 "Fields" : ["id"],
                 "Source": "projects",
-                "Kind" : "direct"
+                "Kind": "parent"
             },
             {
                 "Names" : ["{per_prec}", "{per_curr}"],
                 "Fields" : ["id", "id"],
                 "Source": "periodes",
-                "Kind" : "reference"
+                "Kind" : "child"
             }
         ],
         "OutputType" : "excel",

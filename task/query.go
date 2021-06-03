@@ -28,86 +28,101 @@ func adjust_quote(name string) string {
 	return name
 }
 
-func query_excel_memory(task Task) {
+func adjust_cmd_out_all(cmd string, out string, p Parameter, row map[string]string) (string, string) {
+	for i := 0; i < len(p.Fields); i++ {
+		cmd, out = adjust_cmd_out_index(cmd, out, p, row, i)
+	}
+	return cmd, out
+}
+
+func adjust_cmd_out_index(cmd string, out string, param Parameter, row map[string]string, index int) (string, string) {
+	fieldvalue := adjust_quote(row[param.Fields[index]])
+	cmd = strings.ReplaceAll(cmd, param.Names[index], fieldvalue)
+	out = "p" + fieldvalue + "_" + out
+	return cmd, out
+}
+
+func adjust_cmd_all(cmd string, param Parameter, row map[string]string) string {
+	for i := 0; i < len(param.Fields); i++ {
+		fieldvalue := adjust_quote(row[param.Fields[i]])
+		cmd = strings.ReplaceAll(cmd, param.Names[i], fieldvalue)
+	}
+	return cmd
+}
+
+func query_task(param1 Parameter, param2 Parameter, row map[string]string) {
+	task := mapref[param2.Source]
+	cmd := adjust_cmd_all(task.Command, param1, row)
+	tmpTask := new(Task)
+	copier.Copy(tmpTask, &task)
+	tmpTask.Command = cmd
+	query_memory(*tmpTask)
+}
+
+func query_excel(task Task) {
 	db, _ := con.GetDB(task.Connection)
+	if len(task.Parameters) == 0 {
+		util.QuerySaveExcel(task.Name, db, task.Command, task.OutputName)
+		return
+	}
+
 	p1 := task.Parameters[0]
 	mem := GetMemory(p1.Source)
-	for _, r := range mem.rows {
-		mr := *r.(*map[string]string)
-		cmd := task.Command
-		out := task.OutputName
-		for i := 0; i < len(p1.Fields); i++ {
-			ma := adjust_quote(mr[p1.Fields[i]])
-			cmd = strings.ReplaceAll(cmd, p1.Names[i], ma)
-			out = "p" + ma + "_" + out
-		}
+	if mem == nil {
+		log.Fatalln("Task source error: the source:", p1.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
+	}
+	for _, row := range mem.rows {
+		cmd, out := adjust_cmd_out_all(task.Command, task.OutputName, p1, *row.(*map[string]string))
 		if len(task.Parameters) == 2 {
+			// with 2 parameters, the second one is related to the first one
+			// we need to get the new values for parameter 2, related to parameter 1
 			p2 := task.Parameters[1]
-			if p2.Kind == "reference" {
-				task2 := mapref[p2.Source]
-				cmd := task2.Command
-				// replace the field of the parent
-				for i := 0; i < len(p1.Fields); i++ {
-					ma := adjust_quote(mr[p1.Fields[i]])
-					cmd = strings.ReplaceAll(cmd, p1.Names[i], ma)
+			if p2.Kind == "child" {
+				query_task(p1, p2, *row.(*map[string]string))
+				mem2 := GetMemory(p2.Source)
+				if mem2 == nil {
+					log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
 				}
-				tmpTask := new(Task)
-				copier.Copy(tmpTask, &task2)
-				tmpTask.Command = cmd
-				query_memory(*tmpTask)
-			}
-			mem2 := GetMemory(p2.Source)
-			isFirst := true
-			for r2 := 0; r2 < len(mem2.rows); r2++ {
-				mr := *mem2.rows[r2].(*map[string]string)
-				cmd2 := cmd
-				out2 := out
-				for i := 0; i < len(p2.Fields); i++ {
-					// if same field fir i and i + 1, means that the first one is for previous record
-					// and the second one for the current record
-					// we must skip to record i+1 because there is no record[-1]
-					if i+1 < len(p2.Fields) && p2.Fields[i] == p2.Fields[i+1] {
-						// period type, goto second record
-						if isFirst {
-							r2 = r2 + 1
-							isFirst = false
+				isFirst := true
+				for r := 0; r < len(mem2.rows); r++ {
+					cmd2 := cmd
+					out2 := out
+					for i := 0; i < len(p2.Fields); i++ {
+						if i+1 < len(p2.Fields) && p2.Fields[i] == p2.Fields[i+1] {
+							if isFirst {
+								// for revious-next, we don't use the first record
+								r = r + 1
+								isFirst = false
+							}
+							// current: the current field is the second one in that case: i+1
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i+1)
+							// previous: the previous field is the fiest one in that case: i
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r-1].(*map[string]string), i)
+							// go to next field, because we did 2 here
+							i = i + 1
+						} else {
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i)
 						}
-
-						i = i + 1
-						// take next field
-						mr2 := *mem2.rows[r2].(*map[string]string)
-						ma2 := adjust_quote(mr2[p2.Fields[i]])
-						cmd2 = strings.ReplaceAll(cmd2, p2.Names[i], ma2)
-						out2 = "p" + ma2 + "_" + out2
-
-						i = i - 1
-						// use previous record
-						mr2 = *mem2.rows[r2-1].(*map[string]string)
-						ma2 = adjust_quote(mr2[p2.Fields[i]])
-						cmd2 = strings.ReplaceAll(cmd2, p2.Names[i], ma2)
-						out2 = "p" + ma2 + "_" + out2
-
-						i = i + 1
-					} else {
-						ma2 := adjust_quote(mr[p2.Fields[i]])
-						cmd2 = strings.ReplaceAll(cmd2, p2.Names[i], ma2)
-						out2 = "p" + ma2 + "_" + out2
 					}
+					util.QuerySaveExcel(task.Name, db, cmd2, out2)
 				}
-				util.QuerySaveExcel(task.Name, db, cmd2, out2)
+			} else {
+				mem2 := GetMemory(p2.Source)
+				if mem2 == nil {
+					log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
+				}
+				for r := 0; r < len(mem2.rows); r++ {
+					cmd2 := cmd
+					out2 := out
+					for i := 0; i < len(p2.Fields); i++ {
+						cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i)
+					}
+					util.QuerySaveExcel(task.Name, db, cmd2, out2)
+				}
 			}
 		} else {
 			util.QuerySaveExcel(task.Name, db, cmd, out)
 		}
-	}
-}
-
-func query_excel(task Task) {
-	if len(task.Parameters) > 0 {
-		query_excel_memory(task)
-	} else {
-		db, _ := con.GetDB(task.Connection)
-		util.QuerySaveExcel(task.Name, db, task.Command, task.OutputName)
 	}
 }
 

@@ -29,7 +29,7 @@ func GetDB(name string) (db *sql.DB, err error) {
 	if found {
 		return db, nil
 	} else {
-		return nil, errors.New("connection name does not exist")
+		return nil, errors.New("Connection error: connection name does not exist")
 	}
 }
 
