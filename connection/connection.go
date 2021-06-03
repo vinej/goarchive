@@ -9,6 +9,8 @@ import (
 	"errors"
 	"log"
 	"sync"
+
+	"jyv.com/goarchive/util"
 )
 
 type Connection struct {
@@ -55,6 +57,19 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 		log.Println("Connection: Single Instance already created-2")
 	}
 	return mapcon[name], nil
+}
+
+func ValidateConnectionUniqueNames(connections []Connection) {
+	names := make([]string, 0)
+	isFirst := true
+	for i, c := range connections {
+		if util.Contains(names, c.Name) && !isFirst {
+			log.Fatalln("Connection error in the json file: the <Connection:", c.Name, "> of <Connection:", i+1, "> already exists")
+		} else {
+			names = append(names, c.Name)
+		}
+		isFirst = false
+	}
 }
 
 func ValidateConnection(con Connection, position int) {

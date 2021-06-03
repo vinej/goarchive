@@ -68,6 +68,7 @@ func validate_inifile(inifile *IniFile) {
 func validate_json(etl *task.ETL) {
 	for i, c := range etl.Connections {
 		con.ValidateConnection(c, i+1)
+		con.ValidateConnectionUniqueNames(etl.Connections)
 	}
 	for i, t := range etl.Tasks {
 		task.ValidateTask(t, i+1)

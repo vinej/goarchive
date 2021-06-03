@@ -4,6 +4,7 @@ import (
 	"log"
 
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/util"
 )
 
 type Parameter struct {
@@ -29,20 +30,11 @@ type ETL struct {
 	Tasks       []Task
 }
 
-func contains(s []string, str string) bool {
-	for _, v := range s {
-		if v == str {
-			return true
-		}
-	}
-	return false
-}
-
 func ValidateTaskUniqueNames(tasks []Task) {
 	names := make([]string, 0)
 	isFirst := true
 	for i, t := range tasks {
-		if contains(names, t.Name) && !isFirst {
+		if util.Contains(names, t.Name) && !isFirst {
 			log.Fatalln("Task error in the json file: the <Task:", t.Name, "> of <Task:", i+1, "> already exists")
 		} else {
 			names = append(names, t.Name)

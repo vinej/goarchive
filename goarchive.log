@@ -1184,3 +1184,45 @@
 2021/06/03 07:23:06 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
 2021/06/03 07:23:06 QuerySaveExcel success
 2021/06/03 07:23:06 END processing
+2021/06/03 07:27:16 START processing
+2021/06/03 07:27:16 Connection: Creating Single Instance Now
+2021/06/03 07:27:16 Connection: Creating Single Instance Now
+2021/06/03 07:27:16 [id name description]
+2021/06/03 07:27:16 [id code]
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 [id code]
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:27:16 QuerySaveExcel success
+2021/06/03 07:27:16 END processing
+2021/06/03 07:27:27 START processing
+2021/06/03 07:27:27 Task Error in the json file: <Tasks # 2 >: the <Connection: project > does not exist
+2021/06/03 07:28:19 START processing
+2021/06/03 07:28:19 Connection error in the json file: the <Connection: corpo > of <Connection: 2 > already exists
+2021/06/03 07:28:36 START processing
+2021/06/03 07:28:36 Connection: Creating Single Instance Now
+2021/06/03 07:28:36 Connection: Creating Single Instance Now
+2021/06/03 07:28:36 [id name description]
+2021/06/03 07:28:36 [id code]
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 [id code]
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/03 07:28:36 QuerySaveExcel success
+2021/06/03 07:28:36 END processing
