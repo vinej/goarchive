@@ -17,7 +17,7 @@
         "Kind" : "query",  
         "Description" : "list of projects",
         "Connection" : "corpo",
-        "Command":"select id, name, description from archive.dbo.projects",
+        "Command":"select [id], [name], [description], [database] from archive.dbo.projects",
         "OutputType" : "memory"
     },
     { 
@@ -39,6 +39,7 @@
                 "Names" : ["{project}"],
                 "Fields" : ["id"],
                 "Source": "projects",
+                "UseDatabase": "database",
                 "Kind": "parent"
             },
             {

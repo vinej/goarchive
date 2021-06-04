@@ -1,6 +1,7 @@
 package task
 
 import (
+	"database/sql"
 	"log"
 	"strings"
 
@@ -36,16 +37,16 @@ func adjust_cmd_out_all(cmd string, out string, p Parameter, row map[string]stri
 }
 
 func adjust_cmd_out_index(cmd string, out string, param Parameter, row map[string]string, index int) (string, string) {
-	fieldvalue := adjust_quote(row[param.Fields[index]])
-	cmd = strings.ReplaceAll(cmd, param.Names[index], fieldvalue)
-	out = "p" + fieldvalue + "_" + out
+	paramvalue := adjust_quote(row[param.Fields[index]])
+	cmd = strings.ReplaceAll(cmd, param.Names[index], paramvalue)
+	out = "p" + paramvalue + "_" + out
 	return cmd, out
 }
 
 func adjust_cmd_all(cmd string, param Parameter, row map[string]string) string {
 	for i := 0; i < len(param.Fields); i++ {
-		fieldvalue := adjust_quote(row[param.Fields[i]])
-		cmd = strings.ReplaceAll(cmd, param.Names[i], fieldvalue)
+		paramvalue := adjust_quote(row[param.Fields[i]])
+		cmd = strings.ReplaceAll(cmd, param.Names[i], paramvalue)
 	}
 	return cmd
 }
@@ -57,6 +58,12 @@ func query_task(param1 Parameter, param2 Parameter, row map[string]string) {
 	copier.Copy(tmpTask, &task)
 	tmpTask.Command = cmd
 	query_memory(*tmpTask)
+}
+
+func use_database(db *sql.DB, p Parameter, row map[string]string) {
+	// set current DB with the field of UseDatabaseField
+	dbFieldValue := row[p.UseDatabase]
+	util.Query(db, "use "+dbFieldValue)
 }
 
 func query_excel(task Task) {
@@ -72,6 +79,9 @@ func query_excel(task Task) {
 		log.Fatalln("Task source error: the source:", p1.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
 	}
 	for _, row := range mem.rows {
+		if p1.UseDatabase != "" {
+			use_database(db, p1, *row.(*map[string]string))
+		}
 		cmd, out := adjust_cmd_out_all(task.Command, task.OutputName, p1, *row.(*map[string]string))
 		if len(task.Parameters) == 2 {
 			// with 2 parameters, the second one is related to the first one

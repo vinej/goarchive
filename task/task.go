@@ -8,10 +8,11 @@ import (
 )
 
 type Parameter struct {
-	Names  []string
-	Fields []string
-	Source string
-	Kind   string
+	Names       []string
+	Fields      []string
+	Source      string
+	UseDatabase string
+	Kind        string
 }
 
 type Task struct {
@@ -89,6 +90,9 @@ func ValidateParameter(p Parameter, position int, taskposition int) {
 	if p.Kind != "parent" && p.Kind != "child" {
 		log.Println("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> <Kind:", p.Kind, " is not supported")
 		log.Fatalln("Parameter Error: supported values are <parent>,<child>")
+	}
+	if p.UseDatabase != "" && p.Kind == "child" {
+		log.Println("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> <UseDatabase not supported for <Kind:child>")
 	}
 }
 
