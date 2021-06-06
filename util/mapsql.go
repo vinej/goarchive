@@ -24,14 +24,6 @@ type MapStringScan struct {
 	colNames []string
 }
 
-type MapQueryRow struct {
-	row map[string]string
-}
-
-type MapQueryColumn struct {
-	colNames []string
-}
-
 func NewMapStringScan(columnNames []string) *MapStringScan {
 	lenCN := len(columnNames)
 	s := &MapStringScan{
@@ -201,15 +193,15 @@ func QuerySaveExcel(name string, db *sql.DB, query string, output string) {
 
 }
 
-func callback(rc *MapStringScan, rows *sql.Rows) interface{} {
+func callback(rc *MapStringScan, rows *sql.Rows) map[string]string {
 	return rc.Get()
 }
 
-func Query(db *sql.DB, query string) ([]string, []interface{}) {
+func Query(db *sql.DB, query string) ([]string, []map[string]string) {
 	return QueryCallback(db, query, callback)
 }
 
-func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) interface{}) ([]string, []interface{}) {
+func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) map[string]string) ([]string, []map[string]string) {
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
@@ -223,7 +215,7 @@ func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, r
 	}
 
 	rc := NewMapStringScan(columnNames)
-	out := make([]interface{}, 0)
+	out := make([]map[string]string, 0)
 	for rows.Next() {
 		err := rc.Update(rows)
 		if err != nil {
@@ -235,7 +227,7 @@ func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, r
 		}
 		tmp := new(map[string]string)
 		copier.Copy(tmp, rec)
-		out = append(out, tmp)
+		out = append(out, *tmp)
 	}
 	return columnNames, out
 }

@@ -12,7 +12,7 @@ import (
 
 type Memory struct {
 	columnNames []string
-	rows        []interface{}
+	rows        []map[string]string
 }
 
 var mapqry map[string]*Memory = make(map[string]*Memory)
@@ -80,15 +80,15 @@ func query_excel(task Task) {
 	}
 	for _, row := range mem.rows {
 		if p1.UseDatabase != "" {
-			use_database(db, p1, *row.(*map[string]string))
+			use_database(db, p1, row)
 		}
-		cmd, out := adjust_cmd_out_all(task.Command, task.OutputName, p1, *row.(*map[string]string))
+		cmd, out := adjust_cmd_out_all(task.Command, task.OutputName, p1, row)
 		if len(task.Parameters) == 2 {
 			// with 2 parameters, the second one is related to the first one
 			// we need to get the new values for parameter 2, related to parameter 1
 			p2 := task.Parameters[1]
 			if p2.Kind == "child" {
-				query_task(p1, p2, *row.(*map[string]string))
+				query_task(p1, p2, row)
 				mem2 := GetMemory(p2.Source)
 				if mem2 == nil {
 					log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
@@ -105,13 +105,13 @@ func query_excel(task Task) {
 								isFirst = false
 							}
 							// current: the current field is the second one in that case: i+1
-							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i+1)
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i+1)
 							// previous: the previous field is the fiest one in that case: i
-							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r-1].(*map[string]string), i)
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r-1], i)
 							// go to next field, because we did 2 here
 							i = i + 1
 						} else {
-							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i)
+							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 						}
 					}
 					util.QuerySaveExcel(task.Name, db, cmd2, out2)
@@ -125,7 +125,7 @@ func query_excel(task Task) {
 					cmd2 := cmd
 					out2 := out
 					for i := 0; i < len(p2.Fields); i++ {
-						cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, *mem2.rows[r].(*map[string]string), i)
+						cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 					}
 					util.QuerySaveExcel(task.Name, db, cmd2, out2)
 				}
