@@ -93,6 +93,7 @@ func query_excel(task Task) {
 				if mem2 == nil {
 					log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
 				}
+
 				isFirst := true
 				for r := 0; r < len(mem2.rows); r++ {
 					cmd2 := cmd

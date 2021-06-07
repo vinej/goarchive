@@ -1488,3 +1488,41 @@
 2021/06/06 08:30:44 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
 2021/06/06 08:30:44 QuerySaveExcel success
 2021/06/06 08:30:44 END processing
+2021/06/07 06:48:59 START processing
+2021/06/07 06:48:59 Task Error in the json file: <Tasks # 1 > of < tests >, <Kind: array   is not supported
+2021/06/07 06:48:59 Task Error: supported values are query
+2021/06/07 06:49:27 START processing
+2021/06/07 06:49:27 Task Error in the json file: <Tasks # 1 > of < tests >, <Kind: array   is not supported
+2021/06/07 06:49:27 Task Error: supported values are query
+2021/06/07 06:51:42 START processing
+2021/06/07 06:51:42 Task Error in the json file: <Tasks # 1 > of < tests >, <Kind: array   is not supported
+2021/06/07 06:51:42 Task Error: supported values are <query>,<array>
+2021/06/07 06:52:20 START processing
+2021/06/07 06:52:20 Task Error in the json file: <Tasks # 1 >: the <Connection:  > does not exist
+2021/06/07 06:54:10 START processing
+2021/06/07 06:54:10 Connection: Creating Single Instance Now
+2021/06/07 06:54:10 Connection: Creating Single Instance Now
+2021/06/07 06:55:05 START processing
+2021/06/07 06:55:05 Connection: Creating Single Instance Now
+2021/06/07 06:55:05 Connection: Creating Single Instance Now
+2021/06/07 06:57:40 START processing
+2021/06/07 06:57:40 Connection: Creating Single Instance Now
+2021/06/07 06:57:40 Connection: Creating Single Instance Now
+2021/06/07 06:58:30 [id name description database]
+2021/06/07 06:58:30 []
+2021/06/07 06:58:30 [id code]
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 []
+2021/06/07 06:58:30 [id code]
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/07 06:58:30 QuerySaveExcel success
+2021/06/07 06:58:30 END processing

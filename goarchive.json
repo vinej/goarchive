@@ -13,6 +13,13 @@
 ],
 "Tasks" : [
     { 
+        "Name" : "tests",
+        "Kind" : "array",  
+        "Description" : "list of country",
+        "Command":"Canada|France|Germany",
+        "OutputType" : "memory"
+    },
+    { 
         "Name" : "projects",
         "Kind" : "query",  
         "Description" : "list of projects",
