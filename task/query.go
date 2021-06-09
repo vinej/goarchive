@@ -29,17 +29,10 @@ func adjust_quote(name string) string {
 	return name
 }
 
-func adjust_cmd_out_all(cmd string, out string, p Parameter, row map[string]string) (string, string) {
-	for i := 0; i < len(p.Fields); i++ {
-		cmd, out = adjust_cmd_out_index(cmd, out, p, row, i)
-	}
-	return cmd, out
-}
-
 func adjust_cmd_out_index(cmd string, out string, param Parameter, row map[string]string, index int) (string, string) {
 	paramvalue := adjust_quote(row[param.Fields[index]])
 	cmd = strings.ReplaceAll(cmd, param.Names[index], paramvalue)
-	out = "p" + paramvalue + "_" + out
+	out = "p" + strings.Trim(paramvalue, " ") + "_" + out
 	return cmd, out
 }
 
@@ -138,72 +131,7 @@ func query_excel(task Task) {
 		util.QuerySaveExcel(task.Name, db, task.Command, task.OutputName)
 		return
 	}
-
 	query_excel_level(db, task.Command, task.OutputName, task, 0, nil)
-	/*
-		p1 := task.Parameters[0]
-		mem := GetMemory(p1.Source)
-		if mem == nil {
-			log.Fatalln("Task source error: the source:", p1.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
-		}
-		for _, row := range mem.rows {
-			if p1.UseDatabase != "" {
-				use_database(db, p1, row)
-			}
-			cmd, out := adjust_cmd_out_all(task.Command, task.OutputName, p1, row)
-			if len(task.Parameters) == 2 {
-				// with 2 parameters, the second one is related to the first one
-				// we need to get the new values for parameter 2, related to parameter 1
-				p2 := task.Parameters[1]
-				if p2.Kind == "child" {
-					query_task(p1, p2, row)
-					mem2 := GetMemory(p2.Source)
-					if mem2 == nil {
-						log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
-					}
-
-					isFirst := true
-					for r := 0; r < len(mem2.rows); r++ {
-						cmd2 := cmd
-						out2 := out
-						for i := 0; i < len(p2.Fields); i++ {
-							if i+1 < len(p2.Fields) && p2.Fields[i] == p2.Fields[i+1] {
-								if isFirst {
-									// for revious-next, we don't use the first record
-									r = r + 1
-									isFirst = false
-								}
-								// current: the current field is the second one in that case: i+1
-								cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i+1)
-								// previous: the previous field is the fiest one in that case: i
-								cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r-1], i)
-								// go to next field, because we did 2 here
-								i = i + 1
-							} else {
-								cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
-							}
-						}
-						util.QuerySaveExcel(task.Name, db, cmd2, out2)
-					}
-				} else {
-					mem2 := GetMemory(p2.Source)
-					if mem2 == nil {
-						log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
-					}
-					for r := 0; r < len(mem2.rows); r++ {
-						cmd2 := cmd
-						out2 := out
-						for i := 0; i < len(p2.Fields); i++ {
-							cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
-						}
-						util.QuerySaveExcel(task.Name, db, cmd2, out2)
-					}
-				}
-			} else {
-				util.QuerySaveExcel(task.Name, db, cmd, out)
-			}
-		}
-	*/
 }
 
 func GetMemory(name string) *Memory {

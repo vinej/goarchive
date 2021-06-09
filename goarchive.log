@@ -1645,3 +1645,315 @@
 2021/06/09 07:55:56 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
 2021/06/09 07:55:56 QuerySaveExcel success
 2021/06/09 07:55:56 END processing
+2021/06/09 16:01:36 START processing
+2021/06/09 16:01:36 Connection: Creating Single Instance Now
+2021/06/09 16:01:36 Connection: Creating Single Instance Now
+2021/06/09 16:01:36 [id name description database]
+2021/06/09 16:01:36 []
+2021/06/09 16:01:36 [id code]
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 []
+2021/06/09 16:01:36 [id code]
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 Saving into execl wit the query : <select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:01:36 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:01:36 QuerySaveExcel success
+2021/06/09 16:01:36 END processing
+2021/06/09 16:07:02 START processing
+2021/06/09 16:07:02 Connection: Creating Single Instance Now
+2021/06/09 16:07:02 Connection: Creating Single Instance Now
+2021/06/09 16:07:02 [id name description database]
+2021/06/09 16:07:02 []
+2021/06/09 16:07:02 [id code]
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 []
+2021/06/09 16:07:02 [id code]
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 Saving into execl wit the query : <select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:07:02 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:07:02 QuerySaveExcel success
+2021/06/09 16:07:02 END processing
+2021/06/09 16:16:27 START processing
+2021/06/09 16:16:27 Task Error in the json file: <Tasks # 2 > of < names > does not contains the field <Connection>
+2021/06/09 16:16:59 START processing
+2021/06/09 16:16:59 Task error in the json file: the <Task: names > of <Task: 5 > already exists
+2021/06/09 16:17:26 START processing
+2021/06/09 16:17:26 Connection: Creating Single Instance Now
+2021/06/09 16:17:26 Connection: Creating Single Instance Now
+2021/06/09 16:17:26 mssql: Invalid object name 'tablename'.
+2021/06/09 16:17:50 START processing
+2021/06/09 16:17:50 Connection: Creating Single Instance Now
+2021/06/09 16:17:50 Connection: Creating Single Instance Now
+2021/06/09 16:17:50 [table_name]
+2021/06/09 16:17:50 [id name description database]
+2021/06/09 16:17:50 []
+2021/06/09 16:17:50 [id code]
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 []
+2021/06/09 16:17:50 [id code]
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 []
+2021/06/09 16:17:50 [id code]
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 []
+2021/06/09 16:17:50 [id code]
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:17:50 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:17:50 QuerySaveExcel success
+2021/06/09 16:17:50 END processing
+2021/06/09 16:22:31 START processing
+2021/06/09 16:22:31 Connection: Creating Single Instance Now
+2021/06/09 16:22:31 Connection: Creating Single Instance Now
+2021/06/09 16:22:31 [table_name]
+2021/06/09 16:22:31 [id name description database]
+2021/06/09 16:22:31 []
+2021/06/09 16:22:31 [id code]
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 []
+2021/06/09 16:22:31 [id code]
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 []
+2021/06/09 16:22:31 [id code]
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 []
+2021/06/09 16:22:31 [id code]
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:22:31 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:22:31 QuerySaveExcel success
+2021/06/09 16:22:31 END processing
+2021/06/09 16:24:24 START processing
+2021/06/09 16:24:24 Connection: Creating Single Instance Now
+2021/06/09 16:24:24 Connection: Creating Single Instance Now
+2021/06/09 16:24:24 [table_name]
+2021/06/09 16:24:24 [id name description database]
+2021/06/09 16:24:24 []
+2021/06/09 16:24:24 [id code]
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 []
+2021/06/09 16:24:24 [id code]
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 []
+2021/06/09 16:24:24 [id code]
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 []
+2021/06/09 16:24:24 [id code]
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:24:24 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:24:24 QuerySaveExcel success
+2021/06/09 16:24:24 END processing
+2021/06/09 16:25:17 START processing
+2021/06/09 16:25:17 Connection: Creating Single Instance Now
+2021/06/09 16:25:17 Connection: Creating Single Instance Now
+2021/06/09 16:25:17 [table_name]
+2021/06/09 16:25:17 [id name description database]
+2021/06/09 16:25:17 []
+2021/06/09 16:25:17 [id code]
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 []
+2021/06/09 16:25:17 [id code]
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 []
+2021/06/09 16:25:17 [id code]
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 []
+2021/06/09 16:25:17 [id code]
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:25:17 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:17 QuerySaveExcel success
+2021/06/09 16:25:17 END processing
+2021/06/09 16:25:20 START processing
+2021/06/09 16:25:20 Connection: Creating Single Instance Now
+2021/06/09 16:25:20 Connection: Creating Single Instance Now
+2021/06/09 16:25:20 [table_name]
+2021/06/09 16:25:20 [id name description database]
+2021/06/09 16:25:20 []
+2021/06/09 16:25:20 [id code]
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 []
+2021/06/09 16:25:20 [id code]
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 []
+2021/06/09 16:25:20 [id code]
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 []
+2021/06/09 16:25:20 [id code]
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 7 or periode = 8)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 Saving into execl wit the query : <select * from archive.dbo.names2     where project = 124 and (periode = 8 or periode = 9)>
+2021/06/09 16:25:20 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/09 16:25:20 QuerySaveExcel success
+2021/06/09 16:25:20 END processing

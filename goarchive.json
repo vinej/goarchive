@@ -20,6 +20,14 @@
         "OutputType" : "memory"
     },
     { 
+        "Name" : "listnames",
+        "Kind" : "query",  
+        "Description" : "list of names",
+        "Connection" : "project",
+        "Command":"select table_name from archive.dbo.tablename",
+        "OutputType" : "memory"
+    },
+    { 
         "Name" : "projects",
         "Kind" : "query",  
         "Description" : "list of projects",
@@ -40,8 +48,14 @@
         "Kind" : "query",  
         "Description" : "list of names by project",
         "Connection" : "project",
-        "Command":"select * from archive.dbo.names where project = {project} and (periode = {per_prec} or periode = {per_curr})",
+        "Command":"select * from archive.dbo.{names} where project = {project} and (periode = {per_prec} or periode = {per_curr})",
         "Parameters" : [
+            {
+                "Names" : ["{names}"],
+                "Fields" : ["table_name"],
+                "Source": "listnames",
+                "Kind": "parent"
+            },
             {
                 "Names" : ["{project}"],
                 "Fields" : ["id"],

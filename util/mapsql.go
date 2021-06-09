@@ -145,6 +145,7 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 }
 
 func QuerySaveExcel(name string, db *sql.DB, query string, output string) {
+	log.Println("Saving into execl wit the query : <" + query + ">")
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)

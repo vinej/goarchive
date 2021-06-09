@@ -30,9 +30,6 @@ func ValidateParameterSource(p Parameter, position int, taskposition int, tasks 
 }
 
 func ValidateParameters(params []Parameter, t Task, taskposition int) {
-	if len(params) > 2 {
-		log.Fatal("Parameter Error in the json file:  <Task:", t.Name, "> of <Task #", taskposition, "> has more than 2 parameters")
-	}
 	if len(params) >= 1 {
 		if params[0].Kind != "parent" {
 			log.Fatal("Parameter Error in the json file:  <Task:", t.Name, "> of <Task #", taskposition, "> the first parameter must have a <Kind> equal to <parent>")
