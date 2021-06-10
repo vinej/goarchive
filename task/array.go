@@ -2,8 +2,6 @@ package task
 
 import "strings"
 
-//var mapqry map[string]*Memory = make(map[string]*Memory)
-
 func RunArray(task Task) {
 	m := new(Memory)
 	m.columnNames = make([]string, 1)

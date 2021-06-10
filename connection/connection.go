@@ -17,42 +17,10 @@ type Connection struct {
 	ConnectionString string
 }
 
-//var lock = &sync.Mutex{}
-
-// declare a empty map of connection
-// go manage a connection pool, so you don<t need to close sql.DB
-// all connection will be close when go will leave
-//var mapcon map[string]*sql.DB = make(map[string]*sql.DB)
-
 func GetDB(con *Connection) (db *sql.DB, err error) {
 	return sql.Open(con.Driver, con.ConnectionString)
 }
 
-/*
-func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *sql.DB, err error) {
-	db, found := mapcon[name]
-	if !found {
-		lock.Lock()
-		defer lock.Unlock()
-		// check again to be sure that no goroutine gets here before us
-		db, found = mapcon[name]
-		if !found {
-			log.Println("Connection: Creating Single Instance Now")
-			db, err = sql.Open(driverName, dataSourceName)
-			if err != nil {
-				return nil, err
-			} else {
-				mapcon[name] = db
-			}
-		} else {
-			log.Println("Connection: Single Instance already created-1")
-		}
-	} else {
-		log.Println("Connection: Single Instance already created-2")
-	}
-	return mapcon[name], nil
-}
-*/
 func ValidateConnectionUniqueNames(connections []Connection) {
 	names := make([]string, 0)
 	isFirst := true
@@ -81,14 +49,3 @@ func ValidateConnection(con Connection, position int) {
 		log.Fatalln("Connection Error in the json file: <Connections #", position, "> does not contains the field : <ConnectionString>")
 	}
 }
-
-/*
-func CreateAll(con []Connection) {
-	for _, c := range con {
-		_, err := CreateOrGetDB(c.Name, c.Driver, c.ConnectionString)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-}
-*/
