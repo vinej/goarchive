@@ -129,10 +129,10 @@ func query_excel_level(ctx *con.Connection, cmd string, out string, task Task, l
 func query_excel(ctx *con.Connection, task Task) {
 	if len(task.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveExcel(ctx, task.Name, task.Command, task.OutputName)
+		go msql.QuerySaveExcel(ctx, task.Name, task.Command, task.FileName)
 		return
 	}
-	query_excel_level(ctx, task.Command, task.OutputName, task, 0, nil)
+	query_excel_level(ctx, task.Command, task.FileName, task, 0, nil)
 }
 
 func GetMemory(name string) *Memory {

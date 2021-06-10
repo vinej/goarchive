@@ -2328,3 +2328,25 @@
 2021/06/10 08:12:52 QuerySaveExcel success
 2021/06/10 08:12:52 [id code]
 2021/06/10 08:12:52 END processing
+2021/06/10 18:47:56 START processing
+2021/06/10 18:47:56 Task Error in the json file: <Tasks # 1 > of < csv1 > does not contains the field <Command>
+2021/06/10 18:48:21 START processing
+2021/06/10 18:48:21 Task Error in the json file: <Tasks # 1 > of < csv1 > does not contains the field <Command>
+2021/06/10 18:49:13 START processing
+2021/06/10 18:49:13 Task Error in the json file: <Tasks # 1 > of < csv1 > does not contains the field <Connection>
+2021/06/10 18:49:49 START processing
+2021/06/10 18:49:49 Task Error in the json file: <Tasks # 1 >: the <Connection:  > does not exist
+2021/06/10 18:50:32 START processing
+2021/06/10 18:50:32 Task Error in the json file: <Tasks # 1 >: the <Connection:  > does not exist
+2021/06/10 18:51:46 START processing
+2021/06/10 18:51:46 Task Error in the json file: <Tasks # 1 >: the <Connection:  > does not exist
+2021/06/10 18:51:48 START processing
+2021/06/10 18:51:48 Task Error in the json file: <Tasks # 1 >: the <Connection:  > does not exist
+2021/06/10 18:53:24 START processing
+2021/06/10 18:53:24 Task Error in the json file: <Tasks # 6 > of < names > output type <Excel> must have a field <OutputName>
+2021/06/10 18:53:27 START processing
+2021/06/10 18:53:27 Task Error in the json file: <Tasks # 6 > of < names > output type <Excel> must have a field <OutputName>
+2021/06/10 18:54:24 START processing
+2021/06/10 18:56:10 START processing
+2021/06/10 18:57:45 START processing
+2021/06/10 18:58:32 START processing

@@ -70,6 +70,9 @@ func ValidateParameter(p Parameter, position int, taskposition int) {
 }
 
 func ValidateTaskConnection(t Task, connections []con.Connection, position int) {
+	if t.Kind == "csv" {
+		return
+	}
 	for _, c := range connections {
 		if t.Connection == c.Name {
 			return
@@ -85,25 +88,27 @@ func ValidateTask(t Task, position int) {
 	if t.Kind == "" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Kind>")
 	}
-	if t.Kind != "query" && t.Kind != "array" {
+	if t.Kind != "query" && t.Kind != "array" && t.Kind != "csv" {
 		log.Println("Task Error in the json file: <Tasks #", position, "> of <", t.Name, ">, <Kind:", t.Kind, "  is not supported")
-		log.Fatalln("Task Error: supported values are <query>,<array>")
+		log.Fatalln("Task Error: supported values are <query>,<array>,<csv>")
 	}
-	if t.Command == "" {
+	if t.Command == "" && t.Kind != "csv" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Command>")
 	}
-	if t.Connection == "" && t.Kind != "array" {
+	if t.Connection == "" && t.Kind != "array" && t.Kind != "csv" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <Connection>")
 	}
-	if t.OutputType == "" {
+	if t.OutputType == "" && t.Kind != "csv" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <OutputType>")
 	}
 	if t.OutputType != "excel" && t.OutputType != "memory" && t.OutputType != "reference" {
 		log.Println("Task Error in the json file: <Tasks #", position, "> of <", t.Name, ">, <OutputType:", t.OutputType, "  is not supported")
 		log.Fatalln("Task Error: supported values are <memory>,<excel>,<reference>")
 	}
-	if t.OutputType == "excel" && t.OutputName == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> output type <Excel> must have a field <OutputName>")
+	if t.OutputType == "excel" && t.FileName == "" {
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> output type <Excel> must have a field <FileName>")
 	}
-
+	if t.Kind == "csv" && t.FileName == "" {
+		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> the field <FileName> cannot be empty for a task <csv>")
+	}
 }

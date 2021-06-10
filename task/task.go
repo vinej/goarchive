@@ -21,7 +21,7 @@ type Task struct {
 	Connection  string
 	Command     string
 	OutputType  string
-	OutputName  string
+	FileName    string
 	Parameters  []Parameter
 }
 
@@ -52,6 +52,8 @@ func RunAll(conlist []con.Connection, tasks []Task) {
 			RunArray(t)
 		case "query":
 			RunQuery(ctx, t)
+		case "csv":
+			RunCsv(t)
 		default:
 			log.Fatal("Task: Invalid task kind" + t.Kind)
 		}

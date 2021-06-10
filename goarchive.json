@@ -13,6 +13,13 @@
 ],
 "Tasks" : [
     { 
+        "Name" : "csv1",
+        "Kind" : "csv",  
+        "Description" : "list of users",
+        "FileName" : "users.csv",
+        "OutputType" : "memory"
+    },
+    { 
         "Name" : "tests",
         "Kind" : "array",  
         "Description" : "list of country",
@@ -71,7 +78,7 @@
             }
         ],
         "OutputType" : "excel",
-        "OutputName" : "goarchive.xlsx"
+        "FileName" : "goarchive.xlsx"
     }
 ]
 }
