@@ -1,4 +1,4 @@
-package util
+package msql
 
 import (
 	"database/sql"
@@ -13,6 +13,7 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	valid "github.com/asaskevich/govalidator"
 	"github.com/jinzhu/copier"
+	con "jyv.com/goarchive/connection"
 )
 
 type MapStringScan struct {
@@ -144,7 +145,9 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 	}
 }
 
-func QuerySaveExcel(name string, db *sql.DB, query string, output string) {
+func QuerySaveExcel(ctx *con.Connection, name string, query string, output string) {
+	db, _ := con.GetDB(ctx)
+	defer db.Close()
 	log.Println("Saving into execl wit the query : <" + query + ">")
 	rows, err := db.Query(query)
 	if err != nil {
@@ -198,11 +201,14 @@ func callback(rc *MapStringScan, rows *sql.Rows) map[string]string {
 	return rc.Get()
 }
 
-func Query(db *sql.DB, query string) ([]string, []map[string]string) {
-	return QueryCallback(db, query, callback)
+func Query(ctx *con.Connection, query string) ([]string, []map[string]string) {
+	return QueryCallback(ctx, query, callback)
 }
 
-func QueryCallback(db *sql.DB, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) map[string]string) ([]string, []map[string]string) {
+func QueryCallback(ctx *con.Connection, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) map[string]string) ([]string, []map[string]string) {
+	db, _ := con.GetDB(ctx)
+	defer db.Close()
+
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)

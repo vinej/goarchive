@@ -10,20 +10,19 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"gopkg.in/ini.v1"
-	"jyv.com/goarchive/connection"
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/msql"
 	task "jyv.com/goarchive/task"
-	util "jyv.com/goarchive/util"
 )
 
 type IniFile struct {
-	name   string
-	json   string
-	driver string
-	con    string
-	query  string
-	log    string
-	output string
+	name             string
+	json             string
+	driver           string
+	connectionString string
+	query            string
+	log              string
+	output           string
 }
 
 func load_ini_file(filename string) *IniFile {
@@ -34,7 +33,7 @@ func load_ini_file(filename string) *IniFile {
 	inifile := new(IniFile)
 	inifile.name = cfg.Section("goarchive").Key("name").String()
 	inifile.driver = cfg.Section("goarchive").Key("driver").String()
-	inifile.con = cfg.Section("goarchive").Key("con").String()
+	inifile.connectionString = cfg.Section("goarchive").Key("connectionString").String()
 	inifile.query = cfg.Section("goarchive").Key("query").String()
 	inifile.output = cfg.Section("goarchive").Key("output").String()
 	inifile.log = cfg.Section("goarchive").Key("log").String()
@@ -56,7 +55,7 @@ func validate_inifile(inifile *IniFile) {
 		if len(inifile.driver) == 0 {
 			log.Panic("parameter <driver> is mandatory>")
 		}
-		if len(inifile.con) == 0 {
+		if len(inifile.connectionString) == 0 {
 			log.Panic("parameter <con> is mandatory>")
 		}
 		if len(inifile.query) == 0 {
@@ -95,8 +94,8 @@ func load_json(file string) {
 		log.Panic(err)
 	}
 	validate_json(obj)
-	con.CreateAll(obj.Connections)
-	task.RunAll(obj.Tasks)
+	//con.CreateAll(obj.Connections)
+	task.RunAll(obj.Connections, obj.Tasks)
 }
 
 func load_parameter() *IniFile {
@@ -146,9 +145,9 @@ func load_parameter() *IniFile {
 				case "query":
 					inifile.query = arginfo
 				case "c":
-					inifile.con = arginfo
+					inifile.connectionString = arginfo
 				case "--con":
-					inifile.con = arginfo
+					inifile.connectionString = arginfo
 				default:
 					log.Panic("unknown parameter")
 				}
@@ -165,8 +164,11 @@ func doit(inifile *IniFile) {
 	if inifile.json != "" {
 		load_json(inifile.json)
 	} else {
-		db, _ := connection.CreateOrGetDB(inifile.name, inifile.driver, inifile.con)
-		util.QuerySaveExcel(inifile.name, db, inifile.query, inifile.output)
+		ctx := new(con.Connection)
+		ctx.Driver = inifile.driver
+		ctx.ConnectionString = inifile.connectionString
+		ctx.Name = inifile.name
+		go msql.QuerySaveExcel(ctx, inifile.name, inifile.query, inifile.output)
 	}
 }
 

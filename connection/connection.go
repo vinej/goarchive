@@ -6,9 +6,7 @@ package connection
 
 import (
 	"database/sql"
-	"errors"
 	"log"
-	"sync"
 
 	"jyv.com/goarchive/util"
 )
@@ -19,22 +17,18 @@ type Connection struct {
 	ConnectionString string
 }
 
-var lock = &sync.Mutex{}
+//var lock = &sync.Mutex{}
 
 // declare a empty map of connection
 // go manage a connection pool, so you don<t need to close sql.DB
 // all connection will be close when go will leave
-var mapcon map[string]*sql.DB = make(map[string]*sql.DB)
+//var mapcon map[string]*sql.DB = make(map[string]*sql.DB)
 
-func GetDB(name string) (db *sql.DB, err error) {
-	db, found := mapcon[name]
-	if found {
-		return db, nil
-	} else {
-		return nil, errors.New("Connection error: connection name does not exist")
-	}
+func GetDB(con *Connection) (db *sql.DB, err error) {
+	return sql.Open(con.Driver, con.ConnectionString)
 }
 
+/*
 func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *sql.DB, err error) {
 	db, found := mapcon[name]
 	if !found {
@@ -58,7 +52,7 @@ func CreateOrGetDB(name string, driverName string, dataSourceName string) (db *s
 	}
 	return mapcon[name], nil
 }
-
+*/
 func ValidateConnectionUniqueNames(connections []Connection) {
 	names := make([]string, 0)
 	isFirst := true
@@ -88,6 +82,7 @@ func ValidateConnection(con Connection, position int) {
 	}
 }
 
+/*
 func CreateAll(con []Connection) {
 	for _, c := range con {
 		_, err := CreateOrGetDB(c.Name, c.Driver, c.ConnectionString)
@@ -96,3 +91,4 @@ func CreateAll(con []Connection) {
 		}
 	}
 }
+*/
