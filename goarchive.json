@@ -77,8 +77,8 @@
                 "Kind" : "child"
             }
         ],
-        "OutputType" : "excel",
-        "FileName" : "goarchive.xlsx"
+        "OutputType" : "csv",
+        "FileName" : "goarchive.csv"
     }
 ]
 }

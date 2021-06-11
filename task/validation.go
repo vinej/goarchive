@@ -101,9 +101,9 @@ func ValidateTask(t Task, position int) {
 	if t.OutputType == "" && t.Kind != "csv" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> does not contains the field <OutputType>")
 	}
-	if t.OutputType != "excel" && t.OutputType != "memory" && t.OutputType != "reference" {
+	if t.OutputType != "excel" && t.OutputType != "memory" && t.OutputType != "reference" && t.OutputType != "csv" {
 		log.Println("Task Error in the json file: <Tasks #", position, "> of <", t.Name, ">, <OutputType:", t.OutputType, "  is not supported")
-		log.Fatalln("Task Error: supported values are <memory>,<excel>,<reference>")
+		log.Fatalln("Task Error: supported values are <memory>,<excel>,<reference>,<csv>")
 	}
 	if t.OutputType == "excel" && t.FileName == "" {
 		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", t.Name, "> output type <Excel> must have a field <FileName>")

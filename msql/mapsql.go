@@ -2,9 +2,11 @@ package msql
 
 import (
 	"database/sql"
+	"encoding/csv"
 	"encoding/hex"
 	"fmt"
 	"log"
+	"os"
 	"reflect"
 	"strings"
 	"time"
@@ -123,6 +125,29 @@ func getField(val string) interface{} {
 	}
 }
 
+func getStringField(val string) string {
+	if valid.IsFloat(val) {
+		//fl, _ := valid.ToFloat(val)
+		//return fl
+		return val
+	} else if valid.IsInt(val) {
+		//iv, _ := valid.ToInt(val)
+		//return iv
+		return val
+	} else if valid.IsTime(val, time.RFC3339) {
+		t, _ := time.Parse(time.RFC3339, val)
+		//return t
+		return t.Format("2006-01-02 15:04:05")
+	} else {
+		guid, isvalid := mssql_isvalid_guid(val)
+		if isvalid {
+			return guid
+		} else {
+			return val
+		}
+	}
+}
+
 func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.StructField, val reflect.Value) {
 	//excel.SetCellValue(sheet, coor, val.String())
 	switch t.Type.Kind() {
@@ -145,10 +170,58 @@ func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.St
 	}
 }
 
+func QuerySaveCsv(ctx *con.Connection, name string, query string, output string) {
+	db, _ := con.GetDB(ctx)
+	defer db.Close()
+	log.Println("Saving into CSV wit the query : <" + query + ">")
+	rows, err := db.Query(query)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	columnNames, err := rows.Columns()
+	log.Println(columnNames)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	f, err := os.Create(output)
+	defer f.Close()
+
+	if err != nil {
+
+		log.Fatalln("failed to open file", err)
+	}
+
+	w := csv.NewWriter(f)
+	defer w.Flush()
+
+	// put the columns into the Excel file
+	w.Write(columnNames)
+
+	rc := NewMapStringScan(columnNames)
+	for rows.Next() {
+		err := rc.Update(rows)
+		if err != nil {
+			log.Fatal(err)
+		}
+		row := rc.Get()
+		// ceate a []string for map[string]
+		ar := make([]string, 0)
+		for _, col_name := range columnNames {
+			field := getStringField(row[col_name])
+			ar = append(ar, field)
+		}
+		w.Write(ar)
+	}
+	log.Println("QuerySaveCSV success")
+}
+
 func QuerySaveExcel(ctx *con.Connection, name string, query string, output string) {
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
-	log.Println("Saving into execl wit the query : <" + query + ">")
+	log.Println("Saving into Excel wit the query : <" + query + ">")
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
