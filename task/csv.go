@@ -65,3 +65,5 @@ func (csv *Csv) Transform(m map[string]interface{}) {
 }
 
 func (csv *Csv) GetTask() Task { return csv.Task }
+
+func (csv *Csv) ValidateEtl(Tasks []ITask, position int) {}

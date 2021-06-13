@@ -9,6 +9,7 @@ import (
 type ITask interface {
 	Run(acon []con.Connection, position int)
 	Validate(acon []con.Connection, position int)
+	ValidateEtl(Tasks []ITask, position int)
 	Transform(m map[string]interface{})
 	GetTask() Task
 }
@@ -36,10 +37,11 @@ type ETLJson struct {
 	Tasks       []interface{}
 }
 
-func (task Task) Run(acon []con.Connection, position int)      {}
-func (task Task) Validate(acon []con.Connection, position int) {}
-func (task Task) Transform(m map[string]interface{})           {}
-func (task Task) GetTask() Task                                { return task }
+func (task *Task) Run(acon []con.Connection, position int)      {}
+func (task *Task) Validate(acon []con.Connection, position int) {}
+func (task *Task) Transform(m map[string]interface{})           {}
+func (task *Task) GetTask() Task                                { return *task }
+func (task *Task) ValidateEtl(Tasks []ITask, position int)      {}
 
 func RunETL(etl *ETL) {
 	ValidateAll(etl)
@@ -51,6 +53,7 @@ func ValidateAll(etl *ETL) {
 	for i, t := range etl.Tasks {
 		ValidateTask(t.GetTask(), i)
 		t.Validate(etl.Connections, i)
+		t.ValidateEtl(etl.Tasks, i)
 	}
 }
 

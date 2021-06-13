@@ -6,16 +6,14 @@ import (
 	con "jyv.com/goarchive/connection"
 )
 
-/*
-func ValidateQueryParameterSource(p Parameter, position int, taskposition int, tasks []Task) {
+func ValidateQueryParameterSource(p Parameter, position int, taskposition int, tasks []ITask) {
 	for _, t := range tasks {
-		if p.Source == t.Name {
+		if p.Source == t.GetTask().Name {
 			return
 		}
 	}
 	log.Fatalln("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, ">: the <Source:", p.Source, "> does not exist")
 }
-*/
 
 func ValidateQueryParameters(params []Parameter, query *Query, position int) {
 	if len(params) >= 1 {

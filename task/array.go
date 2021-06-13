@@ -54,3 +54,5 @@ func (array *Array) Transform(m map[string]interface{}) {
 }
 
 func (array *Array) GetTask() Task { return array.Task }
+
+func (array *Array) ValidateEtl(Tasks []ITask, position int) {}
