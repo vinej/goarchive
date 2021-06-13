@@ -7,7 +7,18 @@ import (
 	"github.com/jinzhu/copier"
 	con "jyv.com/goarchive/connection"
 	msql "jyv.com/goarchive/msql"
+	util "jyv.com/goarchive/util"
 )
+
+type Query struct {
+	Task
+	Description string
+	Connection  string
+	Command     string
+	OutputType  string
+	FileName    string
+	Parameters  []Parameter
+}
 
 type Memory struct {
 	columnNames []string
@@ -15,7 +26,7 @@ type Memory struct {
 }
 
 var mapqry map[string]*Memory = make(map[string]*Memory)
-var mapref map[string]Task = make(map[string]Task)
+var mapref map[string]interface{} = make(map[string]interface{})
 
 func adjust_quote(name string) string {
 	if name[0] == '\'' && name[1] != '\'' {
@@ -44,12 +55,12 @@ func adjust_cmd_all(cmd string, param Parameter, row map[string]string) string {
 }
 
 func query_task(ctx *con.Connection, param1 Parameter, param2 Parameter, row map[string]string) {
-	task := mapref[param2.Source]
-	cmd := adjust_cmd_all(task.Command, param1, row)
-	tmpTask := new(Task)
-	copier.Copy(tmpTask, &task)
-	tmpTask.Command = cmd
-	query_memory(ctx, *tmpTask)
+	query := mapref[param2.Source].(*Query)
+	cmd := adjust_cmd_all(query.Command, param1, row)
+	queryTemp := new(Query)
+	copier.Copy(&queryTemp, &query)
+	queryTemp.Command = cmd
+	query_memory(ctx, queryTemp)
 }
 
 func use_database(ctx *con.Connection, p Parameter, row map[string]string) {
@@ -58,13 +69,13 @@ func use_database(ctx *con.Connection, p Parameter, row map[string]string) {
 	msql.Query(ctx, "use "+dbFieldValue)
 }
 
-func query_excel_level(ctx *con.Connection, cmd string, out string, task Task, level int, row map[string]string) {
-	p2 := task.Parameters[level]
+func query_excel_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string) {
+	p2 := query.Parameters[level]
 	if p2.Kind == "child" {
 		if level == 0 {
 			log.Fatalln("Task source error: first parameter cannot be a <kind> child")
 		}
-		p1 := task.Parameters[level-1]
+		p1 := query.Parameters[level-1]
 		query_task(ctx, p1, p2, row)
 		mem2 := GetMemory(p2.Source)
 		if mem2 == nil {
@@ -95,11 +106,11 @@ func query_excel_level(ctx *con.Connection, cmd string, out string, task Task, l
 					cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 				}
 			}
-			if level == len(task.Parameters)-1 {
+			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go msql.QuerySaveExcel(ctx, task.Name, cmd2, out2)
+				go msql.QuerySaveExcel(ctx, query.Task.Name, cmd2, out2)
 			} else {
-				query_excel_level(ctx, cmd2, out2, task, level+1, mem2.rows[r])
+				query_excel_level(ctx, cmd2, out2, query, level+1, mem2.rows[r])
 			}
 		}
 	} else {
@@ -116,23 +127,23 @@ func query_excel_level(ctx *con.Connection, cmd string, out string, task Task, l
 			for i := 0; i < len(p2.Fields); i++ {
 				cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 			}
-			if level == len(task.Parameters)-1 {
+			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go msql.QuerySaveExcel(ctx, task.Name, cmd2, out2)
+				go msql.QuerySaveExcel(ctx, query.Task.Name, cmd2, out2)
 			} else {
-				query_excel_level(ctx, cmd2, out2, task, level+1, mem2.rows[r])
+				query_excel_level(ctx, cmd2, out2, query, level+1, mem2.rows[r])
 			}
 		}
 	}
 }
 
-func query_csv_level(ctx *con.Connection, cmd string, out string, task Task, level int, row map[string]string) {
-	p2 := task.Parameters[level]
+func query_csv_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string) {
+	p2 := query.Parameters[level]
 	if p2.Kind == "child" {
 		if level == 0 {
 			log.Fatalln("Task source error: first parameter cannot be a <kind> child")
 		}
-		p1 := task.Parameters[level-1]
+		p1 := query.Parameters[level-1]
 		query_task(ctx, p1, p2, row)
 		mem2 := GetMemory(p2.Source)
 		if mem2 == nil {
@@ -163,11 +174,11 @@ func query_csv_level(ctx *con.Connection, cmd string, out string, task Task, lev
 					cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 				}
 			}
-			if level == len(task.Parameters)-1 {
+			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go msql.QuerySaveCsv(ctx, task.Name, cmd2, out2)
+				go msql.QuerySaveCsv(ctx, query.Task.Name, cmd2, out2)
 			} else {
-				query_csv_level(ctx, cmd2, out2, task, level+1, mem2.rows[r])
+				query_csv_level(ctx, cmd2, out2, query, level+1, mem2.rows[r])
 			}
 		}
 	} else {
@@ -184,32 +195,32 @@ func query_csv_level(ctx *con.Connection, cmd string, out string, task Task, lev
 			for i := 0; i < len(p2.Fields); i++ {
 				cmd2, out2 = adjust_cmd_out_index(cmd2, out2, p2, mem2.rows[r], i)
 			}
-			if level == len(task.Parameters)-1 {
+			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go msql.QuerySaveCsv(ctx, task.Name, cmd2, out2)
+				go msql.QuerySaveCsv(ctx, query.Task.Name, cmd2, out2)
 			} else {
-				query_csv_level(ctx, cmd2, out2, task, level+1, mem2.rows[r])
+				query_csv_level(ctx, cmd2, out2, query, level+1, mem2.rows[r])
 			}
 		}
 	}
 }
 
-func query_excel(ctx *con.Connection, task Task) {
-	if len(task.Parameters) == 0 {
+func query_excel(ctx *con.Connection, query *Query) {
+	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveExcel(ctx, task.Name, task.Command, task.FileName)
+		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName)
 		return
 	}
-	query_excel_level(ctx, task.Command, task.FileName, task, 0, nil)
+	query_excel_level(ctx, query.Command, query.FileName, query, 0, nil)
 }
 
-func query_csv(ctx *con.Connection, task Task) {
-	if len(task.Parameters) == 0 {
+func query_csv(ctx *con.Connection, query *Query) {
+	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveCsv(ctx, task.Name, task.Command, task.FileName)
+		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName)
 		return
 	}
-	query_csv_level(ctx, task.Command, task.FileName, task, 0, nil)
+	query_csv_level(ctx, query.Command, query.FileName, query, 0, nil)
 }
 
 func GetMemory(name string) *Memory {
@@ -220,16 +231,17 @@ func GetMemory(name string) *Memory {
 	query the database and put the result into memory
 	no parameter managed by the option
 */
-func query_memory(ctx *con.Connection, task Task) {
+func query_memory(ctx *con.Connection, query *Query) {
 	m := new(Memory)
-	m.columnNames, m.rows = msql.Query(ctx, task.Command)
-	mapqry[task.Name] = m
+	m.columnNames, m.rows = msql.Query(ctx, query.Command)
+	mapqry[query.Task.Name] = m
 }
 
-func query_reference(task Task) {
-	mapref[task.Name] = task
+func query_reference(query *Query) {
+	mapref[query.Task.Name] = query
 }
 
+/*
 func RunQuery(ctx *con.Connection, task Task) {
 	switch task.OutputType {
 	case "csv":
@@ -244,3 +256,90 @@ func RunQuery(ctx *con.Connection, task Task) {
 		log.Fatalf("The output type '%s' is not supported,  check for a typo", task.OutputType)
 	}
 }
+*/
+
+func (query *Query) Run(acon []con.Connection, position int) {
+	switch query.OutputType {
+	case "csv":
+		ctx := con.GetConnection(acon, query.Connection)
+		query_csv(ctx, query)
+	case "excel":
+		ctx := con.GetConnection(acon, query.Connection)
+		query_excel(ctx, query)
+	case "memory":
+		ctx := con.GetConnection(acon, query.Connection)
+		query_memory(ctx, query)
+	case "reference":
+		query_reference(query)
+	default:
+		log.Fatalf("The output type '%s' is not supported,  check for a typo", query.OutputType)
+	}
+}
+
+func (query *Query) Validate(acon []con.Connection, position int) {
+	ValidateQueryConnection(query, acon, position)
+	ValidateQueryTask(query, position)
+	ValidateQueryParameters(query.Parameters, query, position)
+	for i, p := range query.Parameters {
+		ValidateQueryParameter(p, i, position)
+	}
+
+	/*
+		switch query.OutputType {
+		case "csv":
+			query_csv(ctx, query)
+		case "excel":
+			query_excel(ctx, query)
+		case "memory":
+			query_memory(ctx, query)
+		case "reference":
+			query_reference(query)
+		default:
+			log.Fatalf("The output type '%s' is not supported,  check for a typo", query.OutputType)
+		}
+	*/
+}
+
+func (query *Query) Transform(m map[string]interface{}) {
+	query.Task.Kind = util.GetFieldValueFromMap(m, "Kind")
+	query.Task.Name = util.GetFieldValueFromMap(m, "Name")
+	query.Description = util.GetFieldValueFromMap(m, "Description")
+	query.Command = util.GetFieldValueFromMap(m, "Command")
+	query.Connection = util.GetFieldValueFromMap(m, "Connection")
+	query.OutputType = util.GetFieldValueFromMap(m, "OutputType")
+	query.FileName = util.GetFieldValueFromMap(m, "FileName")
+	query.Parameters = make([]Parameter, 0)
+	field := util.GetFieldFromMap(m, "Parameters")
+	if field != "" {
+		pm := m[field].([]interface{})
+		for _, p := range pm {
+			mp := p.(map[string]interface{})
+			param := new(Parameter)
+
+			param.Fields = make([]string, 0)
+			field = util.GetFieldFromMap(mp, "Fields")
+			if field != "" {
+				for _, f := range mp[field].([]interface{}) {
+					param.Fields = append(param.Fields, f.(string))
+				}
+			}
+
+			param.Kind = util.GetFieldValueFromMap(mp, "Kind")
+
+			param.Names = make([]string, 0)
+			field = util.GetFieldFromMap(mp, "Names")
+			if field != "" {
+				for _, n := range mp[field].([]interface{}) {
+					param.Names = append(param.Names, n.(string))
+				}
+			}
+
+			param.Source = util.GetFieldValueFromMap(mp, "Source")
+			param.UseDatabase = util.GetFieldValueFromMap(mp, "UseDatabase")
+
+			query.Parameters = append(query.Parameters, *param)
+		}
+	}
+}
+
+func (query *Query) GetTask() Task { return query.Task }

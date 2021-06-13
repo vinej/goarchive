@@ -508,3 +508,264 @@
 2021/06/11 07:47:49 QuerySaveCSV success
 2021/06/11 07:47:49 [id code]
 2021/06/11 07:47:49 END processing
+2021/06/11 07:49:53 START processing
+2021/06/11 07:49:53 [table_name]
+2021/06/11 07:49:53 [id name description database]
+2021/06/11 07:49:53 []
+2021/06/11 07:49:53 [id code]
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 []
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id code]
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 []
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id code]
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/11 07:49:53 Saving into CSV wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/11 07:49:53 []
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 QuerySaveCSV success
+2021/06/11 07:49:53 [id code]
+2021/06/11 07:49:53 END processing
+2021/06/12 09:04:52 START processing
+2021/06/12 09:05:56 START processing
+2021/06/12 09:16:40 START processing
+2021/06/12 09:18:12 START processing
+2021/06/12 09:18:15 json: cannot unmarshal object into Go struct field ETL.Tasks of type task.ITask
+2021/06/12 09:24:42 START processing
+2021/06/12 09:26:11 START processing
+2021/06/12 09:28:24 START processing
+2021/06/12 09:28:46 START processing
+2021/06/12 10:27:54 START processing
+2021/06/12 10:29:08 START processing
+2021/06/12 10:29:45 START processing
+2021/06/12 10:31:58 START processing
+2021/06/12 10:34:51 START processing
+2021/06/12 10:35:49 START processing
+2021/06/12 10:47:42 START processing
+2021/06/12 10:58:48 START processing
+2021/06/12 11:00:00 START processing
+2021/06/12 11:00:47 START processing
+2021/06/12 11:23:42 START processing
+2021/06/12 11:23:54 START processing
+2021/06/12 11:30:00 START processing
+2021/06/12 11:30:16 START processing
+2021/06/12 11:42:32 START processing
+2021/06/12 11:43:46 START processing
+2021/06/12 11:44:23 START processing
+2021/06/12 11:47:39 START processing
+2021/06/12 11:49:18 START processing
+2021/06/12 11:50:02 START processing
+2021/06/12 11:50:45 START processing
+2021/06/12 11:52:14 START processing
+2021/06/12 11:54:59 START processing
+2021/06/12 11:55:39 START processing
+2021/06/12 11:56:11 START processing
+2021/06/12 11:57:11 START processing
+2021/06/12 12:00:08 START processing
+2021/06/12 12:00:54 START processing
+2021/06/12 12:01:00 START processing
+2021/06/12 12:02:55 START processing
+2021/06/12 12:03:38 START processing
+2021/06/12 12:13:19 START processing
+2021/06/12 12:24:23 START processing
+2021/06/12 12:24:23 Task error in the json file: the <Task:  > of <Task: 2 > already exists
+2021/06/12 12:25:41 START processing
+2021/06/12 12:27:41 START processing
+2021/06/12 12:28:59 START processing
+2021/06/12 12:31:15 START processing
+2021/06/12 12:33:57 START processing
+2021/06/12 12:34:46 START processing
+2021/06/12 13:09:48 START processing
+2021/06/12 13:11:50 START processing
+2021/06/12 13:24:48 START processing
+2021/06/12 13:25:07 Task Error in the json file: <Tasks # 5 > of < names > output type <Excel> must have a field <FileName>
+2021/06/12 13:25:12 START processing
+2021/06/12 13:25:12 Task Error in the json file: <Tasks # 5 > of < names > output type <Excel> must have a field <FileName>
+2021/06/12 13:27:32 START processing
+2021/06/12 13:28:18 START processing
+2021/06/12 13:28:43 START processing
+2021/06/12 13:31:01 START processing
+2021/06/12 13:32:30 START processing
+2021/06/12 13:32:54 [table_name]
+2021/06/12 13:32:56 [id name description database]
+2021/06/12 13:33:01 []
+2021/06/12 13:33:19 START processing
+2021/06/12 13:33:19 [table_name]
+2021/06/12 13:33:19 [id name description database]
+2021/06/12 13:33:19 []
+2021/06/12 13:34:23 START processing
+2021/06/12 13:34:23 [table_name]
+2021/06/12 13:34:23 [id name description database]
+2021/06/12 13:34:23 []
+2021/06/12 13:34:23 mssql: Incorrect syntax near '}'.
+2021/06/12 13:35:03 START processing
+2021/06/12 13:35:14 [table_name]
+2021/06/12 13:35:57 [id name description database]
+2021/06/12 13:36:00 []
+2021/06/12 21:57:19 START processing
+2021/06/12 21:57:22 [table_name]
+2021/06/12 21:57:23 [id name description database]
+2021/06/12 21:59:47 []
+2021/06/12 22:00:43 mssql: Incorrect syntax near '}'.
+2021/06/12 22:01:33 START processing
+2021/06/12 22:01:36 [table_name]
+2021/06/12 22:01:37 [id name description database]
+2021/06/12 22:04:35 START processing
+2021/06/12 22:04:35 [table_name]
+2021/06/12 22:04:35 [id name description database]
+2021/06/12 22:04:35 []
+2021/06/12 22:04:35 [id code]
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 []
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 [id code]
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/12 22:04:35 []
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 [id code]
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:04:35 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:04:35 []
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 QuerySaveExcel success
+2021/06/12 22:04:35 [id code]
+2021/06/12 22:04:35 END processing
+2021/06/12 22:05:04 START processing
+2021/06/12 22:05:04 [table_name]
+2021/06/12 22:05:04 [id name description database]
+2021/06/12 22:05:04 []
+2021/06/12 22:05:04 [id code]
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:05:04 []
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 [id code]
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 []
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 [id code]
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:05:04 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:05:04 []
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 QuerySaveExcel success
+2021/06/12 22:05:04 [id code]
+2021/06/12 22:05:04 END processing
+2021/06/12 22:39:56 START processing
+2021/06/12 22:39:56 Task error in the json file: the <Task: Name > of <Task: 2 > already exists
+2021/06/12 22:42:09 START processing
+2021/06/12 22:42:09 Task error in the json file: the <Task: Name > of <Task: 2 > already exists
+2021/06/12 22:42:49 START processing
+2021/06/12 22:42:49 Task error in the json file: the <Task: Name > of <Task: 2 > already exists
+2021/06/12 22:43:53 START processing
+2021/06/12 22:43:53 Task Error in the json file: <Tasks # 0 > of < Name >, <Kind: Kind   is not supported
+2021/06/12 22:43:53 Task Error: supported values are <query>,<array>,<csv>
+2021/06/12 22:46:33 START processing
+2021/06/12 22:46:33 [table_name]
+2021/06/12 22:46:33 [id name description database]
+2021/06/12 22:46:33 []
+2021/06/12 22:46:33 [id code]
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:46:33 []
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 [id code]
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/12 22:46:33 []
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 [id code]
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/12 22:46:33 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/12 22:46:33 []
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 QuerySaveExcel success
+2021/06/12 22:46:33 [id code]
+2021/06/12 22:46:33 END processing

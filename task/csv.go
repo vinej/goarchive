@@ -3,12 +3,25 @@ package task
 import (
 	"encoding/csv"
 	"os"
+
+	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/util"
 )
 
-func RunCsv(task Task) {
+type Csv struct {
+	Task
+	Description string
+	FileName    string
+}
+
+func (csv *Csv) Run(acon []con.Connection, position int) {
 	m := new(Memory)
-	m.columnNames, m.rows, _ = read_data(task.FileName)
-	mapqry[task.Name] = m
+	m.columnNames, m.rows, _ = read_data(csv.FileName)
+	mapqry[csv.Task.Name] = m
+}
+
+func (csv *Csv) Validate(acon []con.Connection, position int) {
+
 }
 
 func read_data(fileName string) (columns []string, rows []map[string]string, err error) {
@@ -43,3 +56,12 @@ func read_data(fileName string) (columns []string, rows []map[string]string, err
 
 	return columns, rows, nil
 }
+
+func (csv *Csv) Transform(m map[string]interface{}) {
+	csv.Task.Kind = util.GetFieldValueFromMap(m, "Kind")
+	csv.Task.Name = util.GetFieldValueFromMap(m, "Name")
+	csv.Description = util.GetFieldValueFromMap(m, "Description")
+	csv.FileName = util.GetFieldValueFromMap(m, "FileName")
+}
+
+func (csv *Csv) GetTask() Task { return csv.Task }

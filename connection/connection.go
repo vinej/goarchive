@@ -21,6 +21,20 @@ func GetDB(con *Connection) (db *sql.DB, err error) {
 	return sql.Open(con.Driver, con.ConnectionString)
 }
 
+func GetConnection(conlist []Connection, name string) *Connection {
+	if name == "" {
+		return nil
+	}
+
+	for _, c := range conlist {
+		if c.Name == name {
+			return &c
+		}
+	}
+	log.Fatalln("Connection <" + name + "> not found")
+	return nil
+}
+
 func ValidateConnectionUniqueNames(connections []Connection) {
 	names := make([]string, 0)
 	isFirst := true

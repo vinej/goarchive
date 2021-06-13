@@ -1,26 +1,39 @@
 {
  "Connections": [
   {
-   "Name": "master1",
-   "Driver": "driver1",
-   "DataSourceName": "source1"
+   "Name": "test",
+   "Driver": "",
+   "ConnectionString": ""
   },
   {
-   "Name": "master2",
-   "Driver": "driver2",
-   "DataSourceName": "source2"
+   "Name": "test2",
+   "Driver": "",
+   "ConnectionString": ""
   }
  ],
  "Tasks": [
   {
-   "Id": "id1",
-   "Kind": "kind1",
-   "Name": "mame1",
-   "Description": "desc1",
-   "Connection": "con1",
-   "Sql": "sql1",
-   "Output": "out1",
-   "File": "file1"
+   "Kind": "",
+   "Name": "array",
+   "Description": "",
+   "Command": "",
+   "OutputType": ""
+  },
+  {
+   "Name": "query",
+   "Kind": "",
+   "Description": "",
+   "Connection": "",
+   "Command": "",
+   "OutputType": "",
+   "FileName": "",
+   "Parameters": null
+  },
+  {
+   "Kind": "",
+   "Name": "csv",
+   "Description": "",
+   "FileName": ""
   }
  ]
 }

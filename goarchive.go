@@ -64,6 +64,7 @@ func validate_inifile(inifile *IniFile) {
 	}
 }
 
+/*
 func validate_json(etl *task.ETL) {
 	for i, c := range etl.Connections {
 		con.ValidateConnection(c, i+1)
@@ -82,20 +83,36 @@ func validate_json(etl *task.ETL) {
 	}
 	task.ValidateTaskUniqueNames(etl.Tasks)
 }
+*/
 
 func load_json(file string) {
+	/*
+		etl := new(task.ETL)
+		etl.Connections = make([]con.Connection, 0)
+		etl.Connections = append(etl.Connections, con.Connection{Name: "test"})
+		etl.Connections = append(etl.Connections, con.Connection{Name: "test2"})
+
+		etl.Tasks = make([]interface{}, 0)
+		etl.Tasks = append(etl.Tasks, task.Array{Name: "array"})
+		etl.Tasks = append(etl.Tasks, task.Query{Name: "query"})
+		etl.Tasks = append(etl.Tasks, task.Csv{Name: "csv"})
+
+		// save it
+		fileout, _ := json.MarshalIndent(etl, "", " ")
+
+		_ = ioutil.WriteFile("test.json", fileout, 0644)
+	*/
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
 		log.Panic(err)
 	}
-	obj := new(task.ETL)
-	err = json.Unmarshal(data, obj)
+	etljson := new(task.ETLJson)
+	err = json.Unmarshal(data, etljson)
 	if err != nil {
 		log.Panic(err)
 	}
-	validate_json(obj)
-	//con.CreateAll(obj.Connections)
-	task.RunAll(obj.Connections, obj.Tasks)
+	etl := task.RemapETL(etljson)
+	task.RunETL(etl)
 }
 
 func load_parameter() *IniFile {
