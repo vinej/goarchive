@@ -1,0 +1,20 @@
+{
+    "Errors" : [
+        { 
+            "Id" : "0001",
+            "Text" : "Fail to read ini file: %s"
+        },
+        {
+            "Id" : "0002",
+            "Text" : "parameter <driver> is mandatory>"
+        },
+        {
+            "Id" : "0003",
+            "Text" : "parameter <con> is mandatory>"
+        },
+        {
+            "Id" : "0004",
+            "Text" : "parameter <query> is mandatory>"
+        }
+    ]
+}

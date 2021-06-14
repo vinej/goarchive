@@ -39,3 +39,7 @@ func GetFieldFromMap(m map[string]interface{}, field string) string {
 	}
 	return field
 }
+
+func GetError(id string) string {
+	return id + ":" + id
+}

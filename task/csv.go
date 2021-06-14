@@ -1,7 +1,7 @@
 package task
 
 import (
-	"encoding/csv"
+	ecsv "encoding/csv"
 	"os"
 
 	con "jyv.com/goarchive/connection"
@@ -14,17 +14,34 @@ type Csv struct {
 	FileName    string
 }
 
-func (csv *Csv) Run(acon []con.Connection, position int) {
+const CSV_KIND = "Kind"
+const CSV_NAME = "Name"
+const CSV_DESCRIPTION = "Description"
+const CSV_FILENAME = "FileName"
+
+func (csv *Csv) Run(_ []con.Connection, position int) {
 	m := new(Memory)
-	m.columnNames, m.rows, _ = read_data(csv.FileName)
+	m.columnNames, m.rows, _ = csv.read_data()
 	mapqry[csv.Task.Name] = m
 }
 
-func (csv *Csv) Validate(acon []con.Connection, position int) {
+func (csv *Csv) Validate(_ []con.Connection, position int) {
 
 }
 
-func read_data(fileName string) (columns []string, rows []map[string]string, err error) {
+func (csv *Csv) Transform(m map[string]interface{}) {
+	csv.Task.Kind = util.GetFieldValueFromMap(m, CSV_KIND)
+	csv.Task.Name = util.GetFieldValueFromMap(m, CSV_NAME)
+	csv.Description = util.GetFieldValueFromMap(m, CSV_DESCRIPTION)
+	csv.FileName = util.GetFieldValueFromMap(m, CSV_FILENAME)
+}
+
+func (csv *Csv) GetTask() Task { return csv.Task }
+
+func (csv *Csv) ValidateEtl(Tasks []ITask, position int) {}
+
+func (csv *Csv) read_data() (columns []string, rows []map[string]string, err error) {
+	fileName := csv.FileName
 	f, err := os.Open(fileName)
 
 	if err != nil {
@@ -33,7 +50,7 @@ func read_data(fileName string) (columns []string, rows []map[string]string, err
 
 	defer f.Close()
 
-	r := csv.NewReader(f)
+	r := ecsv.NewReader(f)
 
 	columns, err = r.Read()
 	if err != nil {
@@ -56,14 +73,3 @@ func read_data(fileName string) (columns []string, rows []map[string]string, err
 
 	return columns, rows, nil
 }
-
-func (csv *Csv) Transform(m map[string]interface{}) {
-	csv.Task.Kind = util.GetFieldValueFromMap(m, "Kind")
-	csv.Task.Name = util.GetFieldValueFromMap(m, "Name")
-	csv.Description = util.GetFieldValueFromMap(m, "Description")
-	csv.FileName = util.GetFieldValueFromMap(m, "FileName")
-}
-
-func (csv *Csv) GetTask() Task { return csv.Task }
-
-func (csv *Csv) ValidateEtl(Tasks []ITask, position int) {}
