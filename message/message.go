@@ -6,16 +6,14 @@ import (
 	"log"
 )
 
-var mapmsg map[string]string = make(map[string]string)
+type MapMsG map[string]string
 
-type MSGJson struct {
-	Messages []interface{}
-}
+var mapmsg = make(MapMsG)
 
 func GetMessage(id string) string {
 	msg, ok := mapmsg[id]
 	if !ok {
-		return id + ":" + id
+		return id + ": Message ID not found into the list"
 	} else {
 		return id + ":" + msg
 	}
@@ -26,14 +24,25 @@ func FillMessage(filename string) {
 	if err != nil {
 		log.Panic(err)
 	}
-	m := new(MSGJson)
-	err = json.Unmarshal(data, m)
-	if err == nil {
-		for _, msg := range m.Messages {
-			mt := msg.(map[string]interface{})
-			mapmsg[mt["id"].(string)] = mt["message"].(string)
-		}
-	} else {
+	err = json.Unmarshal(data, &mapmsg)
+	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func FillInternalMessage() {
+	mapmsg["0001"] = "Fail to read ini file: %s"
+	mapmsg["0002"] = "Parameter <driver> is mandatory>"
+	mapmsg["0003"] = "Parameter <con> is mandatory>"
+	mapmsg["0004"] = "Parameter <query> is mandatory>"
+	mapmsg["0005"] = "Syntaxe error"
+	mapmsg["0006"] = "Unknown parameter <%s>"
+	mapmsg["0007"] = "Error opening log file"
+	mapmsg["0008"] = "START processing"
+	mapmsg["0009"] = "END processing"
+}
+
+func WriteMessageToFile(filename string) {
+	filedata, _ := json.MarshalIndent(mapmsg, "", " ")
+	_ = ioutil.WriteFile(filename, filedata, 0644)
 }

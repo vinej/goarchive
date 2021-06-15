@@ -17,6 +17,7 @@ type IniFile struct {
 	Query            string
 	Log              string
 	Output           string
+	MessageFile      string
 }
 
 const INI_GOARCHIVE = "goarchive"
@@ -26,6 +27,7 @@ const INI_CONNECTIONSTRING = "connectionstring"
 const INI_QUERY = "query"
 const INI_OUTPUT = "output"
 const INI_LOG = "log"
+const INI_MESSAGE_FILE = "message.json"
 const INI_DEFAULTNAME = "master"
 const INI_DEFAULT_LOG = "goarchive.log"
 const INI_DEFAULT_EXCEL = "goarchive.xlsx"
@@ -44,6 +46,7 @@ func load_ini_file(filename string) *IniFile {
 	inifile.Query = cfg.Section(INI_GOARCHIVE).Key(INI_QUERY).String()
 	inifile.Output = cfg.Section(INI_GOARCHIVE).Key(INI_OUTPUT).String()
 	inifile.Log = cfg.Section(INI_GOARCHIVE).Key(INI_LOG).String()
+	inifile.MessageFile = cfg.Section(INI_GOARCHIVE).Key(INI_MESSAGE_FILE).String()
 	return inifile
 }
 
@@ -52,7 +55,7 @@ func validate_inifile(inifile *IniFile) {
 		inifile.Name = INI_DEFAULTNAME
 	}
 	if len(inifile.Log) == 0 {
-		inifile.Log = INI_DEFAULT_LOG
+		inifile.Log = "INI_DEFAULT_LOG"
 	}
 	if len(inifile.Output) == 0 {
 		inifile.Output = INI_DEFAULT_EXCEL
@@ -81,6 +84,7 @@ func validate_inifile(inifile *IniFile) {
 // l, --log    l={log file}
 // o, --output o={output file name
 // i, --ini    i={initialisation file}
+// m, --msg    m={message file}
 //     [goarchive]
 // 		driver = {sql driver}
 //      con = { connection string }
@@ -113,7 +117,7 @@ func LoadParameterFromArg() *IniFile {
 				argname := v[0]
 				arginfo := v[1]
 
-				switch argname {
+				switch strings.ToLower(argname) {
 				case "n":
 					inifile.Name = arginfo
 				case "--name":
@@ -138,6 +142,10 @@ func LoadParameterFromArg() *IniFile {
 					inifile.ConnectionString = arginfo
 				case "--con":
 					inifile.ConnectionString = arginfo
+				case "m":
+					inifile.MessageFile = arginfo
+				case "--msg":
+					inifile.MessageFile = arginfo
 				default:
 					// unknown parameter
 					log.Panicf(message.GetMessage("0006"), argname)

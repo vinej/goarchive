@@ -1,28 +1,8 @@
 {
-    "messages": [
-        {
-            "id" : "0001",
-            "message" : "Fail to read ini file: %s"
-        },
-        {
-            "id" : "0002",
-            "message" : "Parameter <driver> is mandatory>"
-        },
-        {
-            "id" : "0003",
-            "message" : "Parameter <con> is mandatory>"
-        },
-        {
-            "id" : "0004",
-            "message" : "Parameter <query> is mandatory>"
-        },
-        {
-            "id" : "0005",
-            "message" : "Syntaxe error"
-        },
-        {
-            "id" : "0006",
-            "message" : "Unknown parameter <%s>"
-        }
-    ]
+ "0001": "Fail to read ini file: %s",
+ "0002": "Parameter \u003cdriver\u003e is mandatory\u003e",
+ "0003": "Parameter \u003ccon\u003e is mandatory\u003e",
+ "0004": "Parameter \u003cquery\u003e is mandatory\u003e",
+ "0005": "Syntaxe error",
+ "0006": "Unknown parameter \u003c%s\u003e"
 }

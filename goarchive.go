@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -19,23 +18,33 @@ func doit(inifile *args.IniFile) {
 }
 
 func main() {
-	message.FillMessage("./locales/en-US/out.gotext.json")
-	fmt.Println(message.GetMessage("0001"))
+	//message.FillInternalMessage()
+	//message.WriteMessageToFile("./locales/en-US/out.gotext.json")
+	//return
+	//message.FillMessage("./locales/en-US/out.gotext.json")
+	//return
 
 	inifile := args.LoadParameterFromArg()
 	if inifile != nil {
+		if inifile.MessageFile != "" {
+			message.FillMessage(inifile.MessageFile)
+		} else {
+			message.FillInternalMessage()
+		}
 		// setup log
 		file, err := os.OpenFile(inifile.Log, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
-			log.Fatal(err, "Error opening log file")
+			// Error opening log file
+			log.Fatal(err, message.GetMessage("0007"))
 		}
 		defer file.Close()
 		mw := io.MultiWriter(os.Stdout, file)
 		log.SetOutput(mw)
 
-		// do it
-		log.Println("START processing")
+		// start
+		log.Println(message.GetMessage("0008"))
 		doit(inifile)
-		log.Println("END processing")
+		// end
+		log.Println(message.GetMessage("0009"))
 	}
 }
