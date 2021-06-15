@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"gopkg.in/ini.v1"
-	"jyv.com/goarchive/util"
+	"jyv.com/goarchive/message"
 )
 
 type IniFile struct {
@@ -33,7 +33,8 @@ const INI_DEFAULT_EXCEL = "goarchive.xlsx"
 func load_ini_file(filename string) *IniFile {
 	cfg, err := ini.Load(filename)
 	if err != nil {
-		log.Printf(util.GetError("0001"), filename)
+		// failed to read ini file
+		log.Printf(message.GetMessage("0001"), filename)
 		log.Fatal(err)
 	}
 	inifile := new(IniFile)
@@ -59,13 +60,16 @@ func validate_inifile(inifile *IniFile) {
 
 	if inifile.Json == "" {
 		if len(inifile.Driver) == 0 {
-			log.Panic(util.GetError("0002"))
+			// driver is mandatory
+			log.Panic(message.GetMessage("0002"))
 		}
 		if len(inifile.ConnectionString) == 0 {
-			log.Panic(util.GetError("0003"))
+			// con is mandatory
+			log.Panic(message.GetMessage("0003"))
 		}
 		if len(inifile.Query) == 0 {
-			log.Panic(util.GetError("0004"))
+			// query is mandatory
+			log.Panic(message.GetMessage("0004"))
 		}
 	}
 }
@@ -89,7 +93,8 @@ func LoadParameterFromArg() *IniFile {
 	if len(os.Args) > 1 {
 		v := strings.SplitN(os.Args[1], "=", 2)
 		if len(v) < 2 {
-			log.Panic("Syntaxe error")
+			// syntaxe error
+			log.Panic(message.GetMessage("0005"))
 		}
 		argname := v[0]
 		arginfo := v[1]
@@ -103,7 +108,7 @@ func LoadParameterFromArg() *IniFile {
 			for i := 1; i < len(os.Args); i++ {
 				v := strings.SplitN(os.Args[i], "=", 2)
 				if len(v) < 2 {
-					log.Panic("Syntaxe error")
+					log.Panic(message.GetMessage("0005"))
 				}
 				argname := v[0]
 				arginfo := v[1]
@@ -134,12 +139,14 @@ func LoadParameterFromArg() *IniFile {
 				case "--con":
 					inifile.ConnectionString = arginfo
 				default:
-					log.Panic("unknown parameter")
+					// unknown parameter
+					log.Panicf(message.GetMessage("0006"), argname)
 				}
 			}
 		}
 	} else {
-		log.Panic("Syntaxe error")
+		// syntaxe error
+		log.Panic(message.GetMessage("0005"))
 	}
 	validate_inifile(inifile)
 	return inifile

@@ -6,15 +6,23 @@
         },
         {
             "id" : "0002",
-            "message" : "parameter <driver> is mandatory>"
+            "message" : "Parameter <driver> is mandatory>"
         },
         {
             "id" : "0003",
-            "message" : "parameter <con> is mandatory>"
+            "message" : "Parameter <con> is mandatory>"
         },
         {
             "id" : "0004",
-            "message" : "parameter <query> is mandatory>"
+            "message" : "Parameter <query> is mandatory>"
+        },
+        {
+            "id" : "0005",
+            "message" : "Syntaxe error"
+        },
+        {
+            "id" : "0006",
+            "message" : "Unknown parameter <%s>"
         }
     ]
 }
