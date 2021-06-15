@@ -1,0 +1,20 @@
+{
+    "messages": [
+        {
+            "id" : "0001",
+            "message" : "Fail to read ini file: %s"
+        },
+        {
+            "id" : "0002",
+            "message" : "parameter <driver> is mandatory>"
+        },
+        {
+            "id" : "0003",
+            "message" : "parameter <con> is mandatory>"
+        },
+        {
+            "id" : "0004",
+            "message" : "parameter <query> is mandatory>"
+        }
+    ]
+}

@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"os"
 
 	args "jyv.com/goarchive/args"
+	message "jyv.com/goarchive/message"
 )
 
 func doit(inifile *args.IniFile) {
@@ -17,6 +19,9 @@ func doit(inifile *args.IniFile) {
 }
 
 func main() {
+	message.FillMessage("./locales/en-US/out.gotext.json")
+	fmt.Println(message.GetMessage("0001"))
+
 	inifile := args.LoadParameterFromArg()
 	if inifile != nil {
 		// setup log

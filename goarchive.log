@@ -1109,3 +1109,45 @@
 2021/06/14 08:23:47 QuerySaveExcel success
 2021/06/14 08:23:47 [id code]
 2021/06/14 08:23:47 END processing
+2021/06/15 08:13:52 START processing
+2021/06/15 08:13:52 [table_name]
+2021/06/15 08:13:52 [id name description database]
+2021/06/15 08:13:52 []
+2021/06/15 08:13:52 [id code]
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 3 or periode = 4)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 1 or periode = 2)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 4 or periode = 5)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 123 and (periode = 2 or periode = 3)>
+2021/06/15 08:13:52 []
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 [id code]
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 8 or periode = 9)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names      where project = 124 and (periode = 7 or periode = 8)>
+2021/06/15 08:13:52 []
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 [id code]
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 1 or periode = 2)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 2 or periode = 3)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 4 or periode = 5)>
+2021/06/15 08:13:52 Saving into Excel wit the query : <select * from archive.dbo.names2     where project = 123 and (periode = 3 or periode = 4)>
+2021/06/15 08:13:52 []
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 [id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode]
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 QuerySaveExcel success
+2021/06/15 08:13:52 [id code]
+2021/06/15 08:13:52 END processing
