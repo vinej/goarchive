@@ -4,13 +4,10 @@ import (
 	"database/sql"
 	"encoding/csv"
 	"encoding/hex"
-	"fmt"
 	"log"
 	"os"
-	"reflect"
 	"strings"
 	"time"
-	"unsafe"
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	valid "github.com/asaskevich/govalidator"
@@ -51,7 +48,7 @@ func (s *MapStringScan) Update(rows *sql.Rows) error {
 			s.row[s.colNames[i]] = string(*rb)
 			*rb = nil // reset pointer to discard current value to avoid a bug
 		} else {
-			return fmt.Errorf("Cannot convert index %d column %s to type *sql.RawBytes", i, s.colNames[i])
+			log.Fatalf("Cannot convert index %d column %s to type *sql.RawBytes", i, s.colNames[i])
 		}
 	}
 	return nil
@@ -148,28 +145,6 @@ func getStringField(val string) string {
 	}
 }
 
-func saveExcelType(excel *excelize.File, sheet string, coor string, t reflect.StructField, val reflect.Value) {
-	//excel.SetCellValue(sheet, coor, val.String())
-	switch t.Type.Kind() {
-	case reflect.Int, reflect.Int16, reflect.Int8, reflect.Int32, reflect.Int64:
-		excel.SetCellInt(sheet, coor, int(val.Int()))
-	case reflect.Float32, reflect.Float64:
-		excel.SetCellFloat(sheet, coor, val.Float(), -1, 64)
-	case reflect.String:
-		excel.SetCellValue(sheet, coor, val.String())
-	default:
-		stype := val.String()
-		if stype == "<time.Time Value>" {
-			ti := reflect.NewAt(val.Type(), unsafe.Pointer(val.UnsafeAddr())).Elem().Interface().(time.Time)
-			s := ti.Format(time.RFC3339)
-			timeout, _ := time.Parse(time.RFC3339, s)
-			excel.SetCellValue(sheet, coor, timeout)
-		} else {
-			excel.SetCellValue(sheet, coor, val)
-		}
-	}
-}
-
 func QuerySaveCsv(ctx *con.Connection, name string, query string, output string) {
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -187,6 +162,9 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 	}
 
 	f, err := os.Create(output)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer f.Close()
 
 	if err != nil {
@@ -210,6 +188,8 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 		// ceate a []string for map[string]
 		ar := make([]string, 0)
 		for _, col_name := range columnNames {
+			// TODO remove excluded columns
+			// TODO anonymized columns
 			field := getStringField(row[col_name])
 			ar = append(ar, field)
 		}
@@ -270,15 +250,7 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 
 }
 
-func callback(rc *MapStringScan, rows *sql.Rows) map[string]string {
-	return rc.Get()
-}
-
 func Query(ctx *con.Connection, query string) ([]string, []map[string]string) {
-	return QueryCallback(ctx, query, callback)
-}
-
-func QueryCallback(ctx *con.Connection, query string, pcallback func(rc *MapStringScan, rows *sql.Rows) map[string]string) ([]string, []map[string]string) {
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
 
@@ -289,6 +261,7 @@ func QueryCallback(ctx *con.Connection, query string, pcallback func(rc *MapStri
 	defer rows.Close()
 
 	columnNames, err := rows.Columns()
+
 	log.Println(columnNames)
 	if err != nil {
 		log.Fatal(err)
@@ -301,7 +274,7 @@ func QueryCallback(ctx *con.Connection, query string, pcallback func(rc *MapStri
 		if err != nil {
 			log.Fatal(err)
 		}
-		rec := pcallback(rc, rows)
+		rec := rc.Get()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -310,30 +283,4 @@ func QueryCallback(ctx *con.Connection, query string, pcallback func(rc *MapStri
 		out = append(out, *tmp)
 	}
 	return columnNames, out
-}
-
-func SaveExcel(columnNames []string, list []interface{}, output string) {
-	f := excelize.NewFile()
-	for col_count, col_name := range columnNames {
-		coor, err := excelize.CoordinatesToCellName(col_count+1, 1, false)
-		if err != nil {
-			log.Fatal(err)
-		}
-		f.SetCellValue("Sheet1", coor, col_name)
-	}
-
-	for row_count, rec := range list {
-		getType := reflect.TypeOf(rec).Elem()
-		getValue := reflect.ValueOf(rec).Elem()
-		for i := 0; i < getValue.NumField(); i++ {
-			coor, _ := excelize.CoordinatesToCellName(i+1, row_count+2, false)
-			value := getValue.Field(i)
-			t := getType.Field(i)
-			saveExcelType(f, "Sheet1", coor, t, value)
-		}
-	}
-
-	if err := f.SaveAs(output); err != nil {
-		log.Println(err)
-	}
 }
