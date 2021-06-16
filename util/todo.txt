@@ -1,0 +1,4 @@
+- Message cnetralization
+- Exluded columns
+- Anonymized columns
+- Excel template
