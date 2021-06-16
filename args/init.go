@@ -27,10 +27,11 @@ const INI_CONNECTIONSTRING = "connectionstring"
 const INI_QUERY = "query"
 const INI_OUTPUT = "output"
 const INI_LOG = "log"
-const INI_MESSAGE_FILE = "message.json"
+const INI_MESSAGE_FILE = "message"
 const INI_DEFAULTNAME = "master"
 const INI_DEFAULT_LOG = "goarchive.log"
 const INI_DEFAULT_EXCEL = "goarchive.xlsx"
+const INI_SQLDRIVER = "sqlserver"
 
 func load_ini_file(filename string) *IniFile {
 	cfg, err := ini.Load(filename)
@@ -55,17 +56,17 @@ func validate_inifile(inifile *IniFile) {
 		inifile.Name = INI_DEFAULTNAME
 	}
 	if len(inifile.Log) == 0 {
-		inifile.Log = "INI_DEFAULT_LOG"
+		inifile.Log = INI_DEFAULT_LOG
 	}
 	if len(inifile.Output) == 0 {
 		inifile.Output = INI_DEFAULT_EXCEL
 	}
+	if len(inifile.Driver) == 0 {
+		// driver is mandatory
+		inifile.Driver = INI_SQLDRIVER
+	}
 
 	if inifile.Json == "" {
-		if len(inifile.Driver) == 0 {
-			// driver is mandatory
-			log.Panic(message.GetMessage("0002"))
-		}
 		if len(inifile.ConnectionString) == 0 {
 			// con is mandatory
 			log.Panic(message.GetMessage("0003"))
@@ -86,11 +87,12 @@ func validate_inifile(inifile *IniFile) {
 // i, --ini    i={initialisation file}
 // m, --msg    m={message file}
 //     [goarchive]
-// 		driver = {sql driver}
-//      con = { connection string }
-// 		query = {sql query}
-// 		log = {log file}
-// 		output = {output file name
+// 		driver = <sql driver>
+//      con = <connection string>
+// 		query = <sql query>
+// 		log = <log file>
+// 		output = <output file name>
+//      message = <message file name>
 func LoadParameterFromArg() *IniFile {
 	// if first parameter starts init -i or -ini, load ini file and forget about other parameter
 	var inifile *IniFile
