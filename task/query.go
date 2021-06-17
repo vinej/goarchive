@@ -71,8 +71,8 @@ func adjust_quote(name string) string {
 
 func adjust_cmd_out_index(cmd string, out string, param Parameter, row map[string]string, index int) (string, string) {
 	paramvalue := adjust_quote(row[param.Fields[index]])
-	cmd = strings.ReplaceAll(cmd, param.Names[index], paramvalue)
-	out = "p" + strings.Trim(paramvalue, " ") + "_" + out
+	cmd = strings.ReplaceAll(cmd, param.Names[index], strings.TrimSpace(paramvalue))
+	out = "p" + strings.TrimSpace(paramvalue) + "_" + out
 	return cmd, out
 }
 
@@ -217,7 +217,7 @@ func (query *Query) Run(acon []con.Connection, position int) {
 	case QUERY_OUTPUT_TYPE_REFERENCE:
 		query_reference(query)
 	default:
-		log.Fatalf(message.GetMessage(46, query.OutputType)
+		log.Fatalf(message.GetMessage(46), query.OutputType)
 	}
 }
 
