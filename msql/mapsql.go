@@ -165,6 +165,7 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf(message.GetMessage(52), columnNames)
 
 	f, err := os.Create(output)
 	if err != nil {
@@ -211,10 +212,10 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 	defer rows.Close()
 
 	columnNames, err := rows.Columns()
-	log.Println(columnNames)
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf(message.GetMessage(52), columnNames)
 
 	// put the columns into the Excel file
 	f := excelize.NewFile()
@@ -263,7 +264,7 @@ func Query(ctx *con.Connection, query string) ([]string, []map[string]string) {
 
 	columnNames, err := rows.Columns()
 
-	log.Println(columnNames)
+	log.Printf(message.GetMessage(52), columnNames)
 	if err != nil {
 		log.Fatal(err)
 	}

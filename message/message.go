@@ -16,9 +16,9 @@ var mapmsg = make(MapMsG)
 func GetMessage(id int) string {
 	msg, ok := mapmsg[id]
 	if !ok {
-		return fmt.Sprint(id) + ":" + MSG_NOT_FOUND
+		return fmt.Sprintf("#%d: %s", id, MSG_NOT_FOUND)
 	} else {
-		return fmt.Sprint(id) + ":" + msg
+		return fmt.Sprintf("#%d : %s", id, msg)
 	}
 }
 
@@ -85,6 +85,7 @@ func FillInternalMessage() {
 	mapmsg[49] = "JSON Task Error: the task at the position '%d' with the name '%s' does not contain the field '%s'"
 	mapmsg[50] = "JSON Task Error: the task at the position '%d' with the name '%s' the kind '%s' is not supported"
 	mapmsg[51] = "JSON Task Error: the supported tasks are '%s','%s','%s'"
+	mapmsg[52] = "Columns:%s "
 }
 
 func WriteMessageToFile(filename string) {
