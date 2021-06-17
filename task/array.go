@@ -5,8 +5,16 @@ import (
 	"strings"
 
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/message"
 	"jyv.com/goarchive/util"
 )
+
+const ARRAY_KIND = "Kind"
+const ARRAY_NAME = "Name"
+const ARRAY_COMMAND = "Command"
+const ARRAY_DESCRIPTION = "Description"
+const ARRAY_OUTPUTTYPE = "OutputType"
+const OUTPUT_TYPE_MEMORY = "memory"
 
 type Array struct {
 	Task
@@ -31,26 +39,26 @@ func (array *Array) Run(acon []con.Connection, position int) {
 
 func (array *Array) Validate(acon []con.Connection, position int) {
 	if array.Task.Name == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> does not contains the field <Name>")
+		log.Fatalf(message.GetMessage(26), position, ARRAY_NAME)
 	}
 	if array.Task.Kind == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", array.Task.Name, "> does not contains the field <Kind>")
+		log.Fatalf(message.GetMessage(27), position, array.Task.Name, ARRAY_KIND)
 	}
 	if array.Command == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", array.Task.Name, "> does not contains the field <Command>")
+		log.Fatalf(message.GetMessage(27), position, array.Task.Name, ARRAY_COMMAND)
 	}
-	if array.OutputType != "memory" {
-		log.Println("Task Error in the json file: <Tasks #", position, "> of <", array.Task.Name, ">, <OutputType:", array.OutputType, "  is not supported")
-		log.Fatalln("Task Error: supported values are <memory>,<excel>,<reference>,<csv>")
+	if array.OutputType != OUTPUT_TYPE_MEMORY {
+		log.Printf(message.GetMessage(28), position, array.Task.Name, array.OutputType)
+		log.Fatal(message.GetMessage(29))
 	}
 }
 
 func (array *Array) Transform(m map[string]interface{}) {
-	array.Task.Kind = util.GetFieldValueFromMap(m, "Kind")
-	array.Task.Name = util.GetFieldValueFromMap(m, "Name")
-	array.Command = util.GetFieldValueFromMap(m, "Command")
-	array.Description = util.GetFieldValueFromMap(m, "Description")
-	array.OutputType = util.GetFieldValueFromMap(m, "OutputType")
+	array.Task.Kind = util.GetFieldValueFromMap(m, ARRAY_KIND)
+	array.Task.Name = util.GetFieldValueFromMap(m, ARRAY_NAME)
+	array.Command = util.GetFieldValueFromMap(m, ARRAY_COMMAND)
+	array.Description = util.GetFieldValueFromMap(m, ARRAY_DESCRIPTION)
+	array.OutputType = util.GetFieldValueFromMap(m, ARRAY_OUTPUTTYPE)
 }
 
 func (array *Array) GetTask() Task { return array.Task }

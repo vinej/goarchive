@@ -4,6 +4,7 @@ import (
 	"log"
 
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/message"
 )
 
 func ValidateQueryParameterSource(p Parameter, position int, taskposition int, tasks []ITask) {
@@ -12,20 +13,20 @@ func ValidateQueryParameterSource(p Parameter, position int, taskposition int, t
 			return
 		}
 	}
-	log.Fatalln("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, ">: the <Source:", p.Source, "> does not exist")
+	log.Fatalf(message.GetMessage(30), position, taskposition, p.Source)
 }
 
 func ValidateQueryParameters(params []Parameter, query *Query, position int) {
 	if len(params) >= 1 {
-		if params[0].Kind != "parent" {
-			log.Fatal("Parameter Error in the json file:  <Task:", query.Task.Name, "> of <Task #", position, "> the first parameter must have a <Kind> equal to <parent>")
+		if params[0].Kind != PARAM_PARENT {
+			log.Fatalf(message.GetMessage(31), query.Task.Name, position, PARAM_PARENT)
 		}
 	}
 }
 
 func ValidateQueryParameter(p Parameter, position int, taskposition int) {
 	if p.Names == nil {
-		log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Names>")
+		log.Fatalf(message.GetMessage(32), position, taskposition, PARAM_NAMES)
 	}
 	/*
 		if reflect.TypeOf(p.Names).Kind() != reflect.Array {
@@ -33,7 +34,7 @@ func ValidateQueryParameter(p Parameter, position int, taskposition int) {
 		}
 	*/
 	if p.Fields == nil {
-		log.Fatal("Parameter Error in the json file: <Parameters #", position, " of <Task #", taskposition, "> does not contains the field : <Fields>")
+		log.Fatalf(message.GetMessage(32), position, taskposition, PARAM_FIELDS)
 	}
 	/*
 		if reflect.TypeOf(p.Fields).Kind() != reflect.Array {
@@ -41,22 +42,22 @@ func ValidateQueryParameter(p Parameter, position int, taskposition int) {
 		}
 	*/
 	if p.Source == "" {
-		log.Fatal("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Source>")
+		log.Fatalf(message.GetMessage(32), position, taskposition, PARAM_SOURCE)
 	}
 	if p.Kind == "" {
-		log.Println("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> does not contains the field : <Kind>")
+		log.Fatalf(message.GetMessage(32), position, taskposition, PARAM_KIND)
 	}
-	if p.Kind != "parent" && p.Kind != "child" {
-		log.Println("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> <Kind:", p.Kind, " is not supported")
-		log.Fatalln("Parameter Error: supported values are <parent>,<child>")
+	if p.Kind != PARAM_PARENT && p.Kind != PARAM_CHILD {
+		log.Printf(message.GetMessage(33), position, taskposition, p.Kind)
+		log.Fatalf(message.GetMessage(34), PARAM_PARENT, PARAM_CHILD)
 	}
-	if p.UseDatabase != "" && p.Kind == "child" {
-		log.Println("Parameter Error in the json file: <Parameters #", position, "> of <Task #", taskposition, "> <UseDatabase not supported for <Kind:child>")
+	if p.UseDatabase != "" && p.Kind == PARAM_CHILD {
+		log.Fatalf(message.GetMessage(35), position, taskposition, PARAM_CHILD)
 	}
 }
 
 func ValidateQueryConnection(query *Query, connections []con.Connection, position int) {
-	if query.Task.Kind == "csv" {
+	if query.Task.Kind == PARAM_CSV {
 		return
 	}
 	for _, c := range connections {
@@ -64,37 +65,38 @@ func ValidateQueryConnection(query *Query, connections []con.Connection, positio
 			return
 		}
 	}
-	log.Fatalln("Task Error in the json file: <Tasks #", position, ">: the <Connection:", query.Connection, "> does not exist")
+	log.Fatalf(message.GetMessage(36), position, query.Connection)
 }
 
 func ValidateQueryTask(query *Query, position int) {
 	if query.Task.Name == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> does not contains the field <Name>")
+		log.Fatalf(message.GetMessage(37), position, QUERY_NAME)
 	}
 	if query.Task.Kind == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> does not contains the field <Kind>")
+		log.Fatalf(message.GetMessage(38), position, query.Task.Name, QUERY_KIND)
 	}
-	if query.Task.Kind != "query" && query.Task.Kind != "array" && query.Task.Kind != "csv" {
-		log.Println("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, ">, <Kind:", query.Task.Kind, "  is not supported")
-		log.Fatalln("Task Error: supported values are <query>,<array>,<csv>")
+	if query.Task.Kind != QUERY_KIND_QUERY && query.Task.Kind != QUERY_KIND_ARRAY && query.Task.Kind != QUERY_KIND_CSV {
+		log.Printf(message.GetMessage(39), position, query.Task.Name, query.Task.Kind)
+		log.Fatalf(message.GetMessage(40), QUERY_KIND_QUERY, QUERY_KIND_ARRAY, QUERY_KIND_CSV)
 	}
-	if query.Command == "" && query.Task.Kind != "csv" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> does not contains the field <Command>")
+	if query.Command == "" && query.Task.Kind != QUERY_KIND_CSV {
+		log.Fatalf(message.GetMessage(37), position, QUERY_COMMAND)
 	}
-	if query.Connection == "" && query.Task.Kind != "array" && query.Task.Kind != "csv" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> does not contains the field <Connection>")
+	if query.Connection == "" && query.Task.Kind != QUERY_KIND_ARRAY && query.Task.Kind != QUERY_KIND_CSV {
+		log.Fatalf(message.GetMessage(37), position, QUERY_CONNECTION)
 	}
-	if query.OutputType == "" && query.Task.Kind != "csv" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> does not contains the field <OutputType>")
+	if query.OutputType == "" && query.Task.Kind != QUERY_KIND_CSV {
+		log.Fatalf(message.GetMessage(37), position, QUERY_OUTPUT_TYPE)
 	}
-	if query.OutputType != "excel" && query.OutputType != "memory" && query.OutputType != "reference" && query.OutputType != "csv" {
-		log.Println("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, ">, <OutputType:", query.OutputType, "  is not supported")
-		log.Fatalln("Task Error: supported values are <memory>,<excel>,<reference>,<csv>")
+	if query.OutputType != QUERY_OUTPUT_TYPE_EXCEL && query.OutputType != QUERY_OUTPUT_TYPE_MEMORY &&
+		query.OutputType != QUERY_OUTPUT_TYPE_REFERENCE && query.OutputType != QUERY_OUTPUT_TYPE_CSV {
+		log.Printf(message.GetMessage(41), position, query.Task.Name, query.OutputType)
+		log.Fatalf(message.GetMessage(42), QUERY_OUTPUT_TYPE_EXCEL, QUERY_OUTPUT_TYPE_MEMORY, QUERY_OUTPUT_TYPE_REFERENCE, QUERY_OUTPUT_TYPE_CSV)
 	}
-	if query.OutputType == "excel" && query.FileName == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> output type <Excel> must have a field <FileName>")
+	if query.OutputType == QUERY_OUTPUT_TYPE_EXCEL && query.FileName == "" {
+		log.Fatalf(message.GetMessage(43), position, query.Task.Name, QUERY_OUTPUT_TYPE_EXCEL, QUERY_FILENAME)
 	}
-	if query.Task.Kind == "csv" && query.FileName == "" {
-		log.Fatalln("Task Error in the json file: <Tasks #", position, "> of <", query.Task.Name, "> the field <FileName> cannot be empty for a task <csv>")
+	if query.Task.Kind == QUERY_KIND_CSV && query.FileName == "" {
+		log.Fatalf(message.GetMessage(43), position, query.Task.Name, QUERY_OUTPUT_TYPE_CSV, QUERY_FILENAME)
 	}
 }

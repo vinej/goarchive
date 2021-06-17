@@ -70,18 +70,18 @@ func RemapETL(etl *ETLJson) (etlout *ETL) {
 	// transform task
 	for _, c := range etl.Tasks {
 		t := c.(map[string]interface{})
-		kind := t["Kind"].(string)
+		kind := t[TASK_KIND].(string)
 		switch kind {
-		case "array":
+		case TASK_KIND_ARRAY:
 			ar := new(Array)
 			ar.Transform(t)
 			etlout.Tasks = append(etlout.Tasks, ar)
-		case "csv":
+		case TASK_KIND_CSV:
 			csv := new(Csv)
 			csv.Description = "ok"
 			csv.Transform(t)
 			etlout.Tasks = append(etlout.Tasks, csv)
-		case "query":
+		case TASK_KIND_QUERY:
 			query := new(Query)
 			(*query).Transform(t)
 			etlout.Tasks = append(etlout.Tasks, query)

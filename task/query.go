@@ -6,9 +6,37 @@ import (
 
 	"github.com/jinzhu/copier"
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/message"
 	msql "jyv.com/goarchive/msql"
 	util "jyv.com/goarchive/util"
 )
+
+const SQL_USE = "use "
+
+const PARAM_PARENT = "parent"
+const PARAM_NAMES = "Names"
+const PARAM_FIELDS = "Fields"
+const PARAM_SOURCE = "Source"
+const PARAM_KIND = "Kind"
+const PARAM_CHILD = "child"
+const PARAM_CSV = "csv"
+
+const QUERY_PARAMETERS = "Parameters"
+const QUERY_NAME = "Name"
+const QUERY_KIND = "Kind"
+const QUERY_DESCRIPTION = "Description"
+const QUERY_FILENAME = "FileName"
+const QUERY_COMMAND = "Command"
+const QUERY_CONNECTION = "Connection"
+const QUERY_OUTPUT_TYPE = "OutputType"
+const QUERY_USE_DATABASE = "UseDatabase"
+const QUERY_KIND_QUERY = "query"
+const QUERY_KIND_ARRAY = "array"
+const QUERY_KIND_CSV = "csv"
+const QUERY_OUTPUT_TYPE_EXCEL = "excel"
+const QUERY_OUTPUT_TYPE_MEMORY = "memory"
+const QUERY_OUTPUT_TYPE_REFERENCE = "reference"
+const QUERY_OUTPUT_TYPE_CSV = "csv"
 
 type SaveOutput func(ctx *con.Connection, name string, query string, output string)
 
@@ -68,20 +96,20 @@ func query_task(ctx *con.Connection, param1 Parameter, param2 Parameter, row map
 func use_database(ctx *con.Connection, p Parameter, row map[string]string) {
 	// set current DB with the field of UseDatabaseField
 	dbFieldValue := row[p.UseDatabase]
-	msql.Query(ctx, "use "+dbFieldValue)
+	msql.Query(ctx, SQL_USE+dbFieldValue)
 }
 
 func query_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string, save SaveOutput) {
 	p2 := query.Parameters[level]
-	if strings.ToLower(p2.Kind) == "child" {
+	if strings.ToLower(p2.Kind) == PARAM_CHILD {
 		if level == 0 {
-			log.Fatalln("Task source error: first parameter cannot be a <kind> child")
+			log.Fatalf(message.GetMessage(44), PARAM_CHILD)
 		}
 		p1 := query.Parameters[level-1]
 		query_task(ctx, p1, p2, row)
 		mem2 := GetMemory(p2.Source)
 		if mem2 == nil {
-			log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
+			log.Fatalf(message.GetMessage(45), p2.Source)
 		}
 
 		isFirst := true
@@ -118,7 +146,7 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 	} else {
 		mem2 := GetMemory(p2.Source)
 		if mem2 == nil {
-			log.Fatalln("Task source error: the source:", p2.Source, "is not available. Maybe you used a <reference> instead of <memory> OutputType for the task")
+			log.Fatalf(message.GetMessage(45), p2.Source)
 		}
 		for r := 0; r < len(mem2.rows); r++ {
 			if p2.UseDatabase != "" {
@@ -177,19 +205,19 @@ func query_reference(query *Query) {
 
 func (query *Query) Run(acon []con.Connection, position int) {
 	switch strings.ToLower(query.OutputType) {
-	case "csv":
+	case QUERY_OUTPUT_TYPE_CSV:
 		ctx := con.GetConnection(acon, query.Connection)
 		query_csv(ctx, query)
-	case "excel":
+	case QUERY_OUTPUT_TYPE_EXCEL:
 		ctx := con.GetConnection(acon, query.Connection)
 		query_excel(ctx, query)
-	case "memory":
+	case QUERY_OUTPUT_TYPE_MEMORY:
 		ctx := con.GetConnection(acon, query.Connection)
 		query_memory(ctx, query)
-	case "reference":
+	case QUERY_OUTPUT_TYPE_REFERENCE:
 		query_reference(query)
 	default:
-		log.Fatalf("The output type '%s' is not supported,  check for a typo", query.OutputType)
+		log.Fatalf(message.GetMessage(46, query.OutputType)
 	}
 }
 
@@ -203,15 +231,15 @@ func (query *Query) Validate(acon []con.Connection, position int) {
 }
 
 func (query *Query) Transform(m map[string]interface{}) {
-	query.Task.Kind = util.GetFieldValueFromMap(m, "Kind")
-	query.Task.Name = util.GetFieldValueFromMap(m, "Name")
-	query.Description = util.GetFieldValueFromMap(m, "Description")
-	query.Command = util.GetFieldValueFromMap(m, "Command")
-	query.Connection = util.GetFieldValueFromMap(m, "Connection")
-	query.OutputType = util.GetFieldValueFromMap(m, "OutputType")
-	query.FileName = util.GetFieldValueFromMap(m, "FileName")
+	query.Task.Kind = util.GetFieldValueFromMap(m, QUERY_KIND)
+	query.Task.Name = util.GetFieldValueFromMap(m, QUERY_NAME)
+	query.Description = util.GetFieldValueFromMap(m, QUERY_DESCRIPTION)
+	query.Command = util.GetFieldValueFromMap(m, QUERY_COMMAND)
+	query.Connection = util.GetFieldValueFromMap(m, QUERY_CONNECTION)
+	query.OutputType = util.GetFieldValueFromMap(m, QUERY_OUTPUT_TYPE)
+	query.FileName = util.GetFieldValueFromMap(m, QUERY_FILENAME)
 	query.Parameters = make([]Parameter, 0)
-	field := util.GetFieldFromMap(m, "Parameters")
+	field := util.GetFieldFromMap(m, QUERY_PARAMETERS)
 	if field != "" {
 		pm := m[field].([]interface{})
 		for _, p := range pm {
@@ -219,26 +247,26 @@ func (query *Query) Transform(m map[string]interface{}) {
 			param := new(Parameter)
 
 			param.Fields = make([]string, 0)
-			field = util.GetFieldFromMap(mp, "Fields")
+			field = util.GetFieldFromMap(mp, PARAM_FIELDS)
 			if field != "" {
 				for _, f := range mp[field].([]interface{}) {
 					param.Fields = append(param.Fields, f.(string))
 				}
 			}
 
-			param.Kind = util.GetFieldValueFromMap(mp, "Kind")
+			param.Kind = util.GetFieldValueFromMap(mp, PARAM_KIND)
 
 			param.Names = make([]string, 0)
-			field = util.GetFieldFromMap(mp, "Names")
+			field = util.GetFieldFromMap(mp, PARAM_NAMES)
 			if field != "" {
 				for _, n := range mp[field].([]interface{}) {
 					param.Names = append(param.Names, n.(string))
 				}
 			}
 
-			param.Source = util.GetFieldValueFromMap(mp, "Source")
+			param.Source = util.GetFieldValueFromMap(mp, PARAM_SOURCE)
 
-			param.UseDatabase = util.GetFieldValueFromMap(mp, "UseDatabase")
+			param.UseDatabase = util.GetFieldValueFromMap(mp, QUERY_USE_DATABASE)
 
 			query.Parameters = append(query.Parameters, *param)
 		}

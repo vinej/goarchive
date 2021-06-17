@@ -13,7 +13,11 @@ import (
 	valid "github.com/asaskevich/govalidator"
 	"github.com/jinzhu/copier"
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/message"
 )
+
+const TIME_FORMAT = "2006-01-02 15:04:05"
+const SHEET1 = "Sheet1"
 
 type MapStringScan struct {
 	// cp are the column pointers
@@ -48,7 +52,8 @@ func (s *MapStringScan) Update(rows *sql.Rows) error {
 			s.row[s.colNames[i]] = string(*rb)
 			*rb = nil // reset pointer to discard current value to avoid a bug
 		} else {
-			log.Fatalf("Cannot convert index %d column %s to type *sql.RawBytes", i, s.colNames[i])
+			// cannot convert index i of col s
+			log.Fatalf(message.GetMessage(17), i, s.colNames[i])
 		}
 	}
 	return nil
@@ -134,7 +139,7 @@ func getStringField(val string) string {
 	} else if valid.IsTime(val, time.RFC3339) {
 		t, _ := time.Parse(time.RFC3339, val)
 		//return t
-		return t.Format("2006-01-02 15:04:05")
+		return t.Format(TIME_FORMAT)
 	} else {
 		guid, isvalid := mssql_isvalid_guid(val)
 		if isvalid {
@@ -146,9 +151,10 @@ func getStringField(val string) string {
 }
 
 func QuerySaveCsv(ctx *con.Connection, name string, query string, output string) {
+	log.Printf(message.GetMessage(22), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
-	log.Println("Saving into CSV wit the query : <" + query + ">")
+	log.Printf(message.GetMessage(18), query)
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
@@ -156,21 +162,16 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 	defer rows.Close()
 
 	columnNames, err := rows.Columns()
-	log.Println(columnNames)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	f, err := os.Create(output)
 	if err != nil {
+		log.Printf(message.GetMessage(20), output)
 		log.Fatal(err)
 	}
 	defer f.Close()
-
-	if err != nil {
-
-		log.Fatalln("failed to open file", err)
-	}
 
 	w := csv.NewWriter(f)
 	defer w.Flush()
@@ -195,13 +196,14 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 		}
 		w.Write(ar)
 	}
-	log.Println("QuerySaveCSV success")
+	log.Printf(message.GetMessage(21), output)
 }
 
 func QuerySaveExcel(ctx *con.Connection, name string, query string, output string) {
+	log.Printf(message.GetMessage(23), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
-	log.Println("Saving into Excel wit the query : <" + query + ">")
+	log.Printf(message.GetMessage(24), query)
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal(err)
@@ -221,7 +223,7 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 		if err != nil {
 			log.Fatal(err)
 		}
-		f.SetCellValue("Sheet1", coor, col_name)
+		f.SetCellValue(SHEET1, coor, col_name)
 	}
 
 	// put each row into the Excel file
@@ -239,15 +241,14 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 				log.Fatal(err)
 			}
 			val := row[col_name]
-			saveExcel(f, "Sheet1", coor, val)
+			saveExcel(f, SHEET1, coor, val)
 		}
 		row_count++
 	}
 	if err := f.SaveAs(output); err != nil {
 		log.Println(err)
 	}
-	log.Println("QuerySaveExcel success")
-
+	log.Printf(message.GetMessage(25), output)
 }
 
 func Query(ctx *con.Connection, query string) ([]string, []map[string]string) {

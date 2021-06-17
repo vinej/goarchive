@@ -37,7 +37,7 @@ func load_ini_file(filename string) *IniFile {
 	cfg, err := ini.Load(filename)
 	if err != nil {
 		// failed to read ini file
-		log.Printf(message.GetMessage("0001"), filename)
+		log.Printf(message.GetMessage(1), filename)
 		log.Fatal(err)
 	}
 	inifile := new(IniFile)
@@ -69,11 +69,11 @@ func validate_inifile(inifile *IniFile) {
 	if inifile.Json == "" {
 		if len(inifile.ConnectionString) == 0 {
 			// con is mandatory
-			log.Panic(message.GetMessage("0003"))
+			log.Panic(message.GetMessage(3))
 		}
 		if len(inifile.Query) == 0 {
 			// query is mandatory
-			log.Panic(message.GetMessage("0004"))
+			log.Panic(message.GetMessage(4))
 		}
 	}
 }
@@ -100,7 +100,7 @@ func LoadParameterFromArg() *IniFile {
 		v := strings.SplitN(os.Args[1], "=", 2)
 		if len(v) < 2 {
 			// syntaxe error
-			log.Panic(message.GetMessage("0005"))
+			log.Panic(message.GetMessage(5))
 		}
 		argname := v[0]
 		arginfo := v[1]
@@ -114,7 +114,7 @@ func LoadParameterFromArg() *IniFile {
 			for i := 1; i < len(os.Args); i++ {
 				v := strings.SplitN(os.Args[i], "=", 2)
 				if len(v) < 2 {
-					log.Panic(message.GetMessage("0005"))
+					log.Panic(message.GetMessage(5))
 				}
 				argname := v[0]
 				arginfo := v[1]
@@ -150,13 +150,13 @@ func LoadParameterFromArg() *IniFile {
 					inifile.MessageFile = arginfo
 				default:
 					// unknown parameter
-					log.Panicf(message.GetMessage("0006"), argname)
+					log.Panicf(message.GetMessage(6), argname)
 				}
 			}
 		}
 	} else {
 		// syntaxe error
-		log.Panic(message.GetMessage("0005"))
+		log.Panic(message.GetMessage(5))
 	}
 	validate_inifile(inifile)
 	return inifile

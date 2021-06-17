@@ -8,6 +8,8 @@ import (
 	"jyv.com/goarchive/util"
 )
 
+const SQL_SERVER_DRIVER = "sqlserver"
+
 type Connection struct {
 	Name             string
 	Driver           string
@@ -29,7 +31,7 @@ func GetConnection(conlist []Connection, name string) *Connection {
 		}
 	}
 	// connection not found
-	log.Fatalf(message.GetMessage("0010"), name)
+	log.Fatalf(message.GetMessage(10), name)
 	return nil
 }
 
@@ -39,7 +41,7 @@ func ValidateConnectionUniqueNames(connections []Connection) {
 	for i, c := range connections {
 		if util.Contains(names, c.Name) && !isFirst {
 			// already exist
-			log.Fatalf(message.GetMessage("0011"), c.Name, i+1)
+			log.Fatalf(message.GetMessage(11), c.Name, i+1)
 		} else {
 			names = append(names, c.Name)
 		}
@@ -49,17 +51,17 @@ func ValidateConnectionUniqueNames(connections []Connection) {
 
 func ValidateConnection(con Connection, position int) {
 	if con.Name == "" {
-		log.Fatalf(message.GetMessage("0012"), position)
+		log.Fatalf(message.GetMessage(12), position)
 	}
 	if con.Driver == "" {
-		log.Fatalln(message.GetMessage("0013"), position)
+		log.Fatalln(message.GetMessage(13), position)
 	}
-	if con.Driver != "sqlserver" {
+	if con.Driver != SQL_SERVER_DRIVER {
 		// driver not supported
-		log.Printf(message.GetMessage("0014"), con.Driver, position)
-		log.Fatalf(message.GetMessage("0015"))
+		log.Printf(message.GetMessage(14), con.Driver, position)
+		log.Fatalf(message.GetMessage(15))
 	}
 	if con.ConnectionString == "" {
-		log.Fatalln(message.GetMessage("0016"), position)
+		log.Fatalln(message.GetMessage(16), position)
 	}
 }

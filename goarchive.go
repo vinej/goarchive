@@ -35,16 +35,16 @@ func main() {
 		file, err := os.OpenFile(inifile.Log, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
 			// Error opening log file
-			log.Fatal(err, message.GetMessage("0007"))
+			log.Fatal(err, message.GetMessage(7))
 		}
 		defer file.Close()
 		mw := io.MultiWriter(os.Stdout, file)
 		log.SetOutput(mw)
 
 		// start
-		log.Println(message.GetMessage("0008"))
+		log.Println(message.GetMessage(8))
 		doit(inifile)
 		// end
-		log.Println(message.GetMessage("0009"))
+		log.Println(message.GetMessage(9))
 	}
 }
