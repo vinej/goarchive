@@ -14,6 +14,7 @@ import (
 	"github.com/jinzhu/copier"
 	con "jyv.com/goarchive/connection"
 	"jyv.com/goarchive/message"
+	"jyv.com/goarchive/util"
 )
 
 const TIME_FORMAT = "2006-01-02 15:04:05"
@@ -150,7 +151,7 @@ func getStringField(val string) string {
 	}
 }
 
-func QuerySaveCsv(ctx *con.Connection, name string, query string, output string) {
+func QuerySaveCsv(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string) {
 	log.Printf(message.GetMessage(22), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -178,7 +179,7 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 	defer w.Flush()
 
 	// put the columns into the Excel file
-	w.Write(columnNames)
+	w.Write(util.RemoveExcludedColumns(columnNames, ExcludedColumns))
 
 	rc := NewMapStringScan(columnNames)
 	for rows.Next() {
@@ -190,17 +191,18 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string)
 		// ceate a []string for map[string]
 		ar := make([]string, 0)
 		for _, col_name := range columnNames {
-			// TODO remove excluded columns
-			// TODO anonymized columns
-			field := getStringField(row[col_name])
-			ar = append(ar, field)
+			if util.IndexOf(col_name, ExcludedColumns) == -1 {
+				// TODO anonymized columns
+				field := getStringField(row[col_name])
+				ar = append(ar, field)
+			}
 		}
 		w.Write(ar)
 	}
 	log.Printf(message.GetMessage(21), output)
 }
 
-func QuerySaveExcel(ctx *con.Connection, name string, query string, output string) {
+func QuerySaveExcel(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string) {
 	log.Printf(message.GetMessage(23), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -219,12 +221,17 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 
 	// put the columns into the Excel file
 	f := excelize.NewFile()
+	excludedCount := 0
 	for col_count, col_name := range columnNames {
-		coor, err := excelize.CoordinatesToCellName(col_count+1, 1, false)
-		if err != nil {
-			log.Fatal(err)
+		if util.IndexOf(col_name, ExcludedColumns) == -1 {
+			coor, err := excelize.CoordinatesToCellName(col_count+1-excludedCount, 1, false)
+			if err != nil {
+				log.Fatal(err)
+			}
+			f.SetCellValue(SHEET1, coor, col_name)
+		} else {
+			excludedCount++
 		}
-		f.SetCellValue(SHEET1, coor, col_name)
 	}
 
 	// put each row into the Excel file
@@ -236,13 +243,18 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 			log.Fatal(err)
 		}
 		row := rc.Get()
+		excludedCount = 0
 		for col_count, col_name := range columnNames {
-			coor, err := excelize.CoordinatesToCellName(col_count+1, row_count, false)
-			if err != nil {
-				log.Fatal(err)
+			if util.IndexOf(col_name, ExcludedColumns) == -1 {
+				coor, err := excelize.CoordinatesToCellName(col_count+1-excludedCount, row_count, false)
+				if err != nil {
+					log.Fatal(err)
+				}
+				val := row[col_name]
+				saveExcel(f, SHEET1, coor, val)
+			} else {
+				excludedCount++
 			}
-			val := row[col_name]
-			saveExcel(f, SHEET1, coor, val)
 		}
 		row_count++
 	}
@@ -263,11 +275,10 @@ func Query(ctx *con.Connection, query string) ([]string, []map[string]string) {
 	defer rows.Close()
 
 	columnNames, err := rows.Columns()
-
-	log.Printf(message.GetMessage(52), columnNames)
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf(message.GetMessage(52), columnNames)
 
 	rc := NewMapStringScan(columnNames)
 	out := make([]map[string]string, 0)

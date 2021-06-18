@@ -1,6 +1,8 @@
 package util
 
-import "strings"
+import (
+	"strings"
+)
 
 func Contains(s []string, str string) bool {
 	for _, v := range s {
@@ -38,4 +40,33 @@ func GetFieldFromMap(m map[string]interface{}, field string) string {
 		}
 	}
 	return field
+}
+
+func remove_index(s []string, index int) []string {
+	ret := make([]string, 0)
+	ret = append(ret, s[:index]...)
+	return append(ret, s[index+1:]...)
+}
+
+func IndexOf(word string, data []string) int {
+	if data != nil && len(data) > 0 {
+		for k, v := range data {
+			if word == v {
+				return k
+			}
+		}
+	}
+	return -1
+}
+
+func RemoveExcludedColumns(columns []string, excluded []string) []string {
+	if excluded == nil || len(excluded) > 0 {
+		for _, c := range excluded {
+			idx := IndexOf(c, columns)
+			if idx != -1 {
+				columns = remove_index(columns, idx)
+			}
+		}
+	}
+	return columns
 }

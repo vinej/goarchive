@@ -56,6 +56,7 @@
         "Description" : "list of names by project",
         "Connection" : "project",
         "Command":"select * from archive.dbo.{names} where project = {project} and (periode = {per_prec} or periode = {per_curr})",
+        "ExcludedColumns":  ["fxml", "ftext"],
         "Excluded" : ["a","b","c"],
         "Anonymized" : ["b"],
         "Parameters" : [

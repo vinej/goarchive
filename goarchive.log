@@ -1713,3 +1713,238 @@
 2021/06/17 17:40:11 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
 2021/06/17 17:40:11 #52 : Columns:[id code] 
 2021/06/17 17:40:11 #9 : END processing
+2021/06/17 22:01:35 #8 : START processing
+2021/06/17 22:03:10 #8 : START processing
+2021/06/17 22:06:00 #8 : START processing
+2021/06/17 22:25:59 #8 : START processing
+2021/06/17 22:25:59 #52 : Columns:[table_name] 
+2021/06/17 22:25:59 #52 : Columns:[id name description database] 
+2021/06/17 22:25:59 #52 : Columns:[] 
+2021/06/17 22:25:59 #52 : Columns:[id code] 
+2021/06/17 22:25:59 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:25:59 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:25:59 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:25:59 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:25:59 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:25:59 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:25:59 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:25:59 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:25:59 #52 : Columns:[] 
+2021/06/17 22:25:59 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid project periode] 
+2021/06/17 22:25:59 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid project periode] 
+2021/06/17 22:25:59 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid project periode] 
+2021/06/17 22:25:59 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid project periode] 
+2021/06/17 22:25:59 sql: expected 16 destination arguments in Scan, not 15
+2021/06/17 22:26:48 #8 : START processing
+2021/06/17 22:26:48 #52 : Columns:[table_name] 
+2021/06/17 22:26:48 #52 : Columns:[id name description database] 
+2021/06/17 22:26:48 #52 : Columns:[] 
+2021/06/17 22:26:48 #52 : Columns:[id code] 
+2021/06/17 22:26:48 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:26:48 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:26:48 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:26:48 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:26:48 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:26:48 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:26:48 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:26:48 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:26:48 #52 : Columns:[] 
+2021/06/17 22:26:48 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:26:48 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:26:48 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:26:48 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:26:48 sql: expected 16 destination arguments in Scan, not 14
+2021/06/17 22:32:23 #8 : START processing
+2021/06/17 22:32:23 #52 : Columns:[table_name] 
+2021/06/17 22:32:23 #52 : Columns:[id name description database] 
+2021/06/17 22:32:24 #52 : Columns:[] 
+2021/06/17 22:32:24 #52 : Columns:[id code] 
+2021/06/17 22:32:24 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:32:24 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:32:24 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:32:24 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:32:24 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:32:24 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:32:24 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:32:24 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:32:24 #52 : Columns:[] 
+2021/06/17 22:32:24 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:32:24 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:32:24 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:32:24 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:32:24 sql: expected 16 destination arguments in Scan, not 14
+2021/06/17 22:33:11 #8 : START processing
+2021/06/17 22:33:11 #52 : Columns:[table_name] 
+2021/06/17 22:33:11 #52 : Columns:[id name description database] 
+2021/06/17 22:33:11 #52 : Columns:[] 
+2021/06/17 22:33:11 #52 : Columns:[id code] 
+2021/06/17 22:33:11 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:33:11 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:33:11 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:33:11 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:33:11 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:33:11 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:33:11 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:33:11 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:33:11 #52 : Columns:[] 
+2021/06/17 22:33:11 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:33:11 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:33:11 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney freal fguid project periode] 
+2021/06/17 22:33:11 sql: expected 16 destination arguments in Scan, not 14
+2021/06/17 22:35:41 #8 : START processing
+2021/06/17 22:35:41 #52 : Columns:[table_name] 
+2021/06/17 22:35:41 #52 : Columns:[id name description database] 
+2021/06/17 22:35:41 #52 : Columns:[] 
+2021/06/17 22:35:41 #52 : Columns:[id code] 
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:35:41 #52 : Columns:[] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 open p1_p2_p123_pnames_goarchive.xlsx: The process cannot access the file because it is being used by another process.
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #52 : Columns:[id code] 
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/17 22:35:41 #52 : Columns:[] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:41 #52 : Columns:[id code] 
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:35:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:35:41 #52 : Columns:[] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:41 #52 : Columns:[id code] 
+2021/06/17 22:35:41 #9 : END processing
+2021/06/17 22:35:51 #8 : START processing
+2021/06/17 22:35:51 #52 : Columns:[table_name] 
+2021/06/17 22:35:51 #52 : Columns:[id name description database] 
+2021/06/17 22:35:51 #52 : Columns:[] 
+2021/06/17 22:35:51 #52 : Columns:[id code] 
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:35:51 #52 : Columns:[] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #52 : Columns:[id code] 
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/17 22:35:51 #52 : Columns:[] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:35:51 #52 : Columns:[id code] 
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:35:51 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:35:51 #52 : Columns:[] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:35:51 #52 : Columns:[id code] 
+2021/06/17 22:35:51 #9 : END processing
+2021/06/17 22:38:39 #8 : START processing
+2021/06/17 22:38:39 #52 : Columns:[table_name] 
+2021/06/17 22:38:39 #52 : Columns:[id name description database] 
+2021/06/17 22:38:39 #52 : Columns:[] 
+2021/06/17 22:38:39 #52 : Columns:[id code] 
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:38:39 #52 : Columns:[] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #52 : Columns:[id code] 
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/17 22:38:39 #52 : Columns:[] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/17 22:38:39 #52 : Columns:[id code] 
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/17 22:38:39 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/17 22:38:39 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/17 22:38:39 #52 : Columns:[] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/17 22:38:39 #52 : Columns:[id code] 
+2021/06/17 22:38:39 #9 : END processing

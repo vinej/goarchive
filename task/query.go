@@ -22,6 +22,7 @@ const PARAM_CHILD = "child"
 const PARAM_CSV = "csv"
 
 const QUERY_PARAMETERS = "Parameters"
+const QUERY_EXCLUDED_COLUMNS = "ExcludedColumns"
 const QUERY_NAME = "Name"
 const QUERY_KIND = "Kind"
 const QUERY_DESCRIPTION = "Description"
@@ -38,16 +39,17 @@ const QUERY_OUTPUT_TYPE_MEMORY = "memory"
 const QUERY_OUTPUT_TYPE_REFERENCE = "reference"
 const QUERY_OUTPUT_TYPE_CSV = "csv"
 
-type SaveOutput func(ctx *con.Connection, name string, query string, output string)
+type SaveOutput func(ctx *con.Connection, name string, query string, output string, excludedColumns []string)
 
 type Query struct {
 	Task
-	Description string
-	Connection  string
-	Command     string
-	OutputType  string
-	FileName    string
-	Parameters  []Parameter
+	Description     string
+	Connection      string
+	Command         string
+	OutputType      string
+	FileName        string
+	ExcludedColumns []string
+	Parameters      []Parameter
 }
 
 type Memory struct {
@@ -99,7 +101,7 @@ func use_database(ctx *con.Connection, p Parameter, row map[string]string) {
 	msql.Query(ctx, SQL_USE+dbFieldValue)
 }
 
-func query_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string, save SaveOutput) {
+func query_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string, save SaveOutput, excludedColumns []string) {
 	p2 := query.Parameters[level]
 	if strings.ToLower(p2.Kind) == PARAM_CHILD {
 		if level == 0 {
@@ -138,9 +140,9 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2)
+				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns)
 			} else {
-				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save)
+				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns)
 			}
 		}
 	} else {
@@ -159,9 +161,9 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2)
+				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns)
 			} else {
-				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save)
+				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns)
 			}
 		}
 	}
@@ -170,19 +172,19 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 func query_excel(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName)
+		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns)
 		return
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel)
+	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel, query.ExcludedColumns)
 }
 
 func query_csv(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName)
+		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns)
 		return
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv)
+	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv, query.ExcludedColumns)
 }
 
 func GetMemory(name string) *Memory {
@@ -238,8 +240,18 @@ func (query *Query) Transform(m map[string]interface{}) {
 	query.Connection = util.GetFieldValueFromMap(m, QUERY_CONNECTION)
 	query.OutputType = util.GetFieldValueFromMap(m, QUERY_OUTPUT_TYPE)
 	query.FileName = util.GetFieldValueFromMap(m, QUERY_FILENAME)
+	query.ExcludedColumns = make([]string, 0)
+	field := util.GetFieldFromMap(m, QUERY_EXCLUDED_COLUMNS)
+	if field != "" {
+		pm := m[field].([]interface{})
+		for _, f := range pm {
+			query.ExcludedColumns = append(query.ExcludedColumns, f.(string))
+		}
+
+	}
+
 	query.Parameters = make([]Parameter, 0)
-	field := util.GetFieldFromMap(m, QUERY_PARAMETERS)
+	field = util.GetFieldFromMap(m, QUERY_PARAMETERS)
 	if field != "" {
 		pm := m[field].([]interface{})
 		for _, p := range pm {

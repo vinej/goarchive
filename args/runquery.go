@@ -11,5 +11,5 @@ func Runquery(inifile *IniFile) {
 	ctx.Driver = inifile.Driver
 	ctx.ConnectionString = inifile.ConnectionString
 	ctx.Name = inifile.Name
-	go msql.QuerySaveExcel(ctx, inifile.Name, inifile.Query, inifile.Output)
+	go msql.QuerySaveExcel(ctx, inifile.Name, inifile.Query, inifile.Output, nil)
 }
