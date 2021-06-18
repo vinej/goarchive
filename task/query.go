@@ -42,6 +42,22 @@ const QUERY_OUTPUT_TYPE_CSV = "csv"
 
 type SaveOutput func(ctx *con.Connection, name string, query string, output string, excludedColumns []string, AnonymizedColumns []string)
 
+type Parameter struct {
+	Names       []string
+	Fields      []string
+	Source      string
+	UseDatabase string
+	Kind        string
+}
+
+// todo
+type Anonymized struct {
+	Columns []string
+	Prefix  string
+	Suffix  string
+	Pattern string // prefix+incr, meta+incr
+}
+
 type Query struct {
 	Task
 	Description       string

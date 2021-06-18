@@ -14,14 +14,6 @@ type ITask interface {
 	GetTask() Task
 }
 
-type Parameter struct {
-	Names       []string
-	Fields      []string
-	Source      string
-	UseDatabase string
-	Kind        string
-}
-
 type Task struct {
 	Kind string
 	Name string
