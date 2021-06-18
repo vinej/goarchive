@@ -3,6 +3,7 @@ package task
 import (
 	"log"
 	"strings"
+	"sync"
 
 	"github.com/jinzhu/copier"
 	con "jyv.com/goarchive/connection"
@@ -40,7 +41,7 @@ const QUERY_OUTPUT_TYPE_MEMORY = "memory"
 const QUERY_OUTPUT_TYPE_REFERENCE = "reference"
 const QUERY_OUTPUT_TYPE_CSV = "csv"
 
-type SaveOutput func(ctx *con.Connection, name string, query string, output string, excludedColumns []string, AnonymizedColumns []string)
+type SaveOutput func(wg *sync.WaitGroup, ctx *con.Connection, name string, query string, output string, excludedColumns []string, AnonymizedColumns []string)
 
 type Parameter struct {
 	Names       []string
@@ -69,6 +70,8 @@ type Query struct {
 	AnonymizedColumns []string
 	Parameters        []Parameter
 }
+
+var wg sync.WaitGroup
 
 type Memory struct {
 	columnNames []string
@@ -159,7 +162,8 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
+				wg.Add(1)
+				go save(&wg, ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
 			} else {
 				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns, anonymizedColumns)
 			}
@@ -180,7 +184,8 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
+				wg.Add(1)
+				go save(&wg, ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
 			} else {
 				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns, anonymizedColumns)
 			}
@@ -191,19 +196,21 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 func query_excel(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
-		return
+		wg.Add(1)
+		go msql.QuerySaveExcel(&wg, ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
+	} else {
+		query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel, query.ExcludedColumns, query.AnonymizedColumns)
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel, query.ExcludedColumns, query.AnonymizedColumns)
 }
 
 func query_csv(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
-		return
+		wg.Add(1)
+		go msql.QuerySaveCsv(&wg, ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
+	} else {
+		query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv, query.ExcludedColumns, query.AnonymizedColumns)
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv, query.ExcludedColumns, query.AnonymizedColumns)
 }
 
 func GetMemory(name string) *Memory {

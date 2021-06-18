@@ -1,11 +1,9 @@
-package args
+package task
 
 import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-
-	"jyv.com/goarchive/task"
 )
 
 func LoadJson(file string) {
@@ -13,11 +11,11 @@ func LoadJson(file string) {
 	if err != nil {
 		log.Panic(err)
 	}
-	etljson := new(task.ETLJson)
+	etljson := new(ETLJson)
 	err = json.Unmarshal(data, etljson)
 	if err != nil {
 		log.Panic(err)
 	}
-	etl := task.RemapETL(etljson)
-	task.RunETL(etl)
+	etl := RemapETL(etljson)
+	RunETL(etl)
 }

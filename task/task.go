@@ -53,6 +53,7 @@ func RunAll(etl *ETL) {
 	for i, t := range etl.Tasks {
 		t.Run(etl.Connections, i)
 	}
+	wg.Wait()
 }
 
 func RemapETL(etl *ETLJson) (etlout *ETL) {

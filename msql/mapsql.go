@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
@@ -155,7 +156,8 @@ func getStringField(val string) string {
 	}
 }
 
-func QuerySaveCsv(ctx *con.Connection, name string, query string, output string, excludedColumns []string, anonymizedColumns []string) {
+func QuerySaveCsv(wg *sync.WaitGroup, ctx *con.Connection, name string, query string, output string, excludedColumns []string, anonymizedColumns []string) {
+	defer wg.Done()
 	log.Printf(message.GetMessage(22), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -210,7 +212,8 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string,
 	log.Printf(message.GetMessage(21), output)
 }
 
-func QuerySaveExcel(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string, anonymizedColumns []string) {
+func QuerySaveExcel(wg *sync.WaitGroup, ctx *con.Connection, name string, query string, output string, ExcludedColumns []string, anonymizedColumns []string) {
+	defer wg.Done()
 	log.Printf(message.GetMessage(23), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()

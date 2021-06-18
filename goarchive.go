@@ -7,13 +7,14 @@ import (
 
 	args "jyv.com/goarchive/args"
 	message "jyv.com/goarchive/message"
+	"jyv.com/goarchive/task"
 )
 
 func doit(inifile *args.IniFile) {
 	if inifile.Json != "" {
-		args.LoadJson(inifile.Json)
+		task.LoadJson(inifile.Json)
 	} else {
-		args.Runquery(inifile)
+		task.Runquery(inifile)
 	}
 }
 
