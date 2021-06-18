@@ -15,21 +15,21 @@
     { 
         "Name" : "csv1",
         "Kind" : "csv",  
-        "Description" : "list of users",
+        "Description" : "read list of users into memory",
         "FileName" : "users.csv",
         "OutputType" : "memory"
     },
     { 
         "Name" : "tests",
         "Kind" : "array",  
-        "Description" : "list of country",
+        "Description" : "read list of country into memory",
         "Command":"Canada|France|Germany",
         "OutputType" : "memory"
     },
     { 
         "Name" : "listnames",
         "Kind" : "query",  
-        "Description" : "list of names",
+        "Description" : "read the list of table into memory",
         "Connection" : "project",
         "Command":"select table_name from archive.dbo.tablename",
         "OutputType" : "memory"
@@ -37,7 +37,7 @@
     { 
         "Name" : "projects",
         "Kind" : "query",  
-        "Description" : "list of projects",
+        "Description" : "read list of projects inot memory",
         "Connection" : "corpo",
         "Command":"select [id], [name], [description], [database] from archive.dbo.projects",
         "OutputType" : "memory"
@@ -45,7 +45,7 @@
     { 
         "Name" : "periodes",
         "Kind" : "query",  
-        "Description" : "list of periodes",
+        "Description" : "lazy read list of periodes for each project",
         "Connection" : "project",
         "Command":"select id,code from archive.dbo.Periodes where project = {project}",
         "OutputType" : "reference"
@@ -53,36 +53,34 @@
     { 
         "Name" : "names",
         "Kind" : "query",  
-        "Description" : "list of names by project",
+        "Description" : "extract to excel for each tables, the list of names by project for each periode",
         "Connection" : "project",
         "Command":"select * from archive.dbo.{names} where project = {project} and (periode = {per_prec} or periode = {per_curr})",
         "ExcludedColumns":  ["fxml", "ftext"],
         "AnonymizedColumns": ["name"],
-        "Excluded" : ["a","b","c"],
-        "Anonymized" : ["b"],
+        "OutputType" : "excel",
+        "FileName" : "goarchive.xlsx",
         "Parameters" : [
             {
                 "Names" : ["{names}"],
+                "Kind": "parent",
                 "Fields" : ["table_name"],
-                "Source": "listnames",
-                "Kind": "parent"
+                "Source": "listnames"
             },
             {
                 "Names" : ["{project}"],
+                "Kind": "parent",
                 "Fields" : ["id"],
                 "Source": "projects",
-                "UseDatabase": "database",
-                "Kind": "parent"
+                "UseDatabase": "database"
             },
             {
                 "Names" : ["{per_prec}", "{per_curr}"],
+                "Kind" : "child",
                 "Fields" : ["id", "id"],
-                "Source": "periodes",
-                "Kind" : "child"
+                "Source": "periodes"
             }
-        ],
-        "OutputType" : "excel",
-        "FileName" : "goarchive.xlsx"
+        ]
     }
 ]
 }

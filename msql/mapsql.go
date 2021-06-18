@@ -17,6 +17,10 @@ import (
 	"jyv.com/goarchive/util"
 )
 
+/*
+	This module is l;unched with GO routine. all function using global map like <anonymized>
+	must be protected by a lock.
+*/
 const TIME_FORMAT = "2006-01-02 15:04:05"
 const SHEET1 = "Sheet1"
 
@@ -195,6 +199,7 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string,
 				// TODO anonymized columns
 				field := getStringField(row[col_name])
 				if util.IndexOf(col_name, anonymizedColumns) != -1 {
+					// go routine lock needed inside Anonymized
 					field = util.Anonymized(name, col_name, field)
 				}
 				ar = append(ar, field)
@@ -255,6 +260,7 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 				}
 				val := row[col_name]
 				if util.IndexOf(col_name, anonymizedColumns) != -1 {
+					// go routine lock needed inside Anonymized
 					val = util.Anonymized(name, col_name, val)
 				}
 				saveExcel(f, SHEET1, coor, val)
