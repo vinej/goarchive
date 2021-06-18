@@ -1,7 +1,10 @@
 package task
 
 import (
+	"log"
+
 	con "jyv.com/goarchive/connection"
+	"jyv.com/goarchive/message"
 )
 
 // declare interface
@@ -53,6 +56,7 @@ func RunAll(etl *ETL) {
 	for i, t := range etl.Tasks {
 		t.Run(etl.Connections, i)
 	}
+	log.Println(message.GetMessage(55))
 	wg.Wait()
 }
 

@@ -88,6 +88,7 @@ func FillInternalMessage() {
 	mapmsg[52] = "INFO: Columns:%s "
 	mapmsg[53] = "INFO: Anonymized column '%s' with the value '%s'"
 	mapmsg[54] = "INFO: Anonymized value for the column '%s' with the value '%s' is '%s'"
+	mapmsg[55] = "INFO: Waiting for all go routines to complete"
 }
 
 func WriteMessageToFile(filename string) {
