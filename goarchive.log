@@ -2045,3 +2045,228 @@
 2021/06/17 23:11:03 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
 2021/06/17 23:11:03 #52 : Columns:[id code] 
 2021/06/17 23:11:03 #9 : END processing
+2021/06/18 06:37:29 #8 : START processing
+2021/06/18 06:37:29 #52 : Columns:[table_name] 
+2021/06/18 06:37:29 #52 : Columns:[id name description database] 
+2021/06/18 06:37:29 #52 : Columns:[] 
+2021/06/18 06:37:29 #52 : Columns:[id code] 
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:37:29 #52 : Columns:[] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #52 : Columns:[id code] 
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/18 06:37:29 #52 : Columns:[] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:37:29 #52 : Columns:[id code] 
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:37:29 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:37:29 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:37:29 #52 : Columns:[] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #52 : Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:37:29 #52 : Columns:[id code] 
+2021/06/18 06:37:29 #9 : END processing
+2021/06/18 06:46:08 #8 : START processing
+2021/06/18 06:46:08 #52 : INFO: Columns:[table_name] 
+2021/06/18 06:46:08 #52 : INFO: Columns:[id name description database] 
+2021/06/18 06:46:08 #52 : INFO: Columns:[] 
+2021/06/18 06:46:08 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:46:09 #52 : INFO: Columns:[] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_1'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'test3'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't5'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'jyv'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_4'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't5'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_1'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't6'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't6' is 'name_5'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'test3'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'f1'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'f1'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/18 06:46:09 #52 : INFO: Columns:[] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't8'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't8' is 'name_7'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'jyv'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_4'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'jyv'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_4'
+2021/06/18 06:46:09 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:46:09 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:46:09 #52 : INFO: Columns:[] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'test3'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_1'
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_1'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'f1'
+2021/06/18 06:46:09 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't5'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't5'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 't6'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 't6' is 'name_5'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'jyv'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_4'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'test3'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:09 #53 : INFO: Anonymized column 'name' with the value 'f1'
+2021/06/18 06:46:09 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:09 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:09 #9 : END processing
+2021/06/18 06:46:40 #8 : START processing
+2021/06/18 06:46:40 #52 : INFO: Columns:[table_name] 
+2021/06/18 06:46:40 #52 : INFO: Columns:[id name description database] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:46:41 #52 : INFO: Columns:[] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_1'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_4'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't6' is 'name_5'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_4'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 7 or periode = 8)'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names where project = 124 and (periode = 8 or periode = 9)'
+2021/06/18 06:46:41 #52 : INFO: Columns:[] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_1'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't8' is 'name_7'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_1'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p8_p9_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p7_p8_p124_pnames_goarchive.xlsx'
+2021/06/18 06:46:41 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 2 or periode = 3)'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #23 : INFO: Starting saving into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 3 or periode = 4)'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 1 or periode = 2)'
+2021/06/18 06:46:41 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names2 where project = 123 and (periode = 4 or periode = 5)'
+2021/06/18 06:46:41 #52 : INFO: Columns:[] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_4'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p2_p3_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't' is 'name_4'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'jyv' is 'name_1'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't5' is 'name_3'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'test3' is 'name_2'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 't6' is 'name_5'
+2021/06/18 06:46:41 #54 : INFO: Anonymized value for the column 'name' with the value 'f1' is 'name_6'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p3_p4_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p4_p5_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #25 : INFO: Success saved into the Excel file 'p1_p2_p123_pnames2_goarchive.xlsx'
+2021/06/18 06:46:41 #52 : INFO: Columns:[id code] 
+2021/06/18 06:46:41 #9 : END processing

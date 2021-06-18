@@ -85,7 +85,9 @@ func FillInternalMessage() {
 	mapmsg[49] = "JSON Task Error: the task at the position '%d' with the name '%s' does not contain the field '%s'"
 	mapmsg[50] = "JSON Task Error: the task at the position '%d' with the name '%s' the kind '%s' is not supported"
 	mapmsg[51] = "JSON Task Error: the supported tasks are '%s','%s','%s'"
-	mapmsg[52] = "Columns:%s "
+	mapmsg[52] = "INFO: Columns:%s "
+	mapmsg[53] = "INFO: Anonymized column '%s' with the value '%s'"
+	mapmsg[54] = "INFO: Anonymized value for the column '%s' with the value '%s' is '%s'"
 }
 
 func WriteMessageToFile(filename string) {
