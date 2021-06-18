@@ -151,7 +151,7 @@ func getStringField(val string) string {
 	}
 }
 
-func QuerySaveCsv(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string) {
+func QuerySaveCsv(ctx *con.Connection, name string, query string, output string, excludedColumns []string, anonymizedColumns []string) {
 	log.Printf(message.GetMessage(22), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -179,7 +179,7 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string,
 	defer w.Flush()
 
 	// put the columns into the Excel file
-	w.Write(util.RemoveExcludedColumns(columnNames, ExcludedColumns))
+	w.Write(util.RemoveExcludedColumns(columnNames, excludedColumns))
 
 	rc := NewMapStringScan(columnNames)
 	for rows.Next() {
@@ -191,9 +191,12 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string,
 		// ceate a []string for map[string]
 		ar := make([]string, 0)
 		for _, col_name := range columnNames {
-			if util.IndexOf(col_name, ExcludedColumns) == -1 {
+			if util.IndexOf(col_name, excludedColumns) == -1 {
 				// TODO anonymized columns
 				field := getStringField(row[col_name])
+				if util.IndexOf(col_name, anonymizedColumns) != -1 {
+					field = util.Anonymized(name, col_name, field)
+				}
 				ar = append(ar, field)
 			}
 		}
@@ -202,7 +205,7 @@ func QuerySaveCsv(ctx *con.Connection, name string, query string, output string,
 	log.Printf(message.GetMessage(21), output)
 }
 
-func QuerySaveExcel(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string) {
+func QuerySaveExcel(ctx *con.Connection, name string, query string, output string, ExcludedColumns []string, anonymizedColumns []string) {
 	log.Printf(message.GetMessage(23), output)
 	db, _ := con.GetDB(ctx)
 	defer db.Close()
@@ -251,6 +254,9 @@ func QuerySaveExcel(ctx *con.Connection, name string, query string, output strin
 					log.Fatal(err)
 				}
 				val := row[col_name]
+				if util.IndexOf(col_name, anonymizedColumns) != -1 {
+					val = util.Anonymized(name, col_name, val)
+				}
 				saveExcel(f, SHEET1, coor, val)
 			} else {
 				excludedCount++

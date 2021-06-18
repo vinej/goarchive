@@ -23,6 +23,7 @@ const PARAM_CSV = "csv"
 
 const QUERY_PARAMETERS = "Parameters"
 const QUERY_EXCLUDED_COLUMNS = "ExcludedColumns"
+const QUERY_ANONYMIZED_COLUMNS = "AnonymizedColumns"
 const QUERY_NAME = "Name"
 const QUERY_KIND = "Kind"
 const QUERY_DESCRIPTION = "Description"
@@ -39,17 +40,18 @@ const QUERY_OUTPUT_TYPE_MEMORY = "memory"
 const QUERY_OUTPUT_TYPE_REFERENCE = "reference"
 const QUERY_OUTPUT_TYPE_CSV = "csv"
 
-type SaveOutput func(ctx *con.Connection, name string, query string, output string, excludedColumns []string)
+type SaveOutput func(ctx *con.Connection, name string, query string, output string, excludedColumns []string, AnonymizedColumns []string)
 
 type Query struct {
 	Task
-	Description     string
-	Connection      string
-	Command         string
-	OutputType      string
-	FileName        string
-	ExcludedColumns []string
-	Parameters      []Parameter
+	Description       string
+	Connection        string
+	Command           string
+	OutputType        string
+	FileName          string
+	ExcludedColumns   []string
+	AnonymizedColumns []string
+	Parameters        []Parameter
 }
 
 type Memory struct {
@@ -101,7 +103,8 @@ func use_database(ctx *con.Connection, p Parameter, row map[string]string) {
 	msql.Query(ctx, SQL_USE+dbFieldValue)
 }
 
-func query_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string, save SaveOutput, excludedColumns []string) {
+func query_level(ctx *con.Connection, cmd string, out string, query *Query, level int, row map[string]string, save SaveOutput,
+	excludedColumns []string, anonymizedColumns []string) {
 	p2 := query.Parameters[level]
 	if strings.ToLower(p2.Kind) == PARAM_CHILD {
 		if level == 0 {
@@ -140,9 +143,9 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns)
+				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
 			} else {
-				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns)
+				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns, anonymizedColumns)
 			}
 		}
 	} else {
@@ -161,9 +164,9 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 			}
 			if level == len(query.Parameters)-1 {
 				// we can use a goroutine here
-				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns)
+				go save(ctx, query.Task.Name, cmd2, out2, excludedColumns, anonymizedColumns)
 			} else {
-				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns)
+				query_level(ctx, cmd2, out2, query, level+1, mem2.rows[r], save, excludedColumns, anonymizedColumns)
 			}
 		}
 	}
@@ -172,19 +175,19 @@ func query_level(ctx *con.Connection, cmd string, out string, query *Query, leve
 func query_excel(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns)
+		go msql.QuerySaveExcel(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
 		return
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel, query.ExcludedColumns)
+	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveExcel, query.ExcludedColumns, query.AnonymizedColumns)
 }
 
 func query_csv(ctx *con.Connection, query *Query) {
 	if len(query.Parameters) == 0 {
 		// we can use a goroutine here
-		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns)
+		go msql.QuerySaveCsv(ctx, query.Task.Name, query.Command, query.FileName, query.ExcludedColumns, query.AnonymizedColumns)
 		return
 	}
-	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv, query.ExcludedColumns)
+	query_level(ctx, query.Command, query.FileName, query, 0, nil, msql.QuerySaveCsv, query.ExcludedColumns, query.AnonymizedColumns)
 }
 
 func GetMemory(name string) *Memory {
@@ -248,6 +251,15 @@ func (query *Query) Transform(m map[string]interface{}) {
 			query.ExcludedColumns = append(query.ExcludedColumns, f.(string))
 		}
 
+	}
+
+	query.AnonymizedColumns = make([]string, 0)
+	field = util.GetFieldFromMap(m, QUERY_ANONYMIZED_COLUMNS)
+	if field != "" {
+		pm := m[field].([]interface{})
+		for _, f := range pm {
+			query.AnonymizedColumns = append(query.AnonymizedColumns, f.(string))
+		}
 	}
 
 	query.Parameters = make([]Parameter, 0)
