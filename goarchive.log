@@ -2841,3 +2841,14 @@
 2022/11/01 18:23:56 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
 2022/11/01 18:23:56 #21 : INFO: Success saved into the CSV file 'goarchive.csv'
 2022/11/01 18:23:56 #9 : END processing
+2022/11/01 18:26:51 #8 : START processing
+2022/11/01 18:26:51 #22 : INFO: Starting saving into the CSV file 'goarchive.csv'
+2022/11/01 18:26:51 #18 : INFO: Saving into CSV with the query: '
+		select * from archive.dbo.names where
+	 	name not like '%j%' 
+	 	order by 
+	 	name
+	'
+2022/11/01 18:26:51 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2022/11/01 18:26:51 #21 : INFO: Success saved into the CSV file 'goarchive.csv'
+2022/11/01 18:26:51 #9 : END processing
