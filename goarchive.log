@@ -2795,3 +2795,25 @@
 2021/06/18 15:02:00 #52 : INFO: Columns:[] 
 2021/06/18 15:02:00 mssql: Invalid object name 'archive.bo.names'.
 2021/06/18 15:02:00 mssql: Invalid object name 'archive.bo.names'.
+2022/11/01 17:38:34 #8 : START processing
+2022/11/01 17:38:34 #9 : END processing
+2022/11/01 17:38:41 #8 : START processing
+2022/11/01 17:38:41 #9 : END processing
+2022/11/01 17:39:08 #8 : START processing
+2022/11/01 17:39:08 #9 : END processing
+2022/11/01 17:40:28 #8 : START processing
+2022/11/01 17:41:16 #9 : END processing
+2022/11/01 17:41:56 #8 : START processing
+2022/11/01 17:41:56 #9 : END processing
+2022/11/01 17:42:17 #8 : START processing
+2022/11/01 17:42:17 #9 : END processing
+2022/11/01 17:42:34 #8 : START processing
+2022/11/01 17:42:34 #9 : END processing
+2022/11/01 17:44:01 #8 : START processing
+2022/11/01 17:44:01 #9 : END processing
+2022/11/01 17:45:20 #8 : START processing
+2022/11/01 17:45:22 #23 : INFO: Starting saving into the Excel file 'goarchive.xlsx'
+2022/11/01 17:45:27 #24 : INFO: Saving into Excel with the query: 'select * from archive.dbo.names'
+2022/11/01 17:45:38 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2022/11/01 17:46:03 #25 : INFO: Success saved into the Excel file 'goarchive.xlsx'
+2022/11/01 17:46:03 #9 : END processing

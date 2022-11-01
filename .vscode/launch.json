@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${fileDirname}",
             //"args": ["j=goarchive.json", "d=sqlserver", "c=saa:Hydne3/44@DESKTOP-L1MM0UJ?database=archive", "q=select * from archive.dbo.names"],
-            "args": ["j=goarchive.json"]
+            "args": ["i=goarchive.ini"]
         }
     ]
 }
