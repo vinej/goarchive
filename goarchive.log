@@ -2817,3 +2817,9 @@
 2022/11/01 17:45:38 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
 2022/11/01 17:46:03 #25 : INFO: Success saved into the Excel file 'goarchive.xlsx'
 2022/11/01 17:46:03 #9 : END processing
+2022/11/01 18:15:38 #8 : START processing
+2022/11/01 18:15:38 #22 : INFO: Starting saving into the CSV file 'goarchive.csv'
+2022/11/01 18:15:38 #18 : INFO: Saving into CSV with the query: 'select * from archive.dbo.names'
+2022/11/01 18:15:38 #52 : INFO: Columns:[id name cdate ctime salary pour fntext fnum fbit fmoney ftext freal fguid fxml project periode] 
+2022/11/01 18:15:38 #21 : INFO: Success saved into the CSV file 'goarchive.csv'
+2022/11/01 18:15:38 #9 : END processing

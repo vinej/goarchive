@@ -16,6 +16,7 @@ type IniFile struct {
 	ConnectionString string
 	Query            string
 	Log              string
+	Kind             string
 	Output           string
 	MessageFile      string
 }
@@ -27,6 +28,7 @@ const INI_CONNECTIONSTRING = "connectionstring"
 const INI_QUERY = "query"
 const INI_OUTPUT = "output"
 const INI_LOG = "log"
+const INI_KIND = "kind"
 const INI_MESSAGE_FILE = "message"
 const INI_DEFAULTNAME = "master"
 const INI_DEFAULT_LOG = "goarchive.log"
@@ -48,6 +50,7 @@ func load_ini_file(filename string) *IniFile {
 	inifile.Output = cfg.Section(INI_GOARCHIVE).Key(INI_OUTPUT).String()
 	inifile.Log = cfg.Section(INI_GOARCHIVE).Key(INI_LOG).String()
 	inifile.MessageFile = cfg.Section(INI_GOARCHIVE).Key(INI_MESSAGE_FILE).String()
+	inifile.Kind = cfg.Section(INI_GOARCHIVE).Key(INI_KIND).String()
 	return inifile
 }
 
@@ -65,6 +68,10 @@ func validate_inifile(inifile *IniFile) {
 		// driver is mandatory
 		inifile.Driver = INI_SQLDRIVER
 	}
+	if len(inifile.Kind) == 0 {
+		// driver is mandatory
+		inifile.Kind = "excel"
+	}
 
 	if inifile.Json == "" {
 		if len(inifile.ConnectionString) == 0 {
@@ -78,7 +85,7 @@ func validate_inifile(inifile *IniFile) {
 	}
 }
 
-//syntaxe
+// syntaxe
 // d, --driver d={sql driver}
 // c, --con    c={connection string}
 // q, --query  q={sql query}
@@ -86,13 +93,14 @@ func validate_inifile(inifile *IniFile) {
 // o, --output o={output file name
 // i, --ini    i={initialisation file}
 // m, --msg    m={message file}
-//     [goarchive]
-// 		driver = <sql driver>
-//      con = <connection string>
-// 		query = <sql query>
-// 		log = <log file>
-// 		output = <output file name>
-//      message = <message file name>
+//
+//	    [goarchive]
+//			driver = <sql driver>
+//	     con = <connection string>
+//			query = <sql query>
+//			log = <log file>
+//			output = <output file name>
+//	     message = <message file name>
 func LoadParameterFromArg() *IniFile {
 	// if first parameter starts init -i or -ini, load ini file and forget about other parameter
 	var inifile *IniFile
