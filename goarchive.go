@@ -24,7 +24,6 @@ func main() {
 	//return
 	//message.FillMessage("./locales/en-US/out.gotext.json")
 	//return
-
 	inifile := args.LoadParameterFromArg()
 	if inifile != nil {
 		if inifile.MessageFile != "" {
